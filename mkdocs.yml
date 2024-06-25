@@ -1,6 +1,6 @@
 site_name: The Prompt Dictionary
-repo_url: https://github.com/jjmacky/prompt_cookbook
-repo_name: jjmacky/prompt_cookbook
+repo_url: https://github.com/jjmacky/prompt-dictionary
+repo_name: jjmacky/prompt-dictionary
 
 theme:
   name: material
@@ -15,7 +15,6 @@ theme:
     - content.code.annotation
   icon:
     repo: fontawesome/brands/github
-
 
 extra_javascript:
   - javascript/open_links_in_new_tab.js
