@@ -37,5 +37,5 @@ Many of the techniques featured here I first saw in the wonderful, "The Prompt R
 ### Synthetic Data:
 - [Basic Synthetic Data Creation Tutorial](synthetic_data/basic_tutorial_1/airbnb_rewriting.md)
 
-### Hire me!
+### Support my work
 - [Contact Information](hire_me.md)

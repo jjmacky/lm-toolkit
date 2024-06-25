@@ -52,7 +52,7 @@ nav:
       - KATE (kNN-Augmented in-conText Example selection): prompting/few_shot/kate.md
   - Synthetic data:
     - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md  
-  - Support me!: support_me.md
+  - Support my work: support_me.md
 
 copyright:
   'Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>'
