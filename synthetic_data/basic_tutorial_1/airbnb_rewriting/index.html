@@ -1,0 +1,2041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../../prompting/few_shot/kate/">
+      
+      
+        <link rel="next" href="../../../support_me/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Basic synthetic data creation tutorial - The Prompt Dictionary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creating-synthetic-apartment-reviews-dataset" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The Prompt Dictionary" class="md-header__button md-logo" aria-label="The Prompt Dictionary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Prompt Dictionary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic synthetic data creation tutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jjmacky/prompt_cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/prompt_cookbook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../prompting/zero_shot/assumption_consideration/" class="md-tabs__link">
+          
+  
+  Prompt Dictionary
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Synthetic data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../support_me/" class="md-tabs__link">
+        
+  
+    
+  
+  Support me!
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The Prompt Dictionary" class="md-nav__button md-logo" aria-label="The Prompt Dictionary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    The Prompt Dictionary
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jjmacky/prompt_cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/prompt_cookbook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prompt Dictionary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Prompt Dictionary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Zero-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Zero-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/assumption_consideration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assumption Consideration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/emotion_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Emotion Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/plain_vanilla/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plain Vanilla
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/rephrase_and_respond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rephrase and Respond (RaR)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/rereading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rereading (Re2)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/role_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Role Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/self_ask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Self-ask
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/simtom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SimToM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/solo_performance_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solo Performance Prompting (SPP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/style_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/zero_shot/system_2_attention/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System 2 Attention (S2A)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Few-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Few-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prompting/few_shot/kate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KATE (kNN-Augmented in-conText Example selection)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Synthetic data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Synthetic data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Basic synthetic data creation tutorial
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Basic synthetic data creation tutorial
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-data-synthetic-data-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the data synthetic data looks like
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What the data synthetic data looks like">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-airbnb-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Original Airbnb review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpt-4o-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPT-4o rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-sonnet-35-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Claude Sonnet 3.5 rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llama3-8b-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Llama3 (8B) rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examining the data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examining the data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter the data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-the-synthetic-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating the synthetic data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing batching
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../support_me/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support me!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-data-synthetic-data-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the data synthetic data looks like
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What the data synthetic data looks like">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-airbnb-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Original Airbnb review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpt-4o-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPT-4o rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-sonnet-35-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Claude Sonnet 3.5 rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llama3-8b-rewritten-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Llama3 (8B) rewritten review
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examining the data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examining the data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter the data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-the-synthetic-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating the synthetic data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing batching
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="creating-synthetic-apartment-reviews-dataset">Creating Synthetic Apartment Reviews Dataset</h1>
+<p>In this tutorial, we'll create some basic synthetic data as an exercise. The Python notebook for the project can be found on my GitHub <a href="https://github.com/jjmacky/prompt_cookbook/blob/main/docs/synthetic_data/basic_tutorial_1/airbnb_rewriting.ipynb">here</a>.</p>
+<p>The goal is to create a set of realistic apartment reviews that contain the monthly price paid for the apartment. We'll use the review to populate a JSON object which includes:</p>
+<ul>
+<li>The review</li>
+<li>A natural language query requesting an extraction of the monthly rent price from the review</li>
+<li>A JSON schema corresponding to that query</li>
+<li>A JSON object which matches the schema and contains the rent price (can be used as a target for benchmarking or finetuning)</li>
+</ul>
+<p>To achieve this, we'll take the creative approach of using a large language model to translate short-term Airbnb rental reviews into long-term apartment reviews that contain monthly pricing information from the reviewer. This exercise is based on a real-world use case. I was surprised when I searched online for apartment review datasets, but was unable to find many. One way to solve this problem would be to scrape apartment rental reviews from the web, but creating synthetic data allows us to have more control over the output. Another approach is to simply ask a language model to generate fictional reviews. However, in my experience seeding the model with a real review generates richer and more varied synthetic data. The approach used here can be extended in many ways.</p>
+<p>Because the dataset contains both the unstructured text as well as the target output, this kind of synthetic data can be used:</p>
+<ul>
+<li>To create a data extraction benchmark to evaluate a large language model or other machine learning model (i.e. how well can a language model take a natural language query and output a correct JSON object representing the result of that query).</li>
+<li>To fine-tune a smaller language model on data extraction activities.</li>
+<li>For educational purposes, if you want to create curated dataset of unstructured text to help teach students.</li>
+<li>To create information-dense text that might more efficiently train a large language model.</li>
+</ul>
+<h2 id="what-the-data-synthetic-data-looks-like">What the data synthetic data looks like</h2>
+<p>Let's compare the results from three different language models, all using the same process from this tutorial (see code below). As you can see, all three models did a good job of transforming the short-term Airbnb review into a realistic apartment review.</p>
+<h3 id="original-airbnb-review">Original Airbnb review</h3>
+<blockquote>
+<p>"Frans was a wonderful host.  He picked us up from the airport, and unfortunately we had major issues with our flight and he waited an hour for us at the airport!  The houseboat was very clean and comfortable.  It had all the amenities you would need and he did a great job of explaining everything to us.  There are lots of resources in the houseboat to help you navigate Amsterdam, but Frans also stays directly beside the houseboat.  It was reassuring knowing he was there in case we needed anything.  Even though it rained during our short stay, we loved the location.  It's easy access to the tram and to a grocery store, but it is away from the hustle and bustle of the city.  It's a beautiful and serene place.  When we left, Frans gave us an adorable souvenir.  We accidentally left our converter charger at the houseboat, and he rushed it to us while we were waiting on our tram.  Great host, great place, and I highly recommend it."</p>
+</blockquote>
+<h3 id="gpt-4o-rewritten-review">GPT-4o rewritten review</h3>
+<p>The code used in this tutorial leverages the GPT-4o API. Of the three models, GPT-4o is the only one that didn't incorporate the forgotten power converter into the review.</p>
+<blockquote>
+<p>"Living on this houseboat was an exceptional experience. It was very clean and comfortable, with all the amenities you could need. The houseboat is situated in a beautiful and serene location, away from the hustle and bustle of the city, yet with easy access to the tram and a grocery store nearby. The atmosphere was peaceful, making it an ideal place to call home. The landlord was incredibly considerate, even leaving an adorable souvenir for us when we first moved in. There were plenty of resources available in the houseboat to help navigate Salem and the surroundings. The price at $2690 per month felt justified for such a unique living experience in this charming city. Even when it rained, the location remained lovely, and we thoroughly enjoyed our time there. Highly recommend considering this place for those looking for a distinctive and tranquil residence."</p>
+</blockquote>
+<h3 id="claude-sonnet-35-rewritten-review">Claude Sonnet 3.5 rewritten review</h3>
+<p>Of the three models, I prefer Claude Sonnet 3.5's interpretation the most.</p>
+<blockquote>
+<p>"This houseboat apartment has been a gem! The location is perfect - easy access to public transportation and a nearby grocery store, but tucked away from the hustle and bustle of the city center. It's a serene and beautiful place to call home. The apartment itself is very clean, comfortable, and has all the amenities one could need. The landlord did an excellent job explaining everything when I first moved in. Even when minor issues arise, the landlord is always responsive and helpful. For instance, I accidentally left my converter charger in the apartment when moving out, and the landlord rushed to get it back to me before I left. Such attentive service is truly appreciated. The rent is $2690 per month, which is a fair price for the quality of living and the convenient location in Nashville. I highly recommend considering this houseboat apartment if you're looking for a unique and peaceful living experience in the city."</p>
+</blockquote>
+<h3 id="llama3-8b-rewritten-review">Llama3 (8B) rewritten review</h3>
+<p>While the Llama3 (8B) results were good when the model returned a rewritten review, it was unreliable. Sometimes it returned the original review instead of the rewritten one, failed to incorporate the correct price, or added unnecessary leading or trailing explanatory text.</p>
+<blockquote>
+<p>"Frans was a wonderful landlord! He helped me settle in by explaining everything about the apartment and its amenities. The location is beautiful and serene, with easy access to public transportation and a grocery store. It's away from the hustle and bustle of the city, but still close enough to enjoy all it has to offer. I loved living here and highly recommend it! The rent was around $2690 per month, which was very reasonable considering the area and amenities. Frans even gave me an adorable souvenir when I moved out, and he went above and beyond to help me get my converter charger back after I left it behind. Overall, it's a great place to call home."</p>
+</blockquote>
+<p>Now, let's create our synthetic data!</p>
+<h2 id="getting-the-data">Getting the Data</h2>
+<p>The Airbnb review dataset can be found on Kaggle <a href="https://www.kaggle.com/datasets/muhammadahmedansari/airbnb-dataset">here</a>.</p>
+<h2 id="examining-the-data">Examining the data</h2>
+<p>It's always a good idea to play around with your data first. Let's have a look.</p>
+<p>Read in the data.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Set file path and read in AirBnb reviews</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;airbnb_reviews.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</code></pre></div>
+<p>Look at the column names.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Look at column names</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Index([&#39;listing_id&#39;, &#39;id&#39;, &#39;date&#39;, &#39;reviewer_id&#39;, &#39;reviewer_name&#39;, &#39;comments&#39;], dtype=&#39;object&#39;)
+</code></pre></div>
+
+<p>What does a single row look like? From looking at the output it seems "comments" is the column that contains the user reviews.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Look at the first row</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>listing_id</th>
+      <th>id</th>
+      <th>date</th>
+      <th>reviewer_id</th>
+      <th>reviewer_name</th>
+      <th>comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2818.0</td>
+      <td>1191.0</td>
+      <td>3/30/2009</td>
+      <td>10952</td>
+      <td>Lam</td>
+      <td>Daniel is really cool. The place was nice and ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Look at the number of rows. Almost 350,000! A lot of reviews.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Look at number of rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>342904
+</code></pre></div>
+
+<p>Read a few sample reviews to get a feeling for things. As I did this I noticed not all reviews are in English.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Examine some random reviews</span>
+<span class="n">review</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Juliaan was a great host, check-in was very easy as he lives right above the unit. The neighborhood is excellent, we felt very safe and plenty of restaurant choices in the immediate vicinity and 15-20 minute walking distance from all the major attractions, including the train station.&lt;br/&gt;&lt;br/&gt;The unit has a small refrigerator and utensils, but no actual kitchen (which we knew from the description). The neighborhood is quiet and the unit is up a few floors from the street level so noise was not an issue at all. Overall a great stay and would definitely stay there again.
+</code></pre></div>
+
+<p>Here's an example of a review in French.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Some reviews are not in English. We need to filter them out. We&#39;ll also subset to reviews that are 50 words or longer.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">97053</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&#39;L’appartement de Thomas est situé dans un quartier sûr et tranquille, à proximité du Vondelpark, de restaurants, cafés et magasins. Il est grand, lumineux, très propre et charmant, avec une touche vintage. La cuisine est très bien équipée et les jouets des enfants sont un plus pour les familles. Thomas mérite bien son appellation de «\xa0super host\xa0». Il est très accueillant et attentionné. Les procédures de check-in et -out sont très faciles. &lt;br/&gt;Les familles trouveront leur bonheur dans cet appartement. &#39;
+</code></pre></div>
+
+<h3 id="filter-the-data">Filter the data</h3>
+<p>For this activity I want only reviews in English. We can use the langdetect library to detect the language of each review and remove those that aren't in English. I've also decided I want the reviews to be at least 50 words long to ensure they are more interesting and provide a good text of data extraction capabilities if used later for evaluation or fine-tuning.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">langdetect</span> <span class="kn">import</span> <span class="n">detect</span><span class="p">,</span> <span class="n">LangDetectException</span>
+
+<span class="c1"># Use the detect method from langdetect to create a simple English language detection function</span>
+<span class="k">def</span> <span class="nf">is_english</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">detect</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;en&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="n">LangDetectException</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="c1"># Prep comments column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Subset the df to reviews that are longer than 50 words</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review_word_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span> <span class="c1"># Review word count</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review_word_count&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">]</span> <span class="c1"># Subsetting</span>
+
+<span class="c1"># Subset the df to reviews that are in English</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">is_english</span><span class="p">(</span><span class="n">text</span><span class="p">))</span> <span class="c1"># Is review in English?</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_english&#39;</span><span class="p">]]</span> <span class="c1"># Subsetting</span>
+</code></pre></div>
+<p>Let's look at the number of rows now. Much shorter!</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Look at new shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>92830
+</code></pre></div>
+
+<h3 id="generating-the-synthetic-data">Generating the synthetic data</h3>
+<p>Now let's generate our synthetic data. I started by sampling a few random rows from the dataset and selected three Airbnb reviews. I then rewrote these reviews to reflect long-term apartment rental experiences rather than short-term Airbnb stays. Initially, I used ChatGPT to assist with this task, but it struggled to produce realistic reviews until I added specific instructions and provided examples. For instance, it would use phrases like "When we first checked in," which are not typical in apartment reviews. After several iterations of refining the instructions and examples, I developed a prompt that works quite well.</p>
+<p>Additionally, I created a function to generate rent prices. The function samples from a normal distribution but ensures the final digit matches the step size ($5 in my code) to more realistically reflect rental prices. Alternatively, you could generate prices using a straightforward method, such as sampling from a uniform distribution:</p>
+<p><code>rent_prices = random.sample(range(1000, 6000, 5), n)</code></p>
+<p>or from a normal distribution if you don't care about the rent prices having consistent final digits:</p>
+<p><code>rent_prices = np.random.normal(2500, 1000, n)</code></p>
+<p>In this example, the language model inserts only the rent price into the review. However, you could extend this approach to insert multiple pieces of information.</p>
+<p>To increase the diversity in the synthetic dataset, I also introduced a step to replace "Amsterdam" if mentioned. It appears the original AirBnb dataset is from Amsterdam and this creates an unbalanced city distrubtion, even after having a language model rewrite the review. The logic selects a random city from a predefined list of well-known U.S. cities. Such a list is easy to create (ChatGPT printed out a list of 300 U.S. cities in a matter of seconds, which I copied and pasted into a text file). This approach enhances the variety of the synthetic data and makes it more representative of different rental markets.</p>
+<p>Before we proceed to the actual data generation, let's look at the resulting JSON object. The JSON object consists of:</p>
+<ol>
+<li>Review Text: The rewritten review reflecting a long-term apartment rental experience.</li>
+<li>Natural Language Query: A query matching the JSON schema. In this case the query is "What was the rent price paid by this reviewer?"</li>
+<li>JSON Schema: A schema I created for this activity, representing the structure we would want the model to follow for data extraction. This schema is not passed to the model but included in the final result for future benchmarking or fine-tuning.</li>
+<li>Rent Price: The rent price passed to the model and included in the review. The rent is allowed to be 'NA' in which case the rewritten review won't mention the rent price. This more realistically mimics the variety of real reviews.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">json_object</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;review&quot;</span><span class="p">:</span> <span class="n">rewritten_review</span><span class="p">,</span>
+    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;What was the rent price paid by this reviewer?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;json_schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rent_price&quot;</span><span class="p">]</span>
+    <span class="p">},</span> 
+    <span class="s2">&quot;expected_result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="n">rent_price</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>These JSON objects are concatenated to create the final dataset of length n, which is a JSON file composed of these individual JSON objects.</p>
+<p>With this setup, we're ready to generate the synthetic data.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Set API key</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="c1"># This is the default and can be omitted</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_apartment_review</span><span class="p">(</span><span class="n">original_review</span><span class="p">,</span> <span class="n">rent_price</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
+  <span class="c1"># This function transforms an Airbnb review into a long-term apartment review.</span>
+  <span class="c1"># It takes the original Airbnb review and a rent price, then generates a rewritten</span>
+  <span class="c1"># review that reflects long-term living in an apartment. The transformed review</span>
+  <span class="c1"># avoids language specific to short-term stays and replaces mentions of the host </span>
+  <span class="c1"># with details about the apartment, building, or area. Additionally, it incorporates</span>
+  <span class="c1"># the rent price naturally within the review. If the rent price is &#39;NA&#39;, then rent </span>
+  <span class="c1"># won&#39;t be mentioned. This more realistically mirrors the fact that not all reviews </span>
+  <span class="c1"># mention rent. These reviews are from Amsterdam and many reviews mention the city. </span>
+  <span class="c1"># Therefore, I created logic to replace Amsterdam with a random U.S. city to get more </span>
+  <span class="c1"># diversity in the data.</span>
+
+  <span class="c1"># Construct the prompt for the language model</span>
+  <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Your task is to transform Airbnb reviews into long-term apartment reviews. Imagine the tenant lived in the apartment for somewhere between one and five years. Ensure that the rewritten reviews reflect long-term living, avoiding short-term stay language like &quot;When we checked in.&quot; The language should convey that the tenant had control over decoration and furniture.</span>
+
+<span class="s2">    Most Airbnb reviews mention the host, but that is uncommon in apartment reviews. Replace sentences about the host with details about the apartment, building, area, or landlord. Ensure the rewritten review feels authentic while drawing inspiration from the original Airbnb review.</span>
+
+<span class="s2">    The reviews original come from Amsterdam. If the review mentions Amsterdam, replace it with the specified city.</span>
+
+<span class="s2">    Incorporate a sentence about the price naturally within the review. Use creative and varied language when discussing the price. If the provided rent price is &#39;NA&#39; the rewritten review should not mention the rent price.</span>
+
+<span class="s2">    --- Example 1 ---</span>
+<span class="s2">    Original Airbnb review: Tammy was an amazing host! One of the best Airbnb’s I have ever stayed at! Great decorations, didn’t feel like a typical airbnb rental property, bright and cozy rooms. It was very convenient and a short walk to the city center around 15-20 minutes. Reasonably priced compared to many places in Amsterdam and well worth every penny! Would definitely stay again my next visit :) Thanks again Tammy!</span>
+
+<span class="s2">    Rent price: $3500</span>
+<span class="s2">    City: Tokyo</span>
+<span class="s2">    Rewritten review: One of the best apartments I have ever stayed at! Great decorations in the lobby and good design. It didn’t feel like a typical apartment, with bright and cozy rooms. It was very convenient and a short walk to the city center around 15-20 minutes. Rent was $3500 per month, which was reasonable compared to many places in Tokyo and well worth every penny! Would definitely recommend renting in this building if you can.</span>
+<span class="s2">    --- End of Example 1 ---</span>
+
+<span class="s2">    --- Example 2 ---</span>
+<span class="s2">    Original Airbnb review: Beautiful home, excellent location in de Pijp with cafes and grocery store nearby, walkable to the museums and parks. A block from major tram lines. The home has tons of natural light and plants (including herbs you can use!) that warm up the place even on a dreary day in the Netherlands. Kitchen is well stocked, bed is comfortable. Jerome&#39;s a very responsive host. Highly recommend to all -- would definitely stay here my next trip!</span>
+
+<span class="s2">    Rent price: &#39;NA&#39;</span>
+<span class="s2">    City: Renton</span>
+<span class="s2">    Rewritten review: Beautiful apartment. Excellent location in de Pijp with cafes and grocery store nearby, walkable to the museums and parks. A block from major tram lines. The apartment has tons of natural light which makes it great for growing plants! My plants really warmed up the place even on a dreary day in Washington. Kitchen is large and the bedroom is spacious. Great building maintence guy! Highly recommend the building to all -- will definitely renew my lease!</span>
+<span class="s2">    --- End of Example 2 ---</span>
+
+<span class="s2">    --- Example 3 ---</span>
+<span class="s2">    Original Airbnb review: Daan and Claire are great, we were very kindly welcomed. They provided all the necessary and useful information for our stay. There was even a delicious pie and strawberries as a welcome. It was an extremely nice touch. Their apartment is spacious, bright and in a quiet area with a few bars and restaurants. This is a lovely place a few steps from bus and tram that brings us directly to the city center. We highly recommend it !</span>
+
+<span class="s2">    Rent price: $1200</span>
+<span class="s2">    City: Tempe</span>
+<span class="s2">    Rewritten review: Great landlord! There was even a delicious pie and strawberries as a welcome when we first moved in. It was an extremely nice touch. Their apartment is spacious, bright and in a quiet area with a few bars and restaurants. This is a lovely place a few steps from bus and tram that brings us directly to the city center. So lucky I got to live here for just 1200 bucks!</span>
+<span class="s2">    --- End of Example 3 ---</span>
+
+<span class="s2">    Original Airbnb review: </span><span class="si">{</span><span class="n">original_review</span><span class="si">}</span>
+<span class="s2">    Rent price: </span><span class="si">{</span><span class="n">rent_price</span><span class="si">}</span>
+<span class="s2">    City: </span><span class="si">{</span><span class="n">city</span><span class="si">}</span>
+
+<span class="s2">    Rewritten review:</span>
+<span class="s2">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># Call the OpenAI API. You could use other language models as desired.</span>
+  <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+      <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">)</span>
+
+  <span class="c1"># Return the rewritten review.</span>
+  <span class="n">rewritten_review</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+  <span class="k">return</span> <span class="n">rewritten_review</span>
+
+<span class="k">def</span> <span class="nf">create_rent_prices</span><span class="p">(</span><span class="n">cheapest_rent</span><span class="p">,</span> <span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">rent_price_step_size</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rent_price_na_ratio</span><span class="p">):</span>
+  <span class="c1"># Generate a list of rent prices using a normal distribution within a specified range.</span>
+  <span class="c1">#</span>
+  <span class="c1"># Parameters:</span>
+  <span class="c1"># - cheapest_rent (int): The minimum rent price.</span>
+  <span class="c1"># - most_expensive_rent (int): The maximum rent price.</span>
+  <span class="c1"># - rent_price_step_size (int): The step size for rent prices.</span>
+  <span class="c1"># - n (int): The number of rent prices to generate.</span>
+  <span class="c1"># - The ratio of reviews that should have an &#39;NA&#39; rent price (rent price won&#39;t be mentioned in the rewritten review.)</span>
+  <span class="c1">#</span>
+  <span class="c1"># Returns:</span>
+  <span class="c1"># - list of int: A list of rent prices.</span>
+
+    <span class="c1"># Calculate summary statistics used to generate the rent.</span>
+    <span class="n">rent_prices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mean_rent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">cheapest_rent</span><span class="p">])</span>
+    <span class="n">sd_of_rent_prices</span> <span class="o">=</span> <span class="p">(</span><span class="n">most_expensive_rent</span> <span class="o">-</span> <span class="n">mean_rent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">rent_prices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">unrounded_rent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean_rent</span><span class="p">,</span> <span class="n">sd_of_rent_prices</span><span class="p">)</span>
+        <span class="n">rent_price</span> <span class="o">=</span> <span class="n">rent_price_step_size</span> <span class="o">*</span> <span class="nb">round</span><span class="p">(</span><span class="n">unrounded_rent</span> <span class="o">/</span> <span class="n">rent_price_step_size</span><span class="p">)</span> <span class="c1"># A trick to make sure the rent matches the step size</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">rent_price</span> <span class="o">&lt;=</span> <span class="n">most_expensive_rent</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">rent_price</span> <span class="o">&gt;=</span> <span class="n">cheapest_rent</span><span class="p">):</span>
+            <span class="n">rent_prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rent_price</span><span class="p">)</span>
+
+    <span class="c1"># Replace random rent prices with NA since not every review would mention a rent price</span>
+    <span class="n">indicies</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">rent_price_na_ratio</span><span class="p">))</span>
+    <span class="n">rent_prices</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NA&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indicies</span> <span class="k">else</span> <span class="n">rent_prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rent_prices</span><span class="p">))]</span>
+
+    <span class="c1"># Return the final result</span>
+    <span class="k">return</span> <span class="n">rent_prices</span>
+
+<span class="k">def</span> <span class="nf">get_random_cities</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+  <span class="c1"># Open the random city text file and read in the data.</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+      <span class="n">cities</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+  <span class="c1"># Return a random set of cities of length n.</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Set up a small test</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">cheapest_rent</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">most_expensive_rent</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">rent_price_step_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rent_price_na_ratio</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># What proportion of reviews shouldn&#39;t mention rent?</span>
+<span class="n">city_list_file_name</span> <span class="o">=</span> <span class="s1">&#39;well_known_cities.txt&#39;</span>
+
+<span class="n">original_reviews</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># Get a sample of AirBnb reviews</span>
+<span class="n">rent_prices</span> <span class="o">=</span> <span class="n">create_rent_prices</span><span class="p">(</span><span class="n">cheapest_rent</span><span class="p">,</span> <span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">rent_price_step_size</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rent_price_na_ratio</span><span class="p">)</span> <span class="c1"># Create the list of random rent prices</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">get_random_cities</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># Create the list of random cities</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># List to store JSON results</span>
+
+<span class="c1"># Loop through the lists</span>
+<span class="k">for</span> <span class="n">original_review</span><span class="p">,</span> <span class="n">rent_price</span><span class="p">,</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">original_reviews</span><span class="p">,</span> <span class="n">rent_prices</span><span class="p">,</span> <span class="n">cities</span><span class="p">):</span>
+  <span class="n">rewritten_review</span> <span class="o">=</span> <span class="n">create_apartment_review</span><span class="p">(</span><span class="n">original_review</span><span class="p">,</span> <span class="n">rent_price</span><span class="p">,</span> <span class="n">city</span><span class="p">)</span>
+
+  <span class="n">json_object</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;review&quot;</span><span class="p">:</span> <span class="n">rewritten_review</span><span class="p">,</span>
+      <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;What was the rent price paid by this reviewer?&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;json_schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;</span>
+              <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rent_price&quot;</span><span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;expected_result&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="n">rent_price</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json_object</span><span class="p">)</span>
+
+<span class="c1"># Output the data as JSON</span>
+<span class="n">output_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Saving to a file (optional)</span>
+<span class="c1"># with open(&#39;output.json&#39;, &#39;w&#39;) as f:</span>
+<span class="c1">#     f.write(output_json)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output_json</span><span class="p">)</span> <span class="c1"># Display the output JSON</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>[
+    {
+        &quot;review&quot;: &quot;The apartment was clean and in a central location right off the Red Light District. However, the street can be noisy, so ear plugs are recommended for light sleepers. The apartment only had a sink in the bedrooms, with no toilet or shower. What you see is what you get. Overall, living here was a positive experience, thanks to its convenience and the overall vibe of the neighborhood.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: &quot;NA&quot;
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Living on this houseboat was an exceptional experience. It was very clean and comfortable, with all the amenities you could need. The houseboat is situated in a beautiful and serene location, away from the hustle and bustle of the city, yet with easy access to the tram and a grocery store nearby. The atmosphere was peaceful, making it an ideal place to call home.\n\nThe landlord was incredibly considerate, even leaving an adorable souvenir for us when we first moved in. There were plenty of resources available in the houseboat to help navigate Salem and the surroundings. The price at $2690 per month felt justified for such a unique living experience in this charming city. Even when it rained, the location remained lovely, and we thoroughly enjoyed our time there. Highly recommend considering this place for those looking for a distinctive and tranquil residence.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 2690
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Living in this apartment has been a wonderful experience. The location is conveniently close to central station, with trams nearby for easy exploration. The apartment itself is quaint and perfect for our needs. The neighborhood is quiet, safe, and close to many events and amenities. The rent, at $2055 per month, is quite reasonable considering everything Denver has to offer. Highly recommend this place to anyone looking for a long-term rental in the area!&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 2055
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Lovely place, just make sure to check the weather before planning outdoor activities. I\u2019d still probably choose this apartment over anything else in New Orleans. The location is a bit out from the city center, so biking from downtown back home takes about 35 minutes, and it&#39;s best to avoid doing that after a few drinks. The scenery here is beautiful, and the apartment itself has a unique charm, with cheerful rooms and plenty of natural light.\n\nBreakfast is always a delight, especially if you&#39;re a fan of sheep cheese. Living in this area has its perks, especially in good weather which makes the surroundings even more enjoyable. The rent is $4150 per month, a bit on the high side, but given the ambiance and the picturesque environment, it&#39;s well worth it.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 4150
+        }
+    },
+    {
+        &quot;review&quot;: &quot;I had a wonderful experience living in this modest but very comfortable apartment. The space was perfect for stretching out and relaxing after a busy day. The kitchen was fully equipped, making it easy to prepare home-cooked meals, which I loved. The location is incredible \u2014 with a tram stop just around the corner that takes you directly to the city centre and other tram lines. Despite its proximity to all the excitement, the neighborhood itself is quiet and relaxed, and it&#39;s right next to a beautiful park. The rent was $3080 per month, and it was well worth it for the accessibility and tranquility it offered. I would highly recommend this apartment for anyone looking to enjoy all the fun of Miramar while having a peaceful retreat to come home to.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 3080
+        }
+    }
+]
+</code></pre></div>
+
+<h2 id="cost-considerations">Cost considerations</h2>
+<p>In a production setting, cost is a crucial factor. There are several ways to reduce costs:</p>
+<ol>
+<li>
+<p>Using a Cheaper Model: Opting for a less expensive yet equally capable model can significantly cut costs. For example, Claude Sonnet 3.5 costs $3 per million input tokens compared to GPT-4o's $5 per million input tokens.</p>
+</li>
+<li>
+<p>Using Open Source Models: Another approach is to use open-source models like Llama3. Although testing all open-source models is beyond the scope of this activity, I tested Llama3 (8B). While the results were good when the model returned a rewritten review, it was unreliable. Sometimes it returned the original review instead of the rewritten one, failed to incorporate the correct price, or added unnecessary leading or trailing explanatory text.</p>
+</li>
+<li>
+<p>Batch Processing: Requesting reviews in batches is another cost-saving measure. Although we still incur the input and output costs for each review, we save on the input cost of the long prompt instruction (approximately 650 words). The cost savings from this approach are calculated below:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">prompt_instruction_length</span> <span class="o">=</span> <span class="mi">650</span>
+<span class="n">original_review_length</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">rewritten_review_lenth</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">tokens_per_word_ratio</span> <span class="o">=</span> <span class="mf">.75</span>
+<span class="n">input_cost_per_million_tokens</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">output_cost_per_million_tokens</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># Cost to fetch a single rewritten review at a time</span>
+<span class="n">serial_input_cost</span> <span class="o">=</span> <span class="n">input_cost_per_million_tokens</span> <span class="o">*</span> <span class="p">((</span><span class="n">prompt_instruction_length</span> <span class="o">+</span> <span class="n">original_review_length</span><span class="p">)</span> <span class="o">*</span> <span class="n">tokens_per_word_ratio</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+<span class="n">serial_output_cost</span> <span class="o">=</span> <span class="n">output_cost_per_million_tokens</span> <span class="o">*</span> <span class="p">(</span><span class="n">rewritten_review_lenth</span> <span class="o">*</span> <span class="n">tokens_per_word_ratio</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cost per rewritten review: $</span><span class="si">{</span><span class="n">serial_input_cost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">serial_output_cost</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Cost per rewritten review: $0.0039375</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total cost to generate 100,000 synthetic reviews: $</span><span class="si">{</span><span class="mi">100000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">serial_input_cost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">serial_output_cost</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Total cost to generate 100,000 synthetic reviews: $393.75</span>
+
+<span class="c1"># Cost if we request a batch of rewritten reviews</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">batch_input_cost</span> <span class="o">=</span> <span class="n">input_cost_per_million_tokens</span> <span class="o">*</span> <span class="p">((</span><span class="n">prompt_instruction_length</span> <span class="o">+</span> <span class="p">(</span><span class="n">original_review_length</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">))</span> <span class="o">*</span> <span class="n">tokens_per_word_ratio</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+<span class="n">batch_output_cost</span> <span class="o">=</span> <span class="n">serial_output_cost</span> <span class="o">*</span> <span class="n">batch_size</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cost per rewritten review $</span><span class="si">{</span><span class="p">(</span><span class="n">batch_input_cost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">batch_output_cost</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Cost per rewritten review 0.00174375</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total cost to generate 100,000 synthetic reviews: $</span><span class="si">{</span><span class="mi">100000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">batch_input_cost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">batch_output_cost</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Total cost to generate 100,000 synthetic reviews: $174.38</span>
+
+<span class="c1"># What we save by batching</span>
+<span class="n">batch_savings</span> <span class="o">=</span> <span class="n">input_cost_per_million_tokens</span> <span class="o">*</span> <span class="p">(</span><span class="n">tokens_per_word_ratio</span> <span class="o">*</span> <span class="n">prompt_instruction_length</span> <span class="o">*</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">1000000</span> <span class="c1"># We only pass in the 650 word instruction prompt once and thus for batch_size - 1 we save that cost</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Savings per rewritten review: $</span><span class="si">{</span><span class="n">batch_savings</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="w"> </span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Savings per rewritten review: $0.00219375</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Savings per 100,000 rewritten reviews: $</span><span class="si">{</span><span class="mf">0.00219375</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100000</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># $219.38</span>
+
+<span class="c1"># Does our math work out?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Do these two numbers match? </span><span class="si">{</span><span class="p">(</span><span class="mf">0.00174375</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.00219375</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.0039375</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># True</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Cost per rewritten review: $0.0039375
+Total cost to generate 100,000 synthetic reviews: $393.75
+Cost per rewritten review $0.00174375
+Total cost to generate 100,000 synthetic reviews: $174.37500000000003
+Savings per rewritten review: $0.00219375
+Savings per 100,000 rewritten reviews: $219.375
+Do these two numbers match? True
+</code></pre></div>
+
+<h2 id="implementing-batching">Implementing batching</h2>
+<p>The code below modifies the base synthetic data implementation to request a batch of 10 reviews from GPT-4o. The batched response from GPT-4o appears to maintain the quality of the serial approach. Given GPT-4o's output token limit of 4096, the batch size could potentially be increased to 20 reviews at a time, introducing further savings.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Set API key</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="c1"># This is the default and can be omitted</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_apartment_reviews_batch</span><span class="p">(</span><span class="n">original_reviews</span><span class="p">,</span> <span class="n">rent_prices</span><span class="p">,</span> <span class="n">cities</span><span class="p">):</span>
+    <span class="c1"># Prepare the input data for the API call</span>
+    <span class="n">input_data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;original_review&quot;</span><span class="p">:</span> <span class="n">review</span><span class="p">,</span> <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">review</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">original_reviews</span><span class="p">,</span> <span class="n">rent_prices</span><span class="p">,</span> <span class="n">cities</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Construct the prompt for the language model</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Your task is to transform 10 Airbnb reviews into long-term apartment reviews. For each review:</span>
+<span class="s2">    1. Imagine the tenant lived in the apartment for 1-5 years.</span>
+<span class="s2">    2. Ensure the rewritten review reflects long-term living, avoiding short-term stay language.</span>
+<span class="s2">    3. Replace mentions of the host with details about the apartment, building, area, or landlord.</span>
+<span class="s2">    4. If Amsterdam is mentioned, replace it with the specified city.</span>
+<span class="s2">    5. Incorporate the rent price naturally within the review. If the rent price is &#39;NA&#39;, don&#39;t mention it.</span>
+
+<span class="s2">    Return a JSON object with the following structure:</span>
+<span class="s2">    {{</span>
+<span class="s2">        &quot;review_1&quot;: {{ &quot;rewritten_review&quot;: &quot;...&quot;, &quot;rent_price&quot;: ... }},</span>
+<span class="s2">        &quot;review_2&quot;: {{ &quot;rewritten_review&quot;: &quot;...&quot;, &quot;rent_price&quot;: ... }},</span>
+<span class="s2">        ...</span>
+<span class="s2">        &quot;review_10&quot;: {{ &quot;rewritten_review&quot;: &quot;...&quot;, &quot;rent_price&quot;: ... }}</span>
+<span class="s2">    }}</span>
+
+<span class="s2">    Each &quot;review_n&quot; object should contain:</span>
+<span class="s2">    - &quot;rewritten_review&quot;: The transformed long-term apartment review as a string.</span>
+<span class="s2">    - &quot;rent_price&quot;: The provided rent price (as an integer or &quot;NA&quot; string).</span>
+
+<span class="s2">    Here are the 10 reviews to transform:</span>
+<span class="s2">    </span><span class="si">{input_data}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Call the OpenAI API</span>
+    <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span> <span class="p">},</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))}]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Parse the JSON response</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_rent_prices</span><span class="p">(</span><span class="n">cheapest_rent</span><span class="p">,</span> <span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">rent_price_step_size</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rent_price_na_ratio</span><span class="p">):</span>
+    <span class="n">rent_prices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mean_rent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">cheapest_rent</span><span class="p">])</span>
+    <span class="n">sd_of_rent_prices</span> <span class="o">=</span> <span class="p">(</span><span class="n">most_expensive_rent</span> <span class="o">-</span> <span class="n">mean_rent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">rent_prices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">unrounded_rent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean_rent</span><span class="p">,</span> <span class="n">sd_of_rent_prices</span><span class="p">)</span>
+        <span class="n">rent_price</span> <span class="o">=</span> <span class="n">rent_price_step_size</span> <span class="o">*</span> <span class="nb">round</span><span class="p">(</span><span class="n">unrounded_rent</span> <span class="o">/</span> <span class="n">rent_price_step_size</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">rent_price</span> <span class="o">&lt;=</span> <span class="n">most_expensive_rent</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">rent_price</span> <span class="o">&gt;=</span> <span class="n">cheapest_rent</span><span class="p">):</span>
+            <span class="n">rent_prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rent_price</span><span class="p">))</span>  <span class="c1"># Convert to integer</span>
+
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">rent_price_na_ratio</span><span class="p">))</span>
+    <span class="n">rent_prices</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NA&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span> <span class="k">else</span> <span class="n">rent_prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rent_prices</span><span class="p">))]</span>
+    <span class="k">return</span> <span class="n">rent_prices</span>
+
+<span class="k">def</span> <span class="nf">get_random_cities</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">cities</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Set up the batch process</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of reviews to generate in one batch</span>
+<span class="n">cheapest_rent</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">most_expensive_rent</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">rent_price_step_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rent_price_na_ratio</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">city_list_file_name</span> <span class="o">=</span> <span class="s1">&#39;well_known_cities.txt&#39;</span>
+
+<span class="n">original_reviews</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">rent_prices</span> <span class="o">=</span> <span class="n">create_rent_prices</span><span class="p">(</span><span class="n">cheapest_rent</span><span class="p">,</span> <span class="n">most_expensive_rent</span><span class="p">,</span> <span class="n">rent_price_step_size</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rent_price_na_ratio</span><span class="p">)</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">get_random_cities</span><span class="p">(</span><span class="n">city_list_file_name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Generate the batch of rewritten reviews</span>
+<span class="n">api_response</span> <span class="o">=</span> <span class="n">create_apartment_reviews_batch</span><span class="p">(</span><span class="n">original_reviews</span><span class="p">,</span> <span class="n">rent_prices</span><span class="p">,</span> <span class="n">cities</span><span class="p">)</span>
+
+<span class="c1"># Print the structure of the API response for debugging</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;API Response Structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to store final JSON results</span>
+
+<span class="c1"># Create JSON objects for each rewritten review</span>
+<span class="k">for</span> <span class="n">review_key</span><span class="p">,</span> <span class="n">review_data</span> <span class="ow">in</span> <span class="n">api_response</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">json_object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;review&quot;</span><span class="p">:</span> <span class="n">review_data</span><span class="p">[</span><span class="s1">&#39;rewritten_review&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;What was the rent price paid by this reviewer?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;json_schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;integer&quot;</span><span class="p">,</span> <span class="s2">&quot;string&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rent_price&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;expected_result&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;rent_price&quot;</span><span class="p">:</span> <span class="n">review_data</span><span class="p">[</span><span class="s1">&#39;rent_price&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json_object</span><span class="p">)</span>
+
+<span class="c1"># Output the data as JSON</span>
+<span class="n">output_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Saving to a file (optional)</span>
+<span class="c1"># with open(&#39;output.json&#39;, &#39;w&#39;) as f:</span>
+<span class="c1">#     f.write(output_json)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output_json</span><span class="p">)</span>  <span class="c1"># To display the output JSON</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>API Response Structure:
+{
+  &quot;review_1&quot;: {
+    &quot;rewritten_review&quot;: &quot;Living in this Augusta apartment for the past few years has been a delight. The apartment itself is spacious, exceptionally clean, and well-decorated, creating a warm and welcoming environment. What&#39;s more, it is conveniently located just a 15-minute walk from the city center, making daily commutes and leisure activities easily accessible. The building management is very understanding and flexible about tenancy issues, which is a breath of fresh air. For a monthly rent of $2825, the value provided is outstanding. I wholeheartedly recommend this apartment for anyone looking to settle down in Augusta.&quot;,
+    &quot;rent_price&quot;: 2825
+  },
+  &quot;review_2&quot;: {
+    &quot;rewritten_review&quot;: &quot;Having lived in this Las Cruces apartment for over four years, its value really stands out, especially at $4420 per month. While slightly outside the city center, the nearby tram stop offers easy access to downtown. The apartment, though compact, is perfectly suited for busy individuals who spend most of their time out and about. The neighborhood is quiet and the building includes great amenities like provided breakfasts, adding a touch of convenience to everyday living. I can certainly recommend this place for anyone looking for long-term accommodation in Las Cruces with all necessities on hand.&quot;,
+    &quot;rent_price&quot;: 4420
+  },
+  &quot;review_3&quot;: {
+    &quot;rewritten_review&quot;: &quot;Our long-term stay in Arlington at this apartment has been highly pleasant. The room mimics just what was shown in originating ads - comfortable and welcoming. The neighborhood is friendly, giving off a lovely suburban vibe. Moreover, the building is well-managed, and the landlord personally made sure our move-in and checkout processes over the years were smooth, even driving us to the airport when we finally moved out. With a monthly rent of $2495, the value is excellent. I highly recommend this place to anyone moving to Arlington.&quot;,
+    &quot;rent_price&quot;: 2495
+  },
+  &quot;review_4&quot;: {
+    &quot;rewritten_review&quot;: &quot;Living on a houseboat in Coral Springs has been an unparalleled experience. The locality is serene, nestled close to various attractions without being swamped by tourists. The boat itself is spotless and makes you feel right at home from the get-go. Waking up to the stunning waterfront views each morning has been a real pleasure. The neighbors are very sociable and always ready with a recommendation or two about local spots. If you&#39;re seeking an extraordinary home, this is where your search should end!&quot;,
+    &quot;rent_price&quot;: &quot;NA&quot;
+  },
+  &quot;review_5&quot;: {
+    &quot;rewritten_review&quot;: &quot;Our family found the perfect long-term home in North Charleston in this apartment. Despite our initial concern about space for our three teenagers, the apartment fit our needs beautifully. Just a 20-minute tram ride to the city and proximity to markets and restaurants, have added to our convenience greatly. For a rent of $2220 per month, this apartment has exceeded our expectations and I&#39;d recommend it especially for families considering a move here.&quot;,
+    &quot;rent_price&quot;: 2220
+  },
+  &quot;review_6&quot;: {
+    &quot;rewritten_review&quot;: &quot;Residing in this welcoming Mission Viejo neighborhood for a couple of years now, I&#39;ve found it easy to travel to surrounding cities for day trips. The local bar offers a fine selection of craft beers, and there is convenient parking at the building. The area is quaint, safe, and surrounded by friendly faces. It\u2019s a fantastic location if you&#39;re looking for a hub without the city bustle.&quot;,
+    &quot;rent_price&quot;: &quot;NA&quot;
+  },
+  &quot;review_7&quot;: {
+    &quot;rewritten_review&quot;: &quot;Renting this spacious property in Pearland has been perfect for us a large group. The common rooms are expansive and the kitchen keeps us from feeling crowded, ideal for gatherings and daily life alike. Despite the smaller sleeping quarters, they&#39;re well-maintained and clean. Standing about 30 minutes from central transit hubs but easily reachable by local buses, the location balances calm residential vibes with good connectivity. At a monthly rent of $4090, it&#39;s a great spot for anyone looking for ample space in Pearland.&quot;,
+    &quot;rent_price&quot;: 4090
+  },
+  &quot;review_8&quot;: {
+    &quot;rewritten_review&quot;: &quot;Living in Kent for the past few years, this apartment has been a gem. Its fabulous location near the center and scenic parks, coupled with exquisite interior decor that makes every day a bit more special, has made long-term living here utterly enjoyable. Renting here for $3460 a month has been well worth it due to the combination of an artistic living space and essential flexibility offered by the management regarding lease terms. I highly recommend it for anyone looking to move to Kent.&quot;,
+    &quot;rent_price&quot;: 3460
+  },
+  &quot;review_9&quot;: {
+    &quot;rewritten_review&quot;: &quot;Being a resident in this Wilmington apartment has added a beautiful chapter to my life. The room, aesthetically pleasing and immaculately clean, aligned perfectly with how it was presented. The city&#39;s diversity and lively culture, coupled with the friendliness and kindness of the building manager, have made this stay nothing short of awesome. Given these benefits, the rent of $3020 per month feels justified and well-spent. I highly recommend experiencing living here.&quot;,
+    &quot;rent_price&quot;: 3020
+  },
+  &quot;review_10&quot;: {
+    &quot;rewritten_review&quot;: &quot;Our long-term stay in this quaint older apartment in Mesquite has been thoroughly delightful. Easy access to the city center combined with features suitable for taller individuals have made it a comfortable abode. The rooftop garden, despite the cold weather, remains a cherished spot. While the apartment has a more personal, lived-in feel rather than a &#39;professional&#39; setup, it adds to the charm. The local neighborhood is helpful, and there&#39;s a convenient street map available from the landlord. Beautiful, charming, and priced at $3095 per month, it&#39;s been perfect for us.&quot;,
+    &quot;rent_price&quot;: 3095
+  }
+}
+[
+    {
+        &quot;review&quot;: &quot;Living in this Augusta apartment for the past few years has been a delight. The apartment itself is spacious, exceptionally clean, and well-decorated, creating a warm and welcoming environment. What&#39;s more, it is conveniently located just a 15-minute walk from the city center, making daily commutes and leisure activities easily accessible. The building management is very understanding and flexible about tenancy issues, which is a breath of fresh air. For a monthly rent of $2825, the value provided is outstanding. I wholeheartedly recommend this apartment for anyone looking to settle down in Augusta.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 2825
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Having lived in this Las Cruces apartment for over four years, its value really stands out, especially at $4420 per month. While slightly outside the city center, the nearby tram stop offers easy access to downtown. The apartment, though compact, is perfectly suited for busy individuals who spend most of their time out and about. The neighborhood is quiet and the building includes great amenities like provided breakfasts, adding a touch of convenience to everyday living. I can certainly recommend this place for anyone looking for long-term accommodation in Las Cruces with all necessities on hand.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 4420
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Our long-term stay in Arlington at this apartment has been highly pleasant. The room mimics just what was shown in originating ads - comfortable and welcoming. The neighborhood is friendly, giving off a lovely suburban vibe. Moreover, the building is well-managed, and the landlord personally made sure our move-in and checkout processes over the years were smooth, even driving us to the airport when we finally moved out. With a monthly rent of $2495, the value is excellent. I highly recommend this place to anyone moving to Arlington.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 2495
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Living on a houseboat in Coral Springs has been an unparalleled experience. The locality is serene, nestled close to various attractions without being swamped by tourists. The boat itself is spotless and makes you feel right at home from the get-go. Waking up to the stunning waterfront views each morning has been a real pleasure. The neighbors are very sociable and always ready with a recommendation or two about local spots. If you&#39;re seeking an extraordinary home, this is where your search should end!&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: &quot;NA&quot;
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Our family found the perfect long-term home in North Charleston in this apartment. Despite our initial concern about space for our three teenagers, the apartment fit our needs beautifully. Just a 20-minute tram ride to the city and proximity to markets and restaurants, have added to our convenience greatly. For a rent of $2220 per month, this apartment has exceeded our expectations and I&#39;d recommend it especially for families considering a move here.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 2220
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Residing in this welcoming Mission Viejo neighborhood for a couple of years now, I&#39;ve found it easy to travel to surrounding cities for day trips. The local bar offers a fine selection of craft beers, and there is convenient parking at the building. The area is quaint, safe, and surrounded by friendly faces. It\u2019s a fantastic location if you&#39;re looking for a hub without the city bustle.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: &quot;NA&quot;
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Renting this spacious property in Pearland has been perfect for us a large group. The common rooms are expansive and the kitchen keeps us from feeling crowded, ideal for gatherings and daily life alike. Despite the smaller sleeping quarters, they&#39;re well-maintained and clean. Standing about 30 minutes from central transit hubs but easily reachable by local buses, the location balances calm residential vibes with good connectivity. At a monthly rent of $4090, it&#39;s a great spot for anyone looking for ample space in Pearland.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 4090
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Living in Kent for the past few years, this apartment has been a gem. Its fabulous location near the center and scenic parks, coupled with exquisite interior decor that makes every day a bit more special, has made long-term living here utterly enjoyable. Renting here for $3460 a month has been well worth it due to the combination of an artistic living space and essential flexibility offered by the management regarding lease terms. I highly recommend it for anyone looking to move to Kent.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 3460
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Being a resident in this Wilmington apartment has added a beautiful chapter to my life. The room, aesthetically pleasing and immaculately clean, aligned perfectly with how it was presented. The city&#39;s diversity and lively culture, coupled with the friendliness and kindness of the building manager, have made this stay nothing short of awesome. Given these benefits, the rent of $3020 per month feels justified and well-spent. I highly recommend experiencing living here.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 3020
+        }
+    },
+    {
+        &quot;review&quot;: &quot;Our long-term stay in this quaint older apartment in Mesquite has been thoroughly delightful. Easy access to the city center combined with features suitable for taller individuals have made it a comfortable abode. The rooftop garden, despite the cold weather, remains a cherished spot. While the apartment has a more personal, lived-in feel rather than a &#39;professional&#39; setup, it adds to the charm. The local neighborhood is helpful, and there&#39;s a convenient street map available from the landlord. Beautiful, charming, and priced at $3095 per month, it&#39;s been perfect for us.&quot;,
+        &quot;query&quot;: &quot;What was the rent price paid by this reviewer?&quot;,
+        &quot;json_schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;rent_price&quot;: {
+                    &quot;type&quot;: [
+                        &quot;integer&quot;,
+                        &quot;string&quot;
+                    ],
+                    &quot;description&quot;: &quot;Price paid by users or &#39;NA&#39; if not mentioned.&quot;
+                }
+            },
+            &quot;required&quot;: [
+                &quot;rent_price&quot;
+            ]
+        },
+        &quot;expected_result&quot;: {
+            &quot;rent_price&quot;: 3095
+        }
+    }
+]
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascript/open_links_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

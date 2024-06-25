@@ -1,0 +1,1386 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../style_prompting/">
+      
+      
+        <link rel="next" href="../../few_shot/kate/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>System 2 Attention (S2A) - The Prompt Dictionary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-2-attention-s2a" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The Prompt Dictionary" class="md-header__button md-logo" aria-label="The Prompt Dictionary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Prompt Dictionary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              System 2 Attention (S2A)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jjmacky/prompt_cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/prompt_cookbook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../assumption_consideration/" class="md-tabs__link">
+          
+  
+  Prompt Dictionary
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../synthetic_data/basic_tutorial_1/airbnb_rewriting/" class="md-tabs__link">
+          
+  
+  Synthetic data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../support_me/" class="md-tabs__link">
+        
+  
+    
+  
+  Support me!
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The Prompt Dictionary" class="md-nav__button md-logo" aria-label="The Prompt Dictionary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    The Prompt Dictionary
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jjmacky/prompt_cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/prompt_cookbook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Prompt Dictionary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Prompt Dictionary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Zero-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Zero-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assumption_consideration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assumption Consideration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emotion_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Emotion Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plain_vanilla/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plain Vanilla
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rephrase_and_respond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rephrase and Respond (RaR)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rereading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rereading (Re2)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../role_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Role Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self_ask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Self-ask
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simtom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SimToM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solo_performance_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solo Performance Prompting (SPP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    System 2 Attention (S2A)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    System 2 Attention (S2A)
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system-2-attention-s2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      System 2 Attention (S2A)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System 2 Attention (S2A)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to know
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      API example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Few-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Few-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../few_shot/kate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KATE (kNN-Augmented in-conText Example selection)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Synthetic data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Synthetic data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../synthetic_data/basic_tutorial_1/airbnb_rewriting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic synthetic data creation tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../support_me/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support me!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system-2-attention-s2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      System 2 Attention (S2A)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System 2 Attention (S2A)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to know
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      API example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>System 2 Attention (S2A)</h1>
+
+<h2 id="system-2-attention-s2a">System 2 Attention (S2A)</h2>
+<p>System 2 Attention is a technique that harnesses the ability of language models to focus on specific parts of the input text, enabling them to concentrate on the most relevant information for generating accurate and concise responses. S2A is particularly useful in situations where users provide additional context that may not be directly relevant to the main question or include biased opinions.</p>
+<p>For instance, if a user asks about Egyptian history but prefaces their question with a lengthy story about their family vacation to the pyramids, S2A instructs the model to extract the core question and relevant context while filtering out unnecessary details. Similarly, in domains such as math word problems or business case studies, the provided context may include information or opinions that are not essential to answering the question at hand. By applying S2A in these scenarios, the model can generate more focused and accurate responses.</p>
+<h3 id="how-to-use-it">How to use it</h3>
+<p>To use System 2 Attention (S2A), add a special instruction to the user prompt that tells the language model to extract the main question or request and disregard irrelevant or biased context from the user's input.</p>
+<p><a href="#prompting">See "Prompting" section for usage details</a>.</p>
+<h3 id="when-to-use-it">When to use it</h3>
+<div class="admonition tip">
+<p class="admonition-title">When to use System 2 Attention</p>
+<ul>
+<li>Ideal for complex tasks where filtering out irrelevant information can significantly improve the quality of the response, particularly in applications where you are processing input text from third-party sources over which you have no control.</li>
+<li>Effective in situations that demand focused and succinct answers.</li>
+<li>Particularly useful when solving multi-step math word problems.</li>
+</ul>
+</div>
+<h3 id="what-to-know">What to know</h3>
+<p>S2A empowers large language models to identify and prioritize the most important aspects of the input context, resulting in higher-quality responses. By leveraging the LLMs' natural language reasoning capabilities and their ability to follow instructions, S2A guides the models to focus on the most relevant information. The process involves the LLM regenerating the input context, including only the pertinent portions, and then using this refined context to generate the final response.</p>
+<p>To ensure optimal performance, some post-processing may be necessary after the S2A context regeneration step to properly structure the prompt for the final response generation. <a href="#prompting">See "Prompting" section for usage details</a>.</p>
+<p>To better understand S2A, two examples from Weston and Sukhbaatar (2023) are provided below. In the first example, the original math word problem (top purple boxes) contains a decoy sentence: "Max has 1000 more books than Mary." This sentence confuses the language model (LLaMA-2-70B). Using S2A (flow on the right), the model rewrites the question, removing the unnecessary sentence. The revised word problem is then correctly evaluated by the language model.
+<img alt="An image of an SGA prompt example using a math word problem" src="../../../images/zero_shot/s2a-1.png" /></p>
+<p>In the second example, the users ask about a band, suggesting that they think the answer is Johnny Depp (top purple boxes). This leading sentence confuses the language model. Using S2A (right flow), the model first rewrites the sentence, removing the suggested answer. The language model then correctly identifies the great American actor and <a href="https://www.independent.co.uk/life-style/keanu-reeves-internet-boyfriend-alexandra-grant-b2302477.html">internet's boyfriend</a>, Keanu Reeves, as the correct answer.
+<img alt="An image of an SGA prompt example using a question about a band" src="../../../images/zero_shot/s2a-2.png" /></p>
+<h3 id="best-practices">Best practices</h3>
+<div class="admonition tip">
+<p class="admonition-title">Best practices for System 2 Attention</p>
+<ul>
+<li>Provide clear instructions to the LLM to regenerate the context, extracting the most valuable parts that offer relevant context for a specific query. Start with the prompt template above and experiment as necessary.</li>
+<li>After S2A context regeneration, discard the original context. Allowing the model to access both the original context and the S2A version can negatively impact performance.</li>
+<li>If working in an application setting, you likely want to prompt the model to return a JSON object so the question can easily be separated from the other context (<a href="#api-example">see API example below</a>).</li>
+</ul>
+</div>
+<h3 id="what-to-watch-out-for">What to watch out for</h3>
+<div class="admonition warning">
+<p class="admonition-title">What to watch out for with System 2 Attention</p>
+<ul>
+<li>S2A tends to be most effective for small and mid-sized models and may be less impactful for the most advanced model versions. In my testing, GPT-4 did not fall victim to the distractions outlined in Weston and Sukhbaatar (2023), shown above.</li>
+<li>If working in an application setting, you likely want to prompt the model to return a JSON object so the question can easily be separated from the other context (<a href="#api-example">see API example below</a>).</li>
+</ul>
+</div>
+<h3 id="citations">Citations</h3>
+<p>Weston, J., &amp; Sukhbaatar, S. (2023). System 2 Attention (is something you might need too). <a href="https://arxiv.org/abs/2311.11829">arXiv preprint arXiv:2311.11829</a></p>
+<h3 id="prompting">Prompting</h3>
+<p>The S2A prompt template used in Weston and Sukhbaatar (2023) instructs the model to extract the main query or question from the larger context of the input prompt, along with any relevant unbiased information. The model is asked to disregard opinions, biases, and irrelevant details in the original prompt. The extracted information is then used to provide a focused, unbiased response to the core query.</p>
+<p>The template consists of two main parts:</p>
+<ol>
+<li>
+<p>Instructions to the model:</p>
+<ul>
+<li>Extract the unbiased context and the main question or query from the input prompt</li>
+<li>Exclude any opinions, biases, or irrelevant information</li>
+<li>Provide the response in a specified format, with labeled sections for the extracted context and question</li>
+</ul>
+</li>
+<li>
+<p>The original input prompt, which is inserted into the template.</p>
+</li>
+</ol>
+<p>By using this template, the S2A system aims to improve the accuracy and objectivity of the model's responses by guiding it to focus on the most relevant and unbiased information within the potentially noisy or biased input prompt.</p>
+<h4 id="prompt-template">Prompt template</h4>
+<blockquote>
+<p>Given the following text by a user, extract the part that is unbiased and not their opinion,
+so that using that text alone would be good context for providing an unbiased answer to
+the question portion of the text.</p>
+<p>Please include the actual question or query that the user is asking. Separate this
+into two categories labeled with “Unbiased text context (includes all content except user’s
+bias):” and “Question/Query (does not include user bias/preference):”.</p>
+<p>{original input prompt}</p>
+</blockquote>
+<p>As noted in the best practices section, it can sometimes be useful to request the model return a response in JSON format. <a href="#api-example">See API example below for usage</a>.</p>
+<blockquote>
+<p>Output this information in a JSON format with two keys: 'context' and 'question'."</p>
+<p>JSON Signature Example:
+<div class="highlight"><pre><span></span><code><span class="p">{{</span>
+<span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Unbiased text context here&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Question/Query here&quot;</span>
+<span class="p">}}</span>
+</code></pre></div></p>
+</blockquote>
+<p>You can also try a shorter, simpler version of the prompt:</p>
+<blockquote>
+<p>Extract the unbiased context and the main question(s) from the following text, excluding any opinions or irrelevant information: <br>
+{original input prompt} <br></p>
+</blockquote>
+<h4 id="prompt-example">Prompt example</h4>
+<p>S2A prompt:</p>
+<blockquote>
+<p>Given the following text by a user, extract the part that is unbiased and not their opinion,
+so that using that text alone would be good context for providing an unbiased answer to
+the question portion of the text.</p>
+<p>Please include the actual question or query that the user is asking. Separate this
+into two categories labeled with “Unbiased text context (includes all content except user’s
+bias):” and “Question/Query (does not include user bias/preference):”.</p>
+<p>I'm doing a research project on the history of space exploration, and I'm currently focusing on the Apollo program that sent astronauts to the Moon in the 1960s and 70s. I've been reading a lot of primary sources from the time period, like interviews with the astronauts and mission transcripts, and I'm struck by how ambitious and risky the whole endeavor was.</p>
+<p>I recently came across this quote from John F. Kennedy's famous "Moon Speech" at Rice University in 1962:</p>
+<p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win."</p>
+<p>I love how Kennedy framed the Moon mission as a challenge to be embraced rather than a risk to be avoided. It really captures the spirit of the times and the sense of national pride and purpose that drove the Apollo program forward.</p>
+<p>But I'm also curious about the scientific goals of the missions, beyond just the political and cultural significance. What were the main experiments and observations that the astronauts conducted on the lunar surface? And how did their findings advance our understanding of the Moon and the wider solar system?</p>
+<p>I've heard that they collected a lot of lunar rocks and soil samples, but I'm not sure what specific insights we gained from analyzing those materials. And I know there were some technical glitches and close calls during the missions, but I'm fuzzy on the details.</p>
+<p>Can you give me an overview of the key scientific achievements and discoveries of the Apollo program? I want to make sure my research project covers all the important angles and doesn't just focus on the human drama and historical significance of the missions. Thanks in advance for your help!</p>
+</blockquote>
+<p>Model response (ChatGPT 4o):</p>
+<blockquote>
+<p><strong>Unbiased text context (includes all content except user’s bias):</strong></p>
+<p>I'm doing a research project on the history of space exploration, and I'm currently focusing on the Apollo program that sent astronauts to the Moon in the 1960s and 70s. I've been reading a lot of primary sources from the time period, like interviews with the astronauts and mission transcripts. I recently came across this quote from John F. Kennedy's famous "Moon Speech" at Rice University in 1962:</p>
+<p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win."</p>
+<p>But I'm also curious about the scientific goals of the missions, beyond just the political and cultural significance. What were the main experiments and observations that the astronauts conducted on the lunar surface? And how did their findings advance our understanding of the Moon and the wider solar system?</p>
+<p>I've heard that they collected a lot of lunar rocks and soil samples. And I know there were some technical glitches and close calls during the missions.</p>
+<p><strong>Question/Query (does not include user bias/preference):</strong>
+Can you give me an overview of the key scientific achievements and discoveries of the Apollo program?</p>
+</blockquote>
+<p>Pass the question to Llama 3 (8B):</p>
+<blockquote>
+<p>Can you give me an overview of the key scientific achievements and discoveries of the Apollo program?</p>
+</blockquote>
+<p>Model response (Llama 8B):</p>
+<blockquote>
+<p>The Apollo program was a series of NASA spaceflights that successfully 
+landed humans on the Moon between 1969 and 1972. The program's scientific 
+achievements and discoveries were significant, marking a major milestone 
+in human exploration and understanding of space. Here are some key 
+scientific achievements and discoveries:</p>
+<ol>
+<li><strong>Lunar Surface Exploration</strong>: Apollo astronauts spent over 171 hours 
+walking on the Moon's surface, collecting samples, and conducting 
+experiments. This provided valuable insights into the Moon's geology, 
+composition, and atmosphere.</li>
+<li><strong>Sample Return</strong>: The Apollo program brought back more than 842 pounds 
+(382 kilograms) of lunar rocks and soil, which scientists analyzed to 
+understand the Moon's formation, evolution, and internal structure.</li>
+<li><strong>Moon's Internal Structure</strong>: Seismic experiments conducted by Apollo 
+astronauts revealed that the Moon has a partially molten core, similar to 
+Earth's, but much smaller.</li>
+<li><strong>Lunar Atmosphere</strong>: The Apollo missions measured the Moon's extremely 
+thin atmosphere (exosphere), which was found to be about 10^(-12) times 
+thinner than Earth's.</li>
+<li><strong>Solar Wind</strong>: Scientists confirmed the existence of the solar wind, a 
+stream of charged particles emitted by the Sun, by analyzing data from the 
+Apollo spacecraft.</li>
+<li><strong>Space Radiation</strong>: The Apollo missions provided valuable data on 
+space radiation, which helped scientists better understand the effects of 
+cosmic rays on living organisms and equipment.</li>
+<li><strong>Gravity Measurements</strong>: The Apollo spacecraft carried instruments 
+that measured the Moon's gravitational field, allowing scientists to map 
+its internal structure and composition.</li>
+<li><strong>Lunar Regolith</strong>: The Apollo astronauts brought back samples of the 
+lunar regolith (soil), which revealed the Moon's complex geological 
+history, including impact craters, faulting, and volcanic activity.</li>
+<li><strong>Moonquakes</strong>: Seismic experiments detected moonquakes, which helped 
+scientists understand the Moon's internal structure and tectonic activity.</li>
+<li><strong>Technological Advancements</strong>: The Apollo program drove significant 
+technological innovations, such as advancements in rocket propulsion, life 
+support systems, communication technologies, and space suit design.</li>
+<li><strong>Scientific Instrumentation</strong>: The Apollo spacecraft carried a range 
+of scientific instruments, including cameras, spectrometers, 
+magnetometers, and seismometers, which provided valuable data on the 
+Moon's surface, atmosphere, and subsurface.</li>
+<li><strong>Lunar Laser Ranging</strong>: The Apollo program established the Lunar 
+Laser Ranging (LLR) technique, which uses laser beams to measure the 
+distance between Earth and the Moon with high accuracy.</li>
+</ol>
+<p>These scientific achievements and discoveries have far-reaching 
+implications for our understanding of the Moon, the solar system, and the 
+universe as a whole. The Apollo program's legacy continues to inspire new 
+generations of scientists, engineers, and explorers.</p>
+</blockquote>
+<h4 id="api-example">API example</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">ollama</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Set your API key</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="c1"># This is the default and can be omitted</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Function to call GPT-4-turbo and parse the response</span>
+<span class="k">def</span> <span class="nf">extract_user_question</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">):</span>
+    <span class="c1"># Step 1: Rewrite the prompt to remove any unrelated information</span>
+    <span class="n">s2a_prompt_prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Given the following text by a user, extract the part that is unbiased and not their opinion, so that using that text alone would be good context for providing an unbiased answer to the question portion of the text.</span>
+
+<span class="s2">    Please include the actual question or query that the user is asking. Separate this into two categories labeled with “Unbiased text context (includes all content except user’s bias):” and “Question/Query (does not include user bias/preference):”.</span>
+
+<span class="s2">    Output this information in a JSON format with two keys: &#39;context&#39; and &#39;question&#39;.&quot;</span>
+
+<span class="s2">    JSON Signature Example:</span>
+
+<span class="s2">    {{</span>
+<span class="s2">      &quot;context&quot;: &quot;Unbiased text context here&quot;,</span>
+<span class="s2">      &quot;question&quot;: &quot;Question/Query here&quot;</span>
+<span class="s2">    }}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">gpt_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s2a_prompt_prefix</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">user_prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span> <span class="p">},</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">gpt_prompt</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">gpt_response</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+    <span class="c1"># Parse the JSON response</span>
+    <span class="n">parsed_response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">gpt_response</span><span class="p">)</span>
+    <span class="n">extracted_question</span> <span class="o">=</span> <span class="n">parsed_response</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">extracted_question</span>
+
+<span class="c1"># Function to call Ollama&#39;s Llama3 model with the extracted question</span>
+<span class="k">def</span> <span class="nf">answer_question</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">}</span>
+    <span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;llama3&#39;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+
+<span class="c1"># User prompt</span>
+<span class="n">user_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;I&#39;m doing a research project on the history of space exploration, and I&#39;m currently focusing on the Apollo program that sent astronauts to the Moon in the 1960s and 70s. I&#39;ve been reading a lot of primary sources from the time period, like interviews with the astronauts and mission transcripts, and I&#39;m struck by how ambitious and risky the whole endeavor was.</span>
+
+<span class="s2">I recently came across this quote from John F. Kennedy&#39;s famous &quot;Moon Speech&quot; at Rice University in 1962:</span>
+
+<span class="s2">&quot;We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win.&quot;</span>
+
+<span class="s2">I love how Kennedy framed the Moon mission as a challenge to be embraced rather than a risk to be avoided. It really captures the spirit of the times and the sense of national pride and purpose that drove the Apollo program forward.</span>
+
+<span class="s2">But I&#39;m also curious about the scientific goals of the missions, beyond just the political and cultural significance. What were the main experiments and observations that the astronauts conducted on the lunar surface? And how did their findings advance our understanding of the Moon and the wider solar system?</span>
+
+<span class="s2">I&#39;ve heard that they collected a lot of lunar rocks and soil samples, but I&#39;m not sure what specific insights we gained from analyzing those materials. And I know there were some technical glitches and close calls during the missions, but I&#39;m fuzzy on the details.</span>
+
+<span class="s2">Can you give me an overview of the key scientific achievements and discoveries of the Apollo program? I want to make sure my research project covers all the important angles and doesn&#39;t just focus on the human drama and historical significance of the missions. Thanks in advance for your help!</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Get the unbiased context and question</span>
+<span class="n">question</span> <span class="o">=</span> <span class="n">extract_user_question</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
+
+<span class="c1"># Call the Ollama API with the extracted question</span>
+<span class="n">answered_question</span> <span class="o">=</span> <span class="n">answer_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ollama Response:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">answered_question</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascript/open_links_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
