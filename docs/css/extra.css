@@ -1,0 +1,5 @@
+.md-typeset .highlight pre,
+.md-typeset pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

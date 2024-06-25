@@ -1,0 +1,59 @@
+site_name: The Prompt Dictionary
+repo_url: https://github.com/jjmacky/prompt_cookbook
+repo_name: jjmacky/prompt_cookbook
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.tabs
+    # - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+  icon:
+    repo: fontawesome/brands/github
+
+
+extra_javascript:
+  - javascript/open_links_in_new_tab.js
+
+extra_css:
+  - css/extra.css 
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - footnotes
+  
+nav:
+  # - Home: index.md
+  - Prompt Dictionary:
+    - Zero-shot prompting strategies:
+      # - Overview: prompting/zero_shot/overview.md
+      - Assumption Consideration: prompting/zero_shot/assumption_consideration.md
+      - Emotion Prompting: prompting/zero_shot/emotion_prompting.md
+      - Plain Vanilla: prompting/zero_shot/plain_vanilla.md
+      - Rephrase and Respond (RaR): prompting/zero_shot/rephrase_and_respond.md
+      - Rereading (Re2): prompting/zero_shot/rereading.md
+      - Role Prompting: prompting/zero_shot/role_prompting.md
+      - Self-ask: prompting/zero_shot/self_ask.md
+      - SimToM: prompting/zero_shot/simtom.md
+      - Solo Performance Prompting (SPP): prompting/zero_shot/solo_performance_prompting.md
+      - Style Prompting: prompting/zero_shot/style_prompting.md
+      - System 2 Attention (S2A): prompting/zero_shot/system_2_attention.md
+    - Few-shot prompting strategies:
+      - KATE (kNN-Augmented in-conText Example selection): prompting/few_shot/kate.md
+  - Synthetic data:
+    - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md  
+  - Support me!: support_me.md
+
+copyright:
+  'Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>'
