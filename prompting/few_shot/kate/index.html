@@ -1385,8 +1385,44 @@ This was the random entry from the validation set used to simulate KATE inferenc
 <span class="w">  </span><span class="nt">background</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">DATE</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-It's not perfect, but pretty good. Let's compare this method to some other possibilities.</p>
-<p>Below is the result if we just try asking the model to mask the sentence using the simple prompt:</p>
+The model got a single tag wrong, which is not perfect, but still pretty good compared to the other methods we'll see below. The strong performance is due to the fact that the k neighbors identified during inference are similar to the sample, allowing the model to infer the masked tags for the unseen sample. Here is the unmasked and masked nearest neighbor for the inference sample.</p>
+<p>Unmasked:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8207886065</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">974312500</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+132 289 676-9075</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">United States</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">332</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rochelle Street</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">New York</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NY</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10464</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flat 298</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~`4teF</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Langmeier</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">COMMENTS_C</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Conduct</span><span class="nv"> </span><span class="s">IP</span><span class="nv"> </span><span class="s">audit,</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">trademark</span><span class="nv"> </span><span class="s">portfolio,</span><span class="nv"> </span><span class="s">support</span><span class="nv"> </span><span class="s">patent</span><span class="nv"> </span><span class="s">applications</span><span class="nv"> </span><span class="s">process.&quot;</span>
+<span class="nt">background</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">6:30 AM</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">31st October 2027</span>
+</code></pre></div></p>
+<p>Masked:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">IDCARD</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">PASSPORT</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">TEL</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">COUNTRY</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">BUILDING</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">STREET</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">CITY</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">STATE</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">POSTCODE</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">SECADDRESS</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">PASS</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">LASTNAME1</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">COMMENTS_C</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Conduct</span><span class="nv"> </span><span class="s">IP</span><span class="nv"> </span><span class="s">audit,</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">trademark</span><span class="nv"> </span><span class="s">portfolio,</span><span class="nv"> </span><span class="s">support</span><span class="nv"> </span><span class="s">patent</span><span class="nv"> </span><span class="s">applications</span><span class="nv"> </span><span class="s">process.&quot;</span>
+<span class="nt">background</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">[</span><span class="nv">TIME</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">[</span><span class="nv">DATE</span><span class="p p-Indicator">]</span>
+</code></pre></div></p>
+<p>Let's compare KATE with other methods. Below is the result if we just try asking Llama3 (8B) to mask the entry using the simple prompt:</p>
 <blockquote>
 <p>"Please mask the personally identifiable information in this text: {random entry}"</p>
 </blockquote>
