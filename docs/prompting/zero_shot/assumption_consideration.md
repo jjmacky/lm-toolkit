@@ -29,7 +29,7 @@ The specific challenge from Neyman could be considered ill-posed. User [Joseph S
 
 ### What to watch out for
 !!! warning "What to watch out for with assumption prompting"
-    - Assumption consideration has not been rigorously tested and may not always work. In my testing with Claude Sonnet 3.5, the method did not work on the first try, despite listing the assumption of only considering positive integers.
+    - Assumption consideration may not always work. In my testing with Claude Sonnet 3.5, the method did not work on the first try, despite Claude identifying the common assumption of only considering positive integers.
 
 ![A picture of my tweet where assumption consideration did not work](../../images/zero_shot/acp_me.png)
 
