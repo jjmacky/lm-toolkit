@@ -180,9 +180,49 @@ After providing Llama3 (8B) with the top 5 nearest neighbors as examples along w
   background:
     - [DATE]
 ```
-It's not perfect, but pretty good. Let's compare this method to some other possibilities.
+The model got a single tag wrong, which is not perfect, but still pretty good compared to the other methods we'll see below. The strong performance is due to the fact that the k neighbors identified during inference are similar to the sample, allowing the model to infer the masked tags for the unseen sample. Here is the unmasked and masked nearest neighbor for the inference sample.
 
-Below is the result if we just try asking the model to mask the sentence using the simple prompt:
+Unmasked:
+```yaml
+    - 8207886065
+    - 974312500
+    - +132 289 676-9075
+    - United States
+    - 332
+    - Rochelle Street
+    - New York
+    - NY
+    - 10464
+    - Flat 298
+    - ~`4teF
+    - Langmeier
+    - COMMENTS_C: "Conduct IP audit, update trademark portfolio, support patent applications process."
+background:
+    6:30 AM
+    31st October 2027
+```
+
+Masked:
+```yaml
+    - [IDCARD]
+    - [PASSPORT]
+    - [TEL]
+    - [COUNTRY]
+    - [BUILDING]
+    - [STREET]
+    - [CITY]
+    - [STATE]
+    - [POSTCODE]
+    - [SECADDRESS]
+    - [PASS]
+    - [LASTNAME1]
+    - COMMENTS_C: "Conduct IP audit, update trademark portfolio, support patent applications process."
+background:
+    [TIME]
+    [DATE]
+```
+
+Let's compare KATE with other methods. Below is the result if we just try asking Llama3 (8B) to mask the entry using the simple prompt:
 > "Please mask the personally identifiable information in this text: {random entry}"
 
 This is also a good check for data contamination. If the model had memorized the PII dataset, it might achieve strong zero-shot masking performance without much direction or examples. However, it does not. Every field returned by the model is incorrect.
