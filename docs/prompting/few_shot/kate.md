@@ -1,3 +1,11 @@
+---
+tags:
+  - zero-shot
+  - knn
+  - exemplars
+  - encoder
+---
+
 ## KATE (kNN-Augmented in-conText Example selection)
 KATE is a technique [introduced in early 2021](#citation) that aims to improve the few-shot learning capabilities of large language models, at the time demonstrated with GPT-3, by selecting semantically similar in-context examples at inference for a given user input.
 
@@ -308,6 +316,7 @@ import torch
 import ollama
 
 # Initialize RoBERTa tokenizer and model
+# We'll use RoBERTa to follow the approach of the paper.
 tokenizer = RobertaTokenizer.from_pretrained('roberta-base', output_attentions=False)
 model = RobertaModel.from_pretrained('roberta-base', output_attentions=False, output_hidden_states=False)
 

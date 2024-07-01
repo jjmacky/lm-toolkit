@@ -1,4 +1,4 @@
-site_name: The Prompt Dictionary
+site_name: The Language Model Toolkit
 repo_url: https://github.com/jjmacky/prompt-dictionary
 repo_name: jjmacky/prompt-dictionary
 
@@ -15,6 +15,11 @@ theme:
     - content.code.annotation
   icon:
     repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - tags:
+      seperator: ','
 
 extra_javascript:
   - javascript/open_links_in_new_tab.js
@@ -35,6 +40,7 @@ markdown_extensions:
 nav:
   # - Home: index.md
   - Prompt Dictionary:
+    - Welcome to the Prompt Dictionary!: prompting/index.md
     - Zero-shot prompting strategies:
       # - Overview: prompting/zero_shot/overview.md
       - Assumption Consideration: prompting/zero_shot/assumption_consideration.md
@@ -51,8 +57,14 @@ nav:
     - Few-shot prompting strategies:
       - KATE (kNN-Augmented in-conText Example selection): prompting/few_shot/kate.md
   - Synthetic data:
-    - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md  
+    - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md
+  - Podcast episodes: podcast_episodes/ai_n_stuff_episodes.md
   - Support my work: support_me.md
 
 copyright:
   'Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>'
+
+exclude:
+  - '*.csv'
+  - '*.json'
+  - '*.ipynb'

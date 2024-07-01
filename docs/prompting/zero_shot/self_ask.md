@@ -122,7 +122,7 @@ question = "Who is the CEO of the company that created the iPhone?"
 
 prompt = prompt_template.format(question=question)
 
-completion = openai.ChatCompletion.create(
+completion = client.chat.completions.create(
     model="gpt-3.5",
     messages=[{"role": "user", "content": prompt}]
 )

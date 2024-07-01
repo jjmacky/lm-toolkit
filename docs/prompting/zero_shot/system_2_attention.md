@@ -206,7 +206,7 @@ def extract_user_question(user_prompt):
     
     gpt_prompt = f"{s2a_prompt_prefix}\n\n{user_prompt}"
     
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4-turbo",
         response_format={ "type": "json_object" },
         messages=[
@@ -214,7 +214,7 @@ def extract_user_question(user_prompt):
         ]
     )
 
-    gpt_response = completion.choices[0].message.content
+    gpt_response = response.choices[0].message.content
     
     # Parse the JSON response
     parsed_response = json.loads(gpt_response)

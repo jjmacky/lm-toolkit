@@ -87,7 +87,7 @@ initial_prompt = "In a mystery novel, Detective Sarah is investigating a murder 
 
 # Step 1: Perspective-taking - Filter the context to include information known to Detective Sarah
 perspective_prompt = f"Given the following context about the murder investigation, identify the key facts that Detective Sarah knows: {context}"
-perspective_completion = openai.ChatCompletion.create(
+perspective_completion = client.chat.completions.create(
   model="gpt-3.5-turbo",
   messages=[
     {"role": "user", "content": perspective_prompt}
@@ -97,7 +97,7 @@ relevant_facts = perspective_completion.choices[0].message['content']
 
 # Step 2: Question-answering - Determine the most likely suspect based on Detective Sarah's knowledge
 suspect_prompt = f"Based on the following facts known to Detective Sarah, who does she most likely suspect of murdering Mr. Thompson and why? {relevant_facts}"
-suspect_completion = openai.ChatCompletion.create(
+suspect_completion = client.chat.completions.create(
   model="gpt-3.5-turbo",
   messages=[
     {"role": "user", "content": suspect_prompt}
@@ -105,5 +105,5 @@ suspect_completion = openai.ChatCompletion.create(
 )
 
 # Print the response from the model
-print(completion.choices[0].message.content)
+print(suspect_completion.choices[0].message.content)
 ```

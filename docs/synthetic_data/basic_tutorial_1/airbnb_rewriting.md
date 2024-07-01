@@ -1,6 +1,6 @@
 # Creating Synthetic Apartment Reviews Dataset
 
-In this tutorial, we'll create some basic synthetic data as an exercise in prompt engineering. The Python notebook for the project can be found on my GitHub [here](https://github.com/jjmacky/prompt-dictionary/blob/main/docs/synthetic_data/basic_tutorial_1/airbnb_rewriting.ipynb).
+In this tutorial, we'll use a novel technique to create some basic synthetic data as an exercise in prompt engineering. The Python notebook for the project can be found on my GitHub [here](https://github.com/jjmacky/prompt-dictionary/blob/main/docs/synthetic_data/basic_tutorial_1/airbnb_rewriting.ipynb).
 
 The goal is to create a set of realistic apartment reviews that contain the monthly price paid for the apartment. We'll use the review to populate a JSON object which includes:
 
