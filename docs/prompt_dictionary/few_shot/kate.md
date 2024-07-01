@@ -4,6 +4,7 @@ tags:
   - knn
   - exemplars
   - encoder
+  - single-turn
 ---
 
 ## KATE (kNN-Augmented in-conText Example selection)
