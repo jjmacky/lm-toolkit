@@ -58,7 +58,7 @@ nav:
       - Solo Performance Prompting (SPP): prompt_dictionary/zero_shot/solo_performance_prompting.md
       - Style Prompting: prompt_dictionary/zero_shot/style_prompting.md
       - System 2 Attention (S2A): prompt_dictionary/zero_shot/system_2_attention.md
-      - Whiteboard-of-Thought (wot): prompt_dictionary/zero_shot/whiteboard_of_thought.md
+      - Whiteboard-of-Thought (WoT): prompt_dictionary/zero_shot/whiteboard_of_thought.md
     - Few-shot prompting strategies:
       - KATE (kNN-Augmented in-conText Example selection): prompt_dictionary/few_shot/kate.md
     - Additional prompting resrouces: prompt_dictionary/additional_resources.md
