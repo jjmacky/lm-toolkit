@@ -46,6 +46,7 @@ nav:
   - Prompt Dictionary:
     - Welcome to the Prompt Dictionary!: prompt_dictionary/index.md
     - Zero-shot prompting strategies:
+      - Overview of zero-shot prompting: prompt_dictionary/zero_shot/overview.md
       - Assumption Consideration: prompt_dictionary/zero_shot/assumption_consideration.md
       - Emotion Prompting: prompt_dictionary/zero_shot/emotion_prompting.md
       - Plain Vanilla: prompt_dictionary/zero_shot/plain_vanilla.md
@@ -60,6 +61,7 @@ nav:
       - Whiteboard-of-Thought (wot): prompt_dictionary/zero_shot/whiteboard_of_thought.md
     - Few-shot prompting strategies:
       - KATE (kNN-Augmented in-conText Example selection): prompt_dictionary/few_shot/kate.md
+    - Additional prompting resrouces: prompt_dictionary/additional_resources.md
   - Synthetic data:
     - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md
   - Podcast episodes: podcast_episodes/ai_n_stuff_episodes.md
