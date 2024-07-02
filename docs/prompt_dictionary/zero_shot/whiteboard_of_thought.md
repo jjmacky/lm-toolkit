@@ -31,7 +31,7 @@ In Figure 5 of their paper, the authors demonstrate their approach by passing in
 However, it's important to note that results can vary depending on the model used. In my attempt to reproduce Figure 5 using Claude Sonnet 3.5 on June 30, 2024, the model produced a nonsensical diagram and failed to arrive at a clear answer:
 ![Image of my replication of Figure 5 from the WoT paper demonstrating spatial reasoning](../../images/zero_shot/wot_2.png)
 
-The authors also tested several task from the BIG-Bench evaluation dataset, including deciphering words written in ASCII art. I also did a small scale replication of this task using Claude Sonnet 3.5 by selecting random samples from the ASCII Word Recognition task (see [code example](#code-example) below plus additional details in this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/zero_shot/code/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/docs/prompt_dictionary/zero_shot/code/whiteboard_of_thought)). The improvement in model performance for this task was obvious. For example, when provided the word "NEW" as an ASCII art text string the model incorrectly identified the word as "REVIEW."
+The authors also tested several task from the BIG-Bench evaluation dataset, including deciphering words written in ASCII art. I also did a small scale replication of this task using Claude Sonnet 3.5 by selecting random samples from the ASCII Word Recognition task (see [code example](#code-example) below plus additional details in this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought)). The improvement in model performance for this task was obvious. For example, when provided the word "NEW" as an ASCII art text string the model incorrectly identified the word as "REVIEW."
 
 ```
 d8b...db.d88888b.db...d8b...db.
@@ -106,7 +106,7 @@ The WoT prompt template instructs the model to create visualizations using Pytho
 #### Code example
 This code demonstrates the implementation of both standard zero-shot prompting and the WoT approach, allowing for a direct comparison of their performance on ASCII art word recognition tasks.
 
-The code below represents my own small-scale replication of the results in Menon et al. Specifically, the middle column of Table 1, deciphering words in the BIG-Bench ASCII word art task. For more code as well as the full set of files used in this small replication see this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/zero_shot/code/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/docs/prompt_dictionary/zero_shot/code/whiteboard_of_thought).
+The code below represents my own small-scale replication of the results in Menon et al. Specifically, the middle column of Table 1, deciphering words in the BIG-Bench ASCII word art task. For more code as well as the full set of files used in this small replication see this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought).
 
 The replication process follows these steps:
 
@@ -252,7 +252,7 @@ for index, ascii_image in enumerate(random_ascii_images, start=1): # Use same ra
 ```
 
 ###### Step 4. Manually run the generated code to create images.
-Manually execute each code block returned and save the resulting image the images folder (not shown). See [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/zero_shot/code/whiteboard_of_thought/whiteboard_of_thought.ipynb) for full code.
+Manually execute each code block returned and save the resulting image the images folder (not shown). See [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) for full code.
 
 ###### Step 5. Send the resulting images to the vision API and calculate the performance improvement.
 For the 10 random words I selected this resulted in an accuracy of 50%. About double the performance of standard zero-shot prompting.
