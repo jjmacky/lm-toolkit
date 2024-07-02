@@ -1,0 +1,1551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../plain_vanilla/">
+      
+      
+        <link rel="next" href="../rereading/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Rephrase and Respond (RaR) - The Language Model Toolkit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rephrase-and-respond-rar" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="The Language Model Toolkit" class="md-header__button md-logo" aria-label="The Language Model Toolkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Language Model Toolkit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rephrase and Respond (RaR)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jjmacky/lm-toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/lm-toolkit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  Prompt Dictionary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../synthetic_data/basic_tutorial_1/airbnb_rewriting/" class="md-tabs__link">
+          
+  
+  Synthetic data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../podcast_episodes/ai_n_stuff_episodes/" class="md-tabs__link">
+        
+  
+    
+  
+  Podcast episodes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../support_me/" class="md-tabs__link">
+        
+  
+    
+  
+  Support my work
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The Language Model Toolkit" class="md-nav__button md-logo" aria-label="The Language Model Toolkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    The Language Model Toolkit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jjmacky/lm-toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jjmacky/lm-toolkit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Prompt Dictionary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Prompt Dictionary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to the Prompt Dictionary!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Zero-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Zero-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assumption_consideration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assumption Consideration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emotion_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Emotion Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plain_vanilla/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plain Vanilla
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Rephrase and Respond (RaR)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Rephrase and Respond (RaR)
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rephrase-and-respond-rar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rephrase and Respond (RaR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rephrase and Respond (RaR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to know
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-step-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-step version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-step-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-step version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-step-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-step version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-stage-rar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-stage RaR:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      API examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rereading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rereading (Re2)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../role_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Role Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self_ask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Self-ask
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simtom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SimToM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solo_performance_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solo Performance Prompting (SPP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_prompting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style Prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system_2_attention/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System 2 Attention (S2A)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whiteboard_of_thought/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Whiteboard-of-Thought (wot)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Few-shot prompting strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Few-shot prompting strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../few_shot/kate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KATE (kNN-Augmented in-conText Example selection)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Synthetic data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Synthetic data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../synthetic_data/basic_tutorial_1/airbnb_rewriting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic synthetic data creation tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../podcast_episodes/ai_n_stuff_episodes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Podcast episodes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../support_me/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support my work
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rephrase-and-respond-rar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rephrase and Respond (RaR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rephrase and Respond (RaR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to know
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-step-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-step version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-step-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-step version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-step-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-step version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-stage-rar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-stage RaR:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      API examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Rephrase and Respond (RaR)</h1>
+
+<h2 id="rephrase-and-respond-rar">Rephrase and Respond (RaR)</h2>
+<p>Rephrase and Respond (RaR) is a prompting technique where a language model is asked to rephrase and expand upon a given question before providing an answer. This approach aims to improve the language model's understanding of the question and its ability to provide accurate and relevant responses.</p>
+<h3 id="how-to-use-it">How to use it</h3>
+<p>To use RaR use a refinement phrase to ask the model to rephrase the question. Then using the rephrased question the model returns, ask the question again.</p>
+<p><a href="#prompting">See "Prompting" section for usage details</a>.</p>
+<h3 id="when-to-use-it">When to use it</h3>
+<div class="admonition tip">
+<p class="admonition-title">When to use rephrase and respond</p>
+<ul>
+<li>Contexts that naturally contain ambiguity or different ways to interpret the same concept.</li>
+<li>Situations where the original question may be poorly phrased or lacks necessary context, for example if third-party sources are controlling the input text.</li>
+<li>Domains where misinterpretation of the question could lead to significant errors (e.g., medical, legal, or financial inquiries).</li>
+</ul>
+</div>
+<h3 id="what-to-know">What to know</h3>
+<p>By rephrasing and expanding upon the question, the language model has the opportunity to clarify any ambiguities, add relevant context, and ensure that it has a thorough understanding of what is being asked. This can lead to more accurate and informative responses.</p>
+<p>RaR has both a single-stage and two-stage version of the prompting framework. In the single-stage version the language model is given a question along with the instruction to rephrase, expand upon, and answer the question.</p>
+<p>In the two-stage version the first prompt asks the language model to rephrase the question. The second prompt then uses this rephrased version to provide an answer. This could be the same language model or two different language models.</p>
+<p>Deng et al. (2023), who introduced the RaR concept, discuss ambiguities in questions that can lead to misinterpretation by language models. For example, when asking whether famous people were born in even or odd months, there are several definitions of "odd" that the model might consider, such as:</p>
+<ul>
+<li>Months with an odd number of days</li>
+<li>Months that are not evenly divisible by two (e.g., February)</li>
+<li>Months that are not typically referred to as even or odd</li>
+</ul>
+<p>These ambiguities are outlined in this diagram from their paper:</p>
+<p><img alt="An image of ambiguity in asking whether famous people were born in even or odd months" src="../../../images/zero_shot/rar.png" /></p>
+<h3 id="best-practices">Best practices</h3>
+<div class="admonition tip">
+<p class="admonition-title">Best practices for rephrase and respond</p>
+<ul>
+<li>Keep the prompting instruction concise and clear. Try using one of the refinement phrases in the <a href="#prompting">"Prompting" section</a>.</li>
+<li>In the two-step version of RaR instruct the model to only return the rephrased question without answering it.</li>
+<li>Add the refinement phrase to the end of the main instruction or query to the language model.</li>
+<li>RaR can potentially be combined with other prompting techniques like chain-of-thought reasoning for additional performance gains.</li>
+<li>When using the two-step RaR version, a more capable language model can be used for the rephrasing step to clarify questions for a less advanced answering model.</li>
+</ul>
+</div>
+<h3 id="what-to-watch-out-for">What to watch out for</h3>
+<div class="admonition warning">
+<p class="admonition-title">What to watch out for with rephrase and respond</p>
+<ul>
+<li>Has a narrow use case of questions that have an ambiguous interpretation, but can nonetheless be rephrased in a narrow, concise manner.</li>
+<li>Additional parsing logic may be required as the model may add a preamble such as: "Here is the unbiased text context, excluding the user's bias and preference:" to the rephrased question.</li>
+<li>Instructing the model to rephrase very ambiguous questions like "What is art?" may result in long, complex restatements that attempt to encompass in detail all possible interpretations.</li>
+<li>The quality of the model's rephrasing ability is important. Less capable models may introduce errors or misinterpretations during the rephrasing step.</li>
+<li>There is a risk of the model hallucinating information during the rephrasing step that alters the intent of the original question.</li>
+<li>RaR adds an extra step of latency compared to simply answering the original question. The tradeoff between accuracy and speed should be considered for time-sensitive applications.</li>
+</ul>
+</div>
+<h3 id="citations">Citations</h3>
+<p>Deng, Y., Zhang, W., Chen, Z., &amp; Gu, Q. (2023). Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves. <a href="https://arxiv.org/abs/2311.04205">arXiv preprint arXiv:2311.04205</a>.</p>
+<h3 id="prompting">Prompting</h3>
+<h4 id="prompt-template">Prompt template</h4>
+<p>The RaR prompt template has two versions. </p>
+<h5 id="one-step-version">One-step version</h5>
+<blockquote>
+<p>{refinement phrse} <br>
+{question} <br></p>
+</blockquote>
+<p>One-step refinement phrases can include:</p>
+<ul>
+<li>"Rephrase and expand the question, and respond."</li>
+<li>"Reword and elaborate on the inquiry, then provide an answer."</li>
+<li>"Reframe the question with additional context and detail, then provide an answer."</li>
+<li>"Modify the original question for clarity and detail, then offer an answer."</li>
+<li>"Restate and elaborate on the inquiry before proceeding with a response."</li>
+</ul>
+<h5 id="two-step-version">Two-step version</h5>
+<p>The two-step RaR separates the rephrasing and answering steps into two prompts. First, a refinement phrase is added to the end of a question or instruction. The model then responds with an improved restatement of the original prompt. Then, the restated question is then used to produce the final answer.</p>
+<p>Prompt 1:</p>
+<blockquote>
+<p>{question} <br>
+{refinement phrase} <br></p>
+</blockquote>
+<p>Prompt 2:</p>
+<blockquote>
+<p>{Rephrased prompt} <br></p>
+</blockquote>
+<p>Two-step refinement phrases can include:</p>
+<ul>
+<li>"Rephrase and expand the question."</li>
+<li>"Reword and elaborate on the inquiry."</li>
+<li>"Reframe the question with additional context and detail."</li>
+<li>"Modify the original question for clarity and detail."</li>
+</ul>
+<h4 id="prompt-examples">Prompt Examples</h4>
+<h5 id="one-step-version_1">One-step version</h5>
+<p>Let's ask the model, "What is the largest city in the world?" This can be ambiguous depending on whether you are measuring by population, area, or metropolitan area. The model should pick one definition and provide it.</p>
+<blockquote>
+<p>Question: What is the largest city in the world?</p>
+<p>Rephrase and expand the question, then respond.</p>
+</blockquote>
+<p>Model response (Llama 8B)</p>
+<blockquote>
+<p>Rephrased question:</p>
+<p>What is the most populous urban agglomeration (city proper or metropolitan 
+area) in the world, considering both the number of inhabitants within the 
+defined city limits as well as the broader metropolitan region?</p>
+<p>Expanded explanation:</p>
+<p>When determining the largest city in the world, it's essential to consider 
+two factors: the population within the city's administrative boundaries 
+(also known as the "city proper") and the broader metropolitan area. The 
+city proper refers to the urban core, whereas the metropolitan area 
+encompasses a larger geographic region that includes surrounding cities, 
+towns, and suburbs.</p>
+<p>Response:</p>
+<p>According to various sources, including the United Nations Department of 
+Economic and Social Affairs Population Division and the Citypopulation.de 
+website, the largest city in the world is Tokyo-Yokohama Metropolitan 
+Area, with a population of over 38 million people as of 2021. The city 
+proper (Tokyo) has approximately 13.9 million inhabitants, while the 
+metropolitan area includes surrounding cities like Yokohama, Kawasaki, and 
+Saitama.</p>
+<p>Tokyo's massive size can be attributed to its unique urban development 
+patterns, including:</p>
+<ol>
+<li>High population density: Tokyo is one of the most densely populated 
+cities globally.</li>
+<li>Urban sprawl: The city has expanded rapidly over the years, 
+incorporating surrounding areas into its metropolitan region.</li>
+<li>Strong economic growth: Tokyo is a global financial hub and a center 
+for innovation, driving urbanization and migration.</li>
+</ol>
+<p>Other notable large cities include:</p>
+<ol>
+<li>Delhi-NCR (National Capital Region), India: With a population of around 
+29.2 million in the city proper and over 46 million in the metropolitan 
+area.</li>
+<li>Shanghai, China: The city proper has approximately 24.1 million 
+inhabitants, while the metropolitan area has over 34 million people.</li>
+<li>Mexico City, Mexico: The city proper has around 21.8 million 
+inhabitants, while the metropolitan area has over 25 million people.</li>
+</ol>
+<p>Keep in mind that population figures may vary depending on the source and 
+methodology used to define the city's boundaries.</p>
+</blockquote>
+<h5 id="two-stage-rar">Two-stage RaR:</h5>
+<p>Rephrasing Prompt:</p>
+<blockquote>
+<p>Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Provide only the rephrased question without answering it. Question: What is the first day of the week?</p>
+</blockquote>
+<p>Model response (ChatGPT 4o):</p>
+<blockquote>
+<p>Can you please tell me which day is considered the first day of the week in different cultural or regional contexts?</p>
+</blockquote>
+<p>Answering Prompt (using the rephrased question from the previous step):</p>
+<blockquote>
+<p>Can you please tell me which day is considered the first day of the week in different cultural or regional contexts?</p>
+</blockquote>
+<p>Model response (Llama 8B):</p>
+<blockquote>
+<p>What a great question!</p>
+<p>The answer varies across cultures, regions, and even languages. Here's a 
+breakdown:</p>
+<ol>
+<li><strong>International Standard</strong>: In international standard ISO 8601, Monday 
+is considered the first day of the week.</li>
+<li><strong>English-speaking countries</strong>: In most English-speaking countries, 
+including the United States, Canada, Australia, and the UK, Sunday is 
+typically considered the first day of the week.</li>
+<li><strong>Christian tradition</strong>: In Christian tradition, Sunday is often 
+referred to as the "Lord's Day" or the first day of the week, following 
+biblical accounts of Jesus' resurrection on a Sunday.</li>
+<li><strong>Islamic tradition</strong>: In Islamic tradition, Friday is considered the 
+first day of the week, and it's known as Jumu'ah (جمعة).</li>
+<li><strong>Hebrew calendar</strong>: In the Hebrew calendar used in Jewish traditions, 
+Saturday (Shabbat) is considered the first day of the week.</li>
+<li><strong>Eastern Orthodox tradition</strong>: In Eastern Orthodox tradition, Sunday 
+is the first day of the week.</li>
+<li><strong>Latin American and some European countries</strong>: In some Latin American 
+countries, such as Mexico and Brazil, Monday is considered the first day 
+of the week. Similarly, in some European countries like Germany, Austria, 
+and Switzerland, Wednesday or Thursday can be considered the first day of 
+the week.</li>
+<li><strong>Arabic-speaking countries</strong>: In many Arabic-speaking countries, 
+including Egypt, Saudi Arabia, and Iraq, Sunday is considered the first 
+day of the week.</li>
+<li><strong>Indian context</strong>: In India, where there are multiple calendars in use 
+(e.g., Hindu, Muslim, Christian), different days can be considered the 
+first day of the week depending on the community or region.</li>
+</ol>
+<p>It's fascinating to see how different cultures and regions have their own 
+interpretations of what constitutes the "first" day of the week.</p>
+</blockquote>
+<h3 id="api-examples">API examples</h3>
+<p>One-stage RaR:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">ollama</span>
+
+<span class="c1"># Set your API key</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="c1"># This is the default and can be omitted</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">refinement_phrase</span> <span class="o">=</span> <span class="s2">&quot;Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Then respond.&quot;</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What is a &#39;year&#39;?&quot;</span> <span class="c1"># A year can refer to a calendar year, fiscal year, academic year, or even a specific period like a &quot;light year.&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">refinement_phrase</span><span class="si">}</span><span class="s2"> </span><span class="se">\n\n</span><span class="s2"> Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+  <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Two-stage RaR:
+<div class="highlight"><pre><span></span><code><span class="c1"># Stage 1: Rephrasing the question</span>
+<span class="k">def</span> <span class="nf">question_rephrasing</span><span class="p">(</span><span class="n">refinement_phrase</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
+    <span class="n">rephrasing_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">refinement_phrase</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">rephrasing_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span>  <span class="c1"># Using a more capable model for rephrasing</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">rephrasing_prompt</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rephrasing_completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># Stage 2: Answering the rephrased question</span>
+<span class="k">def</span> <span class="nf">answering_question</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;phi3:mini&#39;</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">question</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Make the request to the Ollama API</span>
+    <span class="k">return</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Usage example</span>
+<span class="n">refinement_phrase</span> <span class="o">=</span> <span class="s2">&quot;Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Provide only the rephrased question without answering it.&quot;</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;Was Shakespeare born in an odd month?&quot;</span>
+
+<span class="n">rephrased_question</span> <span class="o">=</span> <span class="n">question_rephrasing</span><span class="p">(</span><span class="n">refinement_phrase</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">answering_question</span><span class="p">(</span><span class="n">rephrased_question</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://github.com/jjmacky"  target="_blank" rel="noopener">James McCammon</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.subtitle"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascript/open_links_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
