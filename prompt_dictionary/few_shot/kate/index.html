@@ -1307,7 +1307,7 @@ tags:
 </li>
 <li>Model inference<ol>
 <li>For each user request:<ol>
-<li>Encode the main question or instruction to be asked of the langauge model using the same sentence encoder</li>
+<li>Encode the main question or instruction to be asked of the language model using the same sentence encoder</li>
 <li>Calculate the distance between the encoded question/instruction and each entry in the embedded example set from the preprocessing step</li>
 <li>Retrieve the k nearest neighbors from the embedded example set relative to the question/instruction</li>
 <li>Use these retrieved examples as the in-context examples for the language model</li>
@@ -1339,7 +1339,7 @@ tags:
 <p>Model characteristics:</p>
 <ul>
 <li>You're working with a language model that benefits significantly from in-context examples.</li>
-<li>In many applications the model is likely to be relatively small or medium-sized, as larger models might not see substantial improvements.</li>
+<li>For simpler tasks the model is likely to be relatively small or medium-sized, as larger models might not see substantial improvements.</li>
 </ul>
 </li>
 <li>
@@ -1352,7 +1352,7 @@ tags:
 <li>
 <p>Task constraints:</p>
 <ul>
-<li>The task requires adherence to specific rules or patterns, and examples can effectively demonstrate these rules, serving as a flexible alternative to writing explicit, complex operational logic. See <a href="#application-example-pii-masking-with-llama3-8b">Application example</a> below for an implementation of this scenario.</li>
+<li>The task requires adherence to specific rules or patterns, and examples can effectively demonstrate these rules, serving as a flexible alternative to writing explicit, complex operational logic. See <a href="#application-example-pii-masking-with-llama3-8b">"Application example"</a> below for an implementation of this scenario.</li>
 <li>Fine-tuning is not feasible or desirable (e.g., to avoid overfitting on small datasets).</li>
 <li>You need more nuanced outputs than standard kNN classification can provide.</li>
 </ul>
@@ -1406,7 +1406,7 @@ tags:
 </div>
 <h3 id="what-to-know">What to know</h3>
 <p>KATE was originally developed and tested on GPT-3, demonstrating its effectiveness in enhancing the model's few-shot learning capabilities across various natural language understanding and generation tasks. The method is a form of Retrieval-Augmented Generation (RAG) applied specifically to in-context example selection, which allowed GPT-3 to leverage relevant information from a large corpus of examples without fine-tuning.</p>
-<p>The authors presented the image below contrasting KATE, which uses k-nearest neighbors search during inference to find relevant examples, with a less tailored approach that uses random examples.</p>
+<p>The authors presented the image below contrasting KATE, which uses k-nearest neighbors search during inference to find relevant examples, with a less tailored approach that uses random examples. The image shows a set of examples, depicted as white dots, grey dots, and red dots. In a more traditional system, black dots (random examples) would be selected for in-context learning, but may have little in common with the current task at hand (blue star). Meanwhile, KATE focuses on the red dots -- examples that are more relevant for the current task.</p>
 <p><img alt="An image of the KATE workflow" src="../../../images/few_shot/kate.png" /></p>
 <p>The paper's experiments showed that KATE consistently outperformed random example selection across different tasks, including sentiment analysis, table-to-text generation, and open-domain question answering. Particularly notable were the improvements on complex tasks like table-to-text generation (41.9% improvement on the ToTTo dataset) and open-domain question answering (45.5% improvement on the Natural Questions dataset).</p>
 <p>An important finding was that the choice of sentence encoder for retrieving similar examples significantly impacts KATE's performance. The researchers found that encoders fine-tuned on task-related datasets often yielded better results. This suggests that tailoring the retrieval mechanism to the specific task can further enhance the method's effectiveness.</p>
@@ -1418,8 +1418,8 @@ tags:
 <li>Use a pre-trained sentence encoder like RoBERTa for initial implementation.</li>
 <li>If there is a sentence encoder that has been fine-tuned on a similar task or dataset, use that as it can improve performance. Experiment with fine-tuning the encoder on task-specific datasets.</li>
 <li>Use the largest dataset you can for a fixed inference latency threshold (increasing the search space of relevant examples improves performance by helping to select more relevant in-context examples).</li>
-<li>Using around 5 in-context examples is a good rule of thumb to balance performance and inference cost/latency (k=5).</li>
-<li>When constructing the in-context examples for the prompt, the order of the examples likely doesn't matter. Try experimenting with both the default (closest examples first) and reversed (closest examples nearst the question/instruction) orders.</li>
+<li>Using around 5 in-context examples is a good rule of thumb to balance performance and inference cost and latency (k=5).</li>
+<li>When constructing the in-context examples for the prompt, the order of the examples likely doesn't matter. Try experimenting with both the default (closest examples first) and reversed (closest examples nearest the question/instruction) orders.</li>
 </ul>
 </div>
 <h3 id="what-to-watch-out-for">What to watch out for</h3>
@@ -1438,7 +1438,7 @@ tags:
 <h3 id="application-example-pii-masking-with-llama3-8b">Application example - PII masking with Llama3 (8B)</h3>
 <p>Let's implement KATE in a realistic setting. We'll consider the task of masking personally identifiable information (PII) without fine-tuning a model. At inference, given a sentence to mask, we'll use KATE to look up relevant examples to guide the model on which masks to use. </p>
 <p>For this example, we're using the pii-masking-300k dataset, which can be found <a href="https://huggingface.co/datasets/ai4privacy/pii-masking-300k?row=0">here</a>. This synthetic dataset contains various text entries including personal statements, forms and ID cards, government records, and other types of text likely to contain PII. To follow the format of pii-masking-300k, we must use a predefined set of masking tags (i.e. we cannot simply delete the data or replace it with 'xxxxxxxx'), which makes the task a good candidate for KATE.</p>
-<p>The Python notebook for the code below can be found <a href="https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/few_shot/code/kate/kate_demo.ipynb">here</a>.</p>
+<p>The Python notebook for the code below can be found <a href="https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/few_shot/kate/kate_demo.ipynb">here</a>.</p>
 <h4 id="methodology">Methodology</h4>
 <p>Our approach follows the KATE methodology:</p>
 <ol>
@@ -1468,7 +1468,7 @@ This was the random entry from the validation set used to simulate KATE inferenc
 <span class="w">  </span><span class="nt">background</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">23/09/1972</span>
 </code></pre></div></p>
-<p>Here is the ground truth masked entry from the dataset:
+<p>Here is the ground truth masked result for that random entry:
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Immunization_Certification</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">individuals</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">TITLE</span><span class="p p-Indicator">]</span>
@@ -1583,7 +1583,7 @@ The model got a single tag wrong, which is not perfect, but still pretty good co
 <span class="w">  </span><span class="nt">background</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">DATE</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-<p>We can also follow the approach of Liu et al. in their paper by selecting random examples rather than the k nearest. Here, again this results in a response with many incorrectly masked fields.
+<p>We can also select random examples rather than the k nearest as a baseline against which to compare. Here, again this results in a response with many incorrectly masked fields.
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Immunization_Certification</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">individuals</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">NAME1</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Wrong, should be [TITLE]</span>
