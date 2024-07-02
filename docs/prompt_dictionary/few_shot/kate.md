@@ -23,7 +23,7 @@ Implementing KATE requires a more advanced application approach than simple prom
     3. Store these encodings for efficient retrieval
 2. Model inference
     1. For each user request:
-        1. Encode the main question or instruction to be asked of the langauge model using the same sentence encoder
+        1. Encode the main question or instruction to be asked of the language model using the same sentence encoder
         2. Calculate the distance between the encoded question/instruction and each entry in the embedded example set from the preprocessing step
         2. Retrieve the k nearest neighbors from the embedded example set relative to the question/instruction
         3. Use these retrieved examples as the in-context examples for the language model
@@ -43,14 +43,14 @@ Implementing KATE requires a more advanced application approach than simple prom
 
     1. Model characteristics:
         - You're working with a language model that benefits significantly from in-context examples.
-        - In many applications the model is likely to be relatively small or medium-sized, as larger models might not see substantial improvements.
+        - For simpler tasks the model is likely to be relatively small or medium-sized, as larger models might not see substantial improvements.
 
     2. Data requirements:
         - You have access to a relevant, high-quality dataset of examples (typically thousands to tens of thousands) for embedding.
         - Your dataset is not primarily factual (for factual retrieval, newer RAG methods are often more appropriate).
 
     3. Task constraints:
-        - The task requires adherence to specific rules or patterns, and examples can effectively demonstrate these rules, serving as a flexible alternative to writing explicit, complex operational logic. See [Application example](#application-example-pii-masking-with-llama3-8b) below for an implementation of this scenario.
+        - The task requires adherence to specific rules or patterns, and examples can effectively demonstrate these rules, serving as a flexible alternative to writing explicit, complex operational logic. See ["Application example"](#application-example-pii-masking-with-llama3-8b) below for an implementation of this scenario.
         - Fine-tuning is not feasible or desirable (e.g., to avoid overfitting on small datasets).
         - You need more nuanced outputs than standard kNN classification can provide.
 
@@ -83,7 +83,7 @@ Implementing KATE requires a more advanced application approach than simple prom
 ### What to know
 KATE was originally developed and tested on GPT-3, demonstrating its effectiveness in enhancing the model's few-shot learning capabilities across various natural language understanding and generation tasks. The method is a form of Retrieval-Augmented Generation (RAG) applied specifically to in-context example selection, which allowed GPT-3 to leverage relevant information from a large corpus of examples without fine-tuning.
 
-The authors presented the image below contrasting KATE, which uses k-nearest neighbors search during inference to find relevant examples, with a less tailored approach that uses random examples.
+The authors presented the image below contrasting KATE, which uses k-nearest neighbors search during inference to find relevant examples, with a less tailored approach that uses random examples. The image shows a set of examples, depicted as white dots, grey dots, and red dots. In a more traditional system, black dots (random examples) would be selected for in-context learning, but may have little in common with the current task at hand (blue star). Meanwhile, KATE focuses on the red dots -- examples that are more relevant for the current task.
 
 ![An image of the KATE workflow](../../images/few_shot/kate.png)
 
@@ -98,8 +98,8 @@ While KATE showed promise in 2021, it's important to note that the field of natu
     - Use a pre-trained sentence encoder like RoBERTa for initial implementation.
     - If there is a sentence encoder that has been fine-tuned on a similar task or dataset, use that as it can improve performance. Experiment with fine-tuning the encoder on task-specific datasets.
     - Use the largest dataset you can for a fixed inference latency threshold (increasing the search space of relevant examples improves performance by helping to select more relevant in-context examples).
-    - Using around 5 in-context examples is a good rule of thumb to balance performance and inference cost/latency (k=5).
-    - When constructing the in-context examples for the prompt, the order of the examples likely doesn't matter. Try experimenting with both the default (closest examples first) and reversed (closest examples nearst the question/instruction) orders.
+    - Using around 5 in-context examples is a good rule of thumb to balance performance and inference cost and latency (k=5).
+    - When constructing the in-context examples for the prompt, the order of the examples likely doesn't matter. Try experimenting with both the default (closest examples first) and reversed (closest examples nearest the question/instruction) orders.
 
 ### What to watch out for
 !!! warning "What to watch out for with KATE"
@@ -117,7 +117,7 @@ Let's implement KATE in a realistic setting. We'll consider the task of masking 
 
 For this example, we're using the pii-masking-300k dataset, which can be found [here](https://huggingface.co/datasets/ai4privacy/pii-masking-300k?row=0). This synthetic dataset contains various text entries including personal statements, forms and ID cards, government records, and other types of text likely to contain PII. To follow the format of pii-masking-300k, we must use a predefined set of masking tags (i.e. we cannot simply delete the data or replace it with 'xxxxxxxx'), which makes the task a good candidate for KATE.
 
-The Python notebook for the code below can be found [here](https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/few_shot/code/kate/kate_demo.ipynb).
+The Python notebook for the code below can be found [here](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/few_shot/kate/kate_demo.ipynb).
 
 #### Methodology
 Our approach follows the KATE methodology:
@@ -150,7 +150,7 @@ Immunization Certification:
     - 23/09/1972
 ```
 
-Here is the ground truth masked entry from the dataset:
+Here is the ground truth masked result for that random entry:
 ```yaml
 - Immunization_Certification:
     individuals:
@@ -277,7 +277,7 @@ Immunization_Certification:
     - [DATE]
 ```
 
-We can also follow the approach of Liu et al. in their paper by selecting random examples rather than the k nearest. Here, again this results in a response with many incorrectly masked fields.
+We can also select random examples rather than the k nearest as a baseline against which to compare. Here, again this results in a response with many incorrectly masked fields.
 ```yaml
 - Immunization_Certification:
   individuals:
