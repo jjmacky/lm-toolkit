@@ -1,11 +1,11 @@
----
+<!-- ---
 tags:
   - zero-shot
   - knn
   - exemplars
   - encoder
   - single-turn
----
+--- -->
 
 ## KATE (kNN-Augmented in-conText Example selection)
 KATE is a technique [introduced in early 2021](#citation) that aims to improve the few-shot learning capabilities of large language models, at the time demonstrated with GPT-3, by selecting semantically similar in-context examples at inference for a given user input.
@@ -117,7 +117,7 @@ Let's implement KATE in a realistic setting. We'll consider the task of masking 
 
 For this example, we're using the pii-masking-300k dataset, which can be found [here](https://huggingface.co/datasets/ai4privacy/pii-masking-300k?row=0). This synthetic dataset contains various text entries including personal statements, forms and ID cards, government records, and other types of text likely to contain PII. To follow the format of pii-masking-300k, we must use a predefined set of masking tags (i.e. we cannot simply delete the data or replace it with 'xxxxxxxx'), which makes the task a good candidate for KATE.
 
-The Python notebook for the code below can be found [here](https://github.com/jjmacky/prompt_dictionary/blob/main/docs/prompting/few_shot/kate_demo.ipynb).
+The Python notebook for the code below can be found [here](https://github.com/jjmacky/lm-toolkit/blob/main/docs/prompt_dictionary/few_shot/code/kate/kate_demo.ipynb).
 
 #### Methodology
 Our approach follows the KATE methodology:

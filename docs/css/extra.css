@@ -3,3 +3,15 @@
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+/* .md-header__subtitle {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  font-weight: normal;
+  color: var(--md-primary-bg-color);
+  opacity: 0.7;
+}
+
+.md-header__title {
+  margin-bottom: 0.5rem;
+} */

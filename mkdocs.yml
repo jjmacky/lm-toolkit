@@ -1,9 +1,10 @@
 site_name: The Language Model Toolkit
-repo_url: https://github.com/jjmacky/prompt-dictionary
-repo_name: jjmacky/prompt-dictionary
+repo_url: https://github.com/jjmacky/lm-toolkit
+repo_name: jjmacky/lm-toolkit
 
 theme:
   name: material
+  # custom_dir: overrides
   features:
     - content.code.copy
     - navigation.tabs
@@ -13,13 +14,17 @@ theme:
     - search.highlight
     - content.tabs.link
     - content.code.annotation
+    - content.subtitle
   icon:
     repo: fontawesome/brands/github
 
 plugins:
   - search
   - tags:
-      seperator: ','
+      separator: ','
+
+extra:
+  subtitle: "Your Site Subtitle Here"
 
 extra_javascript:
   - javascript/open_links_in_new_tab.js
@@ -38,24 +43,24 @@ markdown_extensions:
   - footnotes
   
 nav:
-  # - Home: index.md
+  # index.md
   - Prompt Dictionary:
-    - Welcome to the Prompt Dictionary!: prompting/index.md
+    - Welcome to the Prompt Dictionary!: prompt_dictionary/index.md
     - Zero-shot prompting strategies:
-      # - Overview: prompting/zero_shot/overview.md
-      - Assumption Consideration: prompting/zero_shot/assumption_consideration.md
-      - Emotion Prompting: prompting/zero_shot/emotion_prompting.md
-      - Plain Vanilla: prompting/zero_shot/plain_vanilla.md
-      - Rephrase and Respond (RaR): prompting/zero_shot/rephrase_and_respond.md
-      - Rereading (Re2): prompting/zero_shot/rereading.md
-      - Role Prompting: prompting/zero_shot/role_prompting.md
-      - Self-ask: prompting/zero_shot/self_ask.md
-      - SimToM: prompting/zero_shot/simtom.md
-      - Solo Performance Prompting (SPP): prompting/zero_shot/solo_performance_prompting.md
-      - Style Prompting: prompting/zero_shot/style_prompting.md
-      - System 2 Attention (S2A): prompting/zero_shot/system_2_attention.md
+      - Assumption Consideration: prompt_dictionary/zero_shot/assumption_consideration.md
+      - Emotion Prompting: prompt_dictionary/zero_shot/emotion_prompting.md
+      - Plain Vanilla: prompt_dictionary/zero_shot/plain_vanilla.md
+      - Rephrase and Respond (RaR): prompt_dictionary/zero_shot/rephrase_and_respond.md
+      - Rereading (Re2): prompt_dictionary/zero_shot/rereading.md
+      - Role Prompting: prompt_dictionary/zero_shot/role_prompting.md
+      - Self-ask: prompt_dictionary/zero_shot/self_ask.md
+      - SimToM: prompt_dictionary/zero_shot/simtom.md
+      - Solo Performance Prompting (SPP): prompt_dictionary/zero_shot/solo_performance_prompting.md
+      - Style Prompting: prompt_dictionary/zero_shot/style_prompting.md
+      - System 2 Attention (S2A): prompt_dictionary/zero_shot/system_2_attention.md
+      - Whiteboard-of-Thought (wot): prompt_dictionary/zero_shot/whiteboard_of_thought.md
     - Few-shot prompting strategies:
-      - KATE (kNN-Augmented in-conText Example selection): prompting/few_shot/kate.md
+      - KATE (kNN-Augmented in-conText Example selection): prompt_dictionary/few_shot/kate.md
   - Synthetic data:
     - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md
   - Podcast episodes: podcast_episodes/ai_n_stuff_episodes.md
