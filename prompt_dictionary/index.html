@@ -10,7 +10,7 @@
       
       
       
-        <link rel="next" href="zero_shot/assumption_consideration/">
+        <link rel="next" href="zero_shot/overview/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -387,26 +387,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#simple-is-best" class="md-nav__link">
     <span class="md-ellipsis">
-      Table of Contents
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Table of Contents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#zero-shot-prompting-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zero-Shot Prompting Strategies:
+      Simple is best
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#historical-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical record
+    </span>
+  </a>
   
 </li>
       
@@ -456,6 +450,27 @@
             Zero-shot prompting strategies
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="zero_shot/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview of zero-shot prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -784,6 +799,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="additional_resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional prompting resrouces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -924,26 +960,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#simple-is-best" class="md-nav__link">
     <span class="md-ellipsis">
-      Table of Contents
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Table of Contents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#zero-shot-prompting-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zero-Shot Prompting Strategies:
+      Simple is best
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#historical-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical record
+    </span>
+  </a>
   
 </li>
       
@@ -967,6 +997,19 @@
 
 <h1 id="welcome-to-the-prompt-dictionary">Welcome to The Prompt Dictionary!</h1>
 <p>Welcome to The Prompt Dictionary! This dictionary aims to be a comprehensive repository of strategies designed to enhance interactions with large language model. I update this repository frequently to keep pace with rapid advancements, though there's often a backlog of new strategies to add. This archive captures each strategy at a specific point in time, acknowledging that some may become less relevant over time as language models evolve.</p>
+<h2 id="simple-is-best">Simple is best</h2>
+<p>Many of the techniques listed in the Prompt Dictionary are outlined here for posterity and may not be suitable for everyday use. When it comes to practical prompting simple is best. In his interview on the Cognitive Revolution podcast Sander Schulhoff of <a href="https://learnprompting.org/">LearnPrompting.org</a> recommended a four-step prompt:</p>
+<ol>
+<li>Provide context for the task (e.g., if your analyzing a document provide the document).</li>
+<li>Give the model examples of the output you want.</li>
+<li>Give the model examples of the output you <em>don't</em> want.</li>
+<li>Clearly state the task, question, or instruction.</li>
+</ol>
+<div style="text-align:center;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/W-WyN4Gis_Y" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h2 id="historical-record">Historical record</h2>
 <p>The goal of The Prompt Dictionary is to serve as a historical record, documenting the evolution, benefits, and limitations of various prompting techniques. While some practical tutorials and examples are included, the primary function of this dictionary is to provide authoritative, reference-style information on prompt techniques and related practical applications. It functions similarly to a dictionary in the technical domain, offering definitions, usage examples, and specific guidelines, rather than comprehensive theoretical discussions or extended instructional content found in courses or manuals. Each entry provides:</p>
 <ul>
 <li>Background on the prompting strategy</li>
@@ -976,24 +1019,7 @@
 <li>What to watch out for</li>
 <li>A link to the original source</li>
 <li>Prompting examples</li>
-<li>Code implementation for API calls</li>
-</ul>
-<p>Many of the techniques featured here I first saw in the wonderful, "The Prompt Report: A Systematic Survey of Prompting Techniques" (<a href="https://arxiv.org/abs/2406.06608">link</a>).</p>
-<h2 id="table-of-contents">Table of Contents</h2>
-<h3 id="zero-shot-prompting-strategies">Zero-Shot Prompting Strategies:</h3>
-<ul>
-<li><a href="zero_shot/overview/">Overview</a></li>
-<li><a href="zero_shot/assumption_consideration/">Assumption Consideration</a></li>
-<li><a href="zero_shot/emotion_prompting/">Emotion Prompting</a></li>
-<li><a href="zero_shot/plain_vanilla/">Plain Vanilla</a></li>
-<li><a href="zero_shot/rephrase_and_respond/">Rephrase and Respond (RaR)</a></li>
-<li><a href="zero_shot/rereading/">Rereading (Re2)</a></li>
-<li><a href="zero_shot/role_prompting/">Role Prompting</a></li>
-<li><a href="zero_shot/self_ask/">Self Ask</a></li>
-<li><a href="zero_shot/simtom/">Simtom</a></li>
-<li><a href="zero_shot/solo_performance_prompting/">Solo Performance Prompting (SPP)</a></li>
-<li><a href="zero_shot/style_prompting/">Style Prompting</a></li>
-<li><a href="zero_shot/system_2_attention/">System 2 Attention (S2A)</a></li>
+<li>Code implementations and small-scale replications</li>
 </ul>
 
 
