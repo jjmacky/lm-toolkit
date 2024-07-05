@@ -1,3 +1,7 @@
+---
+date: 18 June 2024
+---
+
 ## Re-reading (RE2)
 Re-reading (RE2) is a simple yet effective prompting technique that involves asking the language model to read the question twice before providing an answer. This approach aims to enhance the model's understanding of the question and improve its reasoning capabilities.
 
@@ -84,7 +88,8 @@ def re_reading_prompt(question):
   ]
 
   # Make the request to the Ollama API
-  return ollama.chat(model=model, messages=messages, stream=False)
+    response = ollama.chat(model=model, messages=messages, stream=False)
+    return response["message"]["content"]
 
 question = "A train travels at an average speed of 60 mph for the first half of its journey. For the second half of the journey, the train encounters some delays and its average speed drops to 40 mph. If the total journey is 200 miles, how long does the train take to complete the entire trip?"
 

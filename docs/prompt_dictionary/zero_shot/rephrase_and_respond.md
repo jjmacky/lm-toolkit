@@ -1,3 +1,7 @@
+---
+date: 21 June 2024
+---
+
 ## Rephrase and Respond (RaR)
 Rephrase and Respond (RaR) is a prompting technique where a language model is asked to rephrase and expand upon a given question before providing an answer. This approach aims to improve the language model's understanding of the question and its ability to provide accurate and relevant responses.
 
@@ -238,7 +242,9 @@ def answering_question(question):
     ]
 
     # Make the request to the Ollama API
-    return ollama.chat(model=model, messages=messages, stream=False)
+    response = ollama.chat(model=model, messages=messages, stream=False)
+    return response["message"]["content"]
+
 
 # Usage example
 refinement_phrase = "Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Provide only the rephrased question without answering it."

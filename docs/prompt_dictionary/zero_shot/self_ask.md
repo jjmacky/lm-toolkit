@@ -1,3 +1,7 @@
+---
+date: 20 June 2024
+---
+
 ## Self-ask
 Self-ask prompting is a technique where a language model explicitly asks itself follow-up questions to decompose a complex question before providing a final answer. This approach aims to improve the model's ability to perform multi-step reasoning and compose knowledge to answer challenging questions.
 

@@ -1,3 +1,7 @@
+---
+date: 1 July 2024
+---
+
 ## Whiteboard-of-Thought (WoT)
 Whiteboard-of-Thought (WoT) is a technique that leverages the visual reasoning capabilities of multimodal large language models (MLLMs) by allowing them to create and process visual aids during the reasoning process. This method is particularly useful for tasks that humans typically solve using visual thinking, such as spatial reasoning, diagram interpretation, and problem-solving that benefits from visual representation.
 

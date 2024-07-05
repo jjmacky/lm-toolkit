@@ -1,3 +1,7 @@
+---
+date: 17 June 2024
+---
+
 ## Emotion prompting
 Emotion prompting involves adding emotional appeals or stimuli to the original prompt given to a language model. Emotion prompting _may_ produce a small boost to informativeness and relatability of the model output.
 

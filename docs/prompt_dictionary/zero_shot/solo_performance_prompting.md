@@ -1,3 +1,7 @@
+---
+date: 27 June 2024
+---
+
 ## Solo Performance Prompting (SPP)
 Solo Performance Prompting (SPP) is a specialized version of role prompting in which the model takes on multiple personas using a zero-shot prompting methodology.
 

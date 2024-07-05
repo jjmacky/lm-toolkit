@@ -1,3 +1,7 @@
+---
+date: 17 June 2024
+---
+
 ## Plain vanilla zero-shot prompting
 Plain vanilla prompting involves asking the language model to answer a question or perform an instruction without any additional "tricks" or prompt templates.
 

@@ -1,3 +1,7 @@
+---
+date: 23 June 2024
+---
+
 ## SimToM
 SimToM (Simulated Theory of Mind) is a technique based on the theory of mind exercise where a language model is encouraged to think through which participants in a passage know specific pieces of information from their perspective. This approach aims to improve the language model's ability to understand and reason about the mental states, beliefs, and perspectives of characters or agents in a given context.
 

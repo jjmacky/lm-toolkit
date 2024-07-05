@@ -1,3 +1,7 @@
+---
+date: 25 June 2024
+---
+
 ## System 2 Attention (S2A)
 System 2 Attention is a technique that harnesses the ability of language models to focus on specific parts of the input text, enabling them to concentrate on the most relevant information for generating accurate and concise responses. S2A is particularly useful in situations where users provide additional context that may not be directly relevant to the main question or include biased opinions.
 

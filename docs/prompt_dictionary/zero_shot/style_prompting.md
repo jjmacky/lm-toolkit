@@ -1,3 +1,7 @@
+---
+date: 22 June 2024
+---
+
 ## Style prompting
 Style prompting asks the model to take on a mood or style. It is usually reserved for creative writing tasks and may not be the best approach for eliciting factual information, writing formal presentations, or other activities that require a more neutral tone.
 

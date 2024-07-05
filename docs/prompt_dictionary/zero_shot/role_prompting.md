@@ -1,3 +1,7 @@
+---
+date: 26 June 2024
+---
+
 ## Role prompting
 Role prompting elicits the model by asking it to take on a particular role or persona before answering a question.
 
