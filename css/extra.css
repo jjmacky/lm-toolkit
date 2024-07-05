@@ -4,14 +4,11 @@
   word-wrap: break-word;
 }
 
-/* .md-header__subtitle {
-  font-size: 0.8rem;
-  margin-top: 0.2rem;
-  font-weight: normal;
-  color: var(--md-primary-bg-color);
-  opacity: 0.7;
+.page-date {
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: -2rem;
+  margin-bottom: 0rem;
+  font-weight: 400;
+  font-style: italic;
 }
-
-.md-header__title {
-  margin-bottom: 0.5rem;
-} */

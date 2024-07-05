@@ -383,7 +383,7 @@
             
   
   <span class="md-ellipsis">
-    Zero-shot prompting strategies
+    Zero-shot prompting
   </span>
   
 
@@ -393,7 +393,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_2">
             <span class="md-nav__icon md-icon"></span>
-            Zero-shot prompting strategies
+            Zero-shot prompting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -897,7 +897,7 @@
             
   
   <span class="md-ellipsis">
-    Few-shot prompting strategies
+    Few-shot prompting
   </span>
   
 
@@ -907,7 +907,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
-            Few-shot prompting strategies
+            Few-shot prompting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -923,6 +923,73 @@
   
   <span class="md-ellipsis">
     KATE (kNN-Augmented in-conText Example selection)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chain-of-thought
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chain-of-thought
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chain_of_thought/thread_of_thought/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Thread of Thought (ThoT)
   </span>
   
 
@@ -1269,15 +1336,10 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-                  
+<h1>Rephrase and Respond (RaR)</h1>
 
-  
-  
-
-
-  <h1>Rephrase and Respond (RaR)</h1>
-
-<h2 id="rephrase-and-respond-rar">Rephrase and Respond (RaR)</h2>
+<p class="page-date">Published on: 21 June 2024</p>
+ <h2 id="rephrase-and-respond-rar">Rephrase and Respond (RaR)</h2>
 <p>Rephrase and Respond (RaR) is a prompting technique where a language model is asked to rephrase and expand upon a given question before providing an answer. This approach aims to improve the language model's understanding of the question and its ability to provide accurate and relevant responses.</p>
 <h3 id="how-to-use-it">How to use it</h3>
 <p>To use RaR use a refinement phrase to ask the model to rephrase the question. Then using the rephrased question the model returns, ask the question again.</p>
@@ -1512,7 +1574,9 @@ interpretations of what constitutes the "first" day of the week.</p>
     <span class="p">]</span>
 
     <span class="c1"># Make the request to the Ollama API</span>
-    <span class="k">return</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+
 
 <span class="c1"># Usage example</span>
 <span class="n">refinement_phrase</span> <span class="o">=</span> <span class="s2">&quot;Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Provide only the rephrased question without answering it.&quot;</span>
@@ -1522,20 +1586,7 @@ interpretations of what constitutes the "first" day of the week.</p>
 <span class="n">rephrased_question</span> <span class="o">=</span> <span class="n">question_rephrasing</span><span class="p">(</span><span class="n">refinement_phrase</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">answering_question</span><span class="p">(</span><span class="n">rephrased_question</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
-</code></pre></div></p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
+</code></pre></div></p> 
               </article>
             </div>
           

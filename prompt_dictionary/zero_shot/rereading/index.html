@@ -383,7 +383,7 @@
             
   
   <span class="md-ellipsis">
-    Zero-shot prompting strategies
+    Zero-shot prompting
   </span>
   
 
@@ -393,7 +393,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_2">
             <span class="md-nav__icon md-icon"></span>
-            Zero-shot prompting strategies
+            Zero-shot prompting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -843,7 +843,7 @@
             
   
   <span class="md-ellipsis">
-    Few-shot prompting strategies
+    Few-shot prompting
   </span>
   
 
@@ -853,7 +853,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
-            Few-shot prompting strategies
+            Few-shot prompting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -869,6 +869,73 @@
   
   <span class="md-ellipsis">
     KATE (kNN-Augmented in-conText Example selection)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chain-of-thought
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chain-of-thought
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chain_of_thought/thread_of_thought/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Thread of Thought (ThoT)
   </span>
   
 
@@ -1161,15 +1228,10 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-                  
+<h1>Rereading (Re2)</h1>
 
-  
-  
-
-
-  <h1>Rereading (Re2)</h1>
-
-<h2 id="re-reading-re2">Re-reading (RE2)</h2>
+<p class="page-date">Published on: 18 June 2024</p>
+ <h2 id="re-reading-re2">Re-reading (RE2)</h2>
 <p>Re-reading (RE2) is a simple yet effective prompting technique that involves asking the language model to read the question twice before providing an answer. This approach aims to enhance the model's understanding of the question and improve its reasoning capabilities.</p>
 <h3 id="how-to-use-it">How to use it</h3>
 <p>To use re-reading simply provide the user question to the model twice, with an instruction for the model to reread the question.</p>
@@ -1256,26 +1318,14 @@ Read the question again: {Input query}</p>
   <span class="p">]</span>
 
   <span class="c1"># Make the request to the Ollama API</span>
-  <span class="k">return</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
 
 <span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;A train travels at an average speed of 60 mph for the first half of its journey. For the second half of the journey, the train encounters some delays and its average speed drops to 40 mph. If the total journey is 200 miles, how long does the train take to complete the entire trip?&quot;</span>
 
 <span class="n">answer</span> <span class="o">=</span> <span class="n">re_reading_prompt</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-
-
-
-
-
-
-
-
-
-                
+</code></pre></div> 
               </article>
             </div>
           
