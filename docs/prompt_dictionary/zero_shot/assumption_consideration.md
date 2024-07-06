@@ -1,3 +1,7 @@
+---
+date: 28 June 2024
+---
+
 ## Assumption consideration prompting
 Assumption consideration encourages a language model to think about common incorrect assumptions before attempting to solve a problem. [It was proposed by Jeremy Howard in June of 2024 on the X social media platform](https://x.com/jeremyphoward/status/1804639001934225800).
 
