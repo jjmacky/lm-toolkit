@@ -64,6 +64,7 @@ nav:
     - Chain-of-thought:
       # - Analogical Prompting: prompt_dictionary/chain_of_thought/analogical_prompting.md
       - Thread of Thought (ThoT): prompt_dictionary/chain_of_thought/thread_of_thought.md
+      - Step-back Prompting: prompt_dictionary/chain_of_thought/step_back.md
     - Additional prompting resrouces: prompt_dictionary/additional_resources.md
   - Synthetic data:
     - Basic synthetic data creation tutorial: synthetic_data/basic_tutorial_1/airbnb_rewriting.md

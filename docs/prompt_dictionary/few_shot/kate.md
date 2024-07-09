@@ -11,14 +11,14 @@ tags:
   - single-turn
 --- -->
 
-## KATE (kNN-Augmented in-conText Example selection)
+## Overview
 KATE is a technique [introduced in early 2021](#citation) that aims to improve the few-shot learning capabilities of large language models, at the time demonstrated with GPT-3, by selecting semantically similar in-context examples at inference for a given user input.
 
 KATE can be considered an early, specialized form of Retrieval-Augmented Generation (RAG), but it differs from more recent RAG techniques in its focus and application. While KATE aims to improve task performance through retrieval of similar examples, modern RAG techniques are more focused on increasing factual accuracy, reducing hallucinations, and integrating enterprise knowledge bases into standard language model workflows.
 
 KATE is most effective when the retrieved examples significantly enhance the model's ability to generate appropriate responses. It's less suitable for tasks requiring factual accuracy (where newer RAG methods might be better) or those where simpler techniques (like standard kNN or basic prompting) are sufficient.
 
-### How to use it
+## How to use it
 Implementing KATE requires a more advanced application approach than simple prompting methods. It involves two main steps, preprocessing a dataset of examples, and comparing those examples to user input during inference. 
 
 1. Preprocessing (done once):
@@ -41,7 +41,7 @@ Implementing KATE requires a more advanced application approach than simple prom
         1. Process the model's output as needed for your specific application
 
 
-### When to use it
+## When to use it
 !!! tip "When to use KATE"
     **Consider using KATE when the following conditions hold:**
 
@@ -84,7 +84,7 @@ Implementing KATE requires a more advanced application approach than simple prom
         - Example scenario: Quickly developing a proof-of-concept for analyzing literary styles across different authors.
         - Why KATE: Allows for fast implementation using a small, curated dataset of literary examples, potentially demonstrating the feasibility of AI-assisted literary analysis without extensive model training.
 
-### What to know
+## What to know
 KATE was originally developed and tested on GPT-3, demonstrating its effectiveness in enhancing the model's few-shot learning capabilities across various natural language understanding and generation tasks. The method is a form of Retrieval-Augmented Generation (RAG) applied specifically to in-context example selection, which allowed GPT-3 to leverage relevant information from a large corpus of examples without fine-tuning.
 
 The authors presented the image below contrasting KATE, which uses k-nearest neighbors search during inference to find relevant examples, with a less tailored approach that uses random examples. The image shows a set of examples, depicted as white dots, grey dots, and red dots. In a more traditional system, black dots (random examples) would be selected for in-context learning, but may have little in common with the current task at hand (blue star). Meanwhile, KATE focuses on the red dots -- examples that are more relevant for the current task.
@@ -97,7 +97,7 @@ An important finding was that the choice of sentence encoder for retrieving simi
 
 While KATE showed promise in 2021, it's important to note that the field of natural language processing is rapidly evolving. More advanced RAG methods and few-shot learning techniques have been developed since KATE was introduced, potentially offering better performance or efficiency for certain applications. Additionally, as language models continue to grow in size and capability, the relative benefits of techniques like KATE may change. Therefore, it's crucial to benchmark KATE against current state-of-the-art methods when considering its use in practical applications.
 
-### Best practices
+## Best practices
 !!! tip "Best practices for using KATE"
     - Use a pre-trained sentence encoder like RoBERTa for initial implementation.
     - If there is a sentence encoder that has been fine-tuned on a similar task or dataset, use that as it can improve performance. Experiment with fine-tuning the encoder on task-specific datasets.
@@ -105,7 +105,7 @@ While KATE showed promise in 2021, it's important to note that the field of natu
     - Using around 5 in-context examples is a good rule of thumb to balance performance and inference cost and latency (k=5).
     - When constructing the in-context examples for the prompt, the order of the examples likely doesn't matter. Try experimenting with both the default (closest examples first) and reversed (closest examples nearest the question/instruction) orders.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with KATE"
     - As models and retrieval methods continue to advance KATE may have more limited use cases, try standard prompting methods before implementing KATE.
     - KATE requires significant additional infrastructure compared to standard prompting (including an embedded dataset and additional computational resources for inference).
@@ -113,17 +113,17 @@ While KATE showed promise in 2021, it's important to note that the field of natu
     - The choice of sentence encoder can significantly impact results, use an encoder fine-tuned on a similar task or dataset if possible.
     - More recent developments in RAG and few-shot learning techniques may offer better performance or efficiency, especially when factual information is the priority.
 
-### Citation
+## Citation
 Liu, J., Shen, D., Zhang, Y., Dolan, B., Carin, L., and Chen, W. 2021. What Makes Good In-Context Examples for GPT-3. [arXiv preprint arXiv:2101.06804](https://arxiv.org/abs/2101.06804). DOI: 10.48550/arXiv.2101.06804.
 
-### Application example - PII masking with Llama3 (8B)
+## Application example - PII masking with Llama3 (8B)
 Let's implement KATE in a realistic setting. We'll consider the task of masking personally identifiable information (PII) without fine-tuning a model. At inference, given a sentence to mask, we'll use KATE to look up relevant examples to guide the model on which masks to use. 
 
 For this example, we're using the pii-masking-300k dataset, which can be found [here](https://huggingface.co/datasets/ai4privacy/pii-masking-300k?row=0). This synthetic dataset contains various text entries including personal statements, forms and ID cards, government records, and other types of text likely to contain PII. To follow the format of pii-masking-300k, we must use a predefined set of masking tags (i.e. we cannot simply delete the data or replace it with 'xxxxxxxx'), which makes the task a good candidate for KATE.
 
 The Python notebook for the code below can be found [here](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/few_shot/kate/kate_demo.ipynb).
 
-#### Methodology
+### Methodology
 Our approach follows the KATE methodology:
 
 1. Embed the training dataset from pii-masking-300k (about 178,000 total pairs of masked and unmasked sentences).
@@ -132,7 +132,7 @@ Our approach follows the KATE methodology:
 4. Build a prompt with the resulting examples and the random sentence to be masked.
 5. Serve this prompt to the model (Llama3 8B in this case).
 
-#### Results
+### Results
 Before diving into the code, let's examine the results to motivate the implementation.
 This was the random entry from the validation set used to simulate KATE inference:
 ```yaml
@@ -303,15 +303,15 @@ We can also select random examples rather than the k nearest as a baseline again
 
 This comparison demonstrates that KATE's approach of selecting relevant examples based on similarity has the potential to outperform both zero-shot and random example selection methods for novel use cases not originally considered in the KATE paper. However, a more comprehensive evaluation across multiple examples would be necessary to draw broader conclusions about its overall effectiveness.
 
-#### Code
+### Code
 
-##### Load dataset from Hugging Face
+#### Load dataset from Hugging Face
 ```python
 from datasets import load_dataset
 dataset = load_dataset("ai4privacy/pii-masking-300k")
 ```
 
-##### Load custom functions
+#### Load custom functions
 ```python
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -381,7 +381,7 @@ def call_model(prompt, llm_model):
     return result
 ```
 
-##### Create and embed data
+#### Create and embed data
 ```python
 from tqdm import tqdm
 data = []
@@ -391,7 +391,7 @@ for index in tqdm(range(len(dataset['train'])), desc="Creating dataset:"):
 embedded_data = embed_data(data)
 ```
 
-##### Perform simulated inference
+#### Perform simulated inference
 ```python
 random.seed(14) # Set random seed
 
@@ -416,7 +416,7 @@ print(f"Masked sentence from model: {masked_sentence}")
 print(f"Masked ground-truth sentence from data: {target_sentence}")
 ```
 
-##### Examine alternative inference approaches
+#### Examine alternative inference approaches
 First, we can just try asking the model to mask the sentence. This is also a good check to see if there is data contamination. If the model memorized the PII dataset it might achieve strong zero-shot masking without much direction.
 ```python
 prompt = f"Please mask the personally identifiable information in this sentence: {test_sentence}"

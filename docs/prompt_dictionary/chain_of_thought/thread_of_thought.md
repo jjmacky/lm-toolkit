@@ -2,13 +2,13 @@
 date: 5 July 2024
 ---
 
-## Thread-of-Thought (ThoT)
+## Overview
 Thread-of-Thought (ThoT) is a technique designed to enhance the performance of Large Language Models (LLMs) in processing chaotic contextual information. This method draws inspiration from human cognitive processes, enabling LLMs to systematically segment and analyze extended contexts while adeptly selecting pertinent information.
 
-### First proposed
+## First proposed
 ThoT was proposed in November 2023 by Yucheng Zhou, Xiubo Geng, Tao Shen, Chongyang Tao, Guodong Long, Jian-Guang Lou, and Jianbing Shen in the paper, ["Thread of Thought Unraveling Chaotic Contexts"](https://arxiv.org/abs/2311.08734).
 
-### How to use it
+## How to use it
 Thread-of-Thought involves two main interactions with a large language model:
 
 **Interaction 1: Initial Analysis**
@@ -24,7 +24,7 @@ Thread-of-Thought involves two main interactions with a large language model:
 
 See ["Prompt template"](#prompt-template) section for usage details.
 
-### When to use it
+## When to use it
 !!! tip "When to use Thread-of-Thought (ThoT)"
     Based on the evaluation of ThoT in the [main paper](#first-proposed) the use cases are as follows. However, note that I was not able to independently verify the reportedly strong performance of Thot (see ["Replication"](#replication) section).
 
@@ -32,7 +32,7 @@ See ["Prompt template"](#prompt-template) section for usage details.
     - Effective in situations where the context contains a mix of relevant and irrelevant information.
     - Particularly useful for queries that require synthesizing information from multiple sources or long contexts.
 
-### What to know
+## What to know
 The Thread-of-Thought (ThoT) technique introduces the concept of "Chaotic Context" in natural language processing. Unlike "Long Context," which primarily concerns input length, Chaotic Context refers to the complexity and diversity of information within an input. It typically comprises a mixture of related and unrelated data from various sources, each with varying relevance to the task at hand.
 
 ThoT modifies the Chain of Thought (CoT) prompting method and comes in two versions: single-stage and two-stage. In the single-stage version, ThoT simply replaces the standard CoT prompt "Let's think step by step" with "Walk me through this context in manageable parts step by step, summarizing and analyzing as we go." The authors report that this specific phrasing, selected from 30 candidate prompts, performed best in their experiments.
@@ -47,7 +47,7 @@ The technique employs a two-step approach:
 
 This process aims to emulate human cognitive strategies for handling complex information. By segmenting the input, identifying key points, and maintaining analytical focus, ThoT attempts to improve the model's ability to process complex informational inputs.
 
-### Replication
+## Replication
 
 The authors of the ThoT paper present results from experiments using various datasets, including PopQA, EntityQ, and a custom Multi-Turn Conversation Response (MTCR) dataset. They report performance improvements compared to other prompting techniques. However, the paper lacks sufficient information for a full study replication. Crucial details, such as which dataset was used for retrieval to create the "chaotic context" or how to access the custom MTCR dataset, are not provided. Consequently, independent verification of the results was not possible.
 
@@ -147,19 +147,19 @@ While a full replication of the original study is not possible due to missing in
     - ThoT may struggle with tasks requiring implicit reasoning or understanding nuanced relationships.
     - The method may not provide benefits for simple, straightforward queries where a detailed analysis is unnecessary.
 
-### Citations
+## Citations
 Zhou, Y., Geng, X., Shen, T., Tao, C., Long, G., Lou, J. G., & Shen, J. (2023). Thread of Thought Unraveling Chaotic Contexts. [arXiv preprint arXiv:2311.08734](https://arxiv.org/abs/2311.08734).
 
-### Prompting
+## Prompting
 The main Thot prompting strategy involves two-stages, first requesting the model to output an analysis using the ThoT prompt and then extracting the final answer from the analysis. However, the authors do mention that the Thot prompt can be tried as a stand-alone single-turn prompting strategy.
 
-#### Prompt template
-##### One-stage prompting version
+### Prompt template
+#### One-stage prompting version
 > Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.<br>
 > Context: {context}<br>
 > Query: {query}<br>
 
-##### Two-stage prompting version
+#### Two-stage prompting version
 **PROMPT 1:**
 > Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.<br>
 > Context: {context}<br>
@@ -171,7 +171,7 @@ The main Thot prompting strategy involves two-stages, first requesting the model
 > Query:<br>
 
 
-#### API example
+### API example
 ```python
 import ollama
 

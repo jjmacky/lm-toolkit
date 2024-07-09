@@ -2,13 +2,13 @@
 date: 17 June 2024
 ---
 
-## Plain vanilla zero-shot prompting
+## Overview
 Plain vanilla prompting involves asking the language model to answer a question or perform an instruction without any additional "tricks" or prompt templates.
 
 !!! important
     You should generally try to use plain vanilla prompting before moving on to more involved prompting methods.
 
-### When to use it
+## When to use it
 !!! tip "Know when to use plain vanilla prompting"
     - Plain vanilla zero-shot prompting should be your first choice when trying to get an LLM to do a task. Start by simply asking the model what you want in plain language.
     - Plain vanilla prompting is usually sufficient for most tasks, especially when leveraging a state-of-the-art model like those from OpenAI, Anthropic, and Google.
@@ -16,27 +16,27 @@ Plain vanilla prompting involves asking the language model to answer a question 
     - Effective when you want a general response without providing a lot of context, examples, or instructions.
     - If plain zero-shot prompting gives decent results, there may not be a need for more complex prompting techniques. More exotic methods can be explored if the plain prompt is insufficient.
 
-### What to know
+## What to know
 Plain vanilla zero-shot prompting means giving the model a prompt without any examples or training or using special "tricks," relying on the model's existing knowledge and capabilities. Plain vanilla prompting keeps things simple by stating what you want the model to do in direct terms, avoiding overcomplicating the prompt. The model will do its best to respond appropriately based on its training, but results may vary depending on the model's knowledge and the complexity of the task.
 
-### Best practices
+## Best practices
 !!! tip "Best practices for plain vanilla prompting"
     - Start with plain vanilla prompting before trying more involved prompting techniques.
     - If the initial plain prompt doesn't give great results, try slightly rewording or clarifying it before moving on to more complex prompting approaches.
     - Be clear and specific about what you want, but don't feel the need to provide a lot of additional details in the prompt.
     - Consider the model's knowledge and capabilities when assessing if a plain prompt is likely to be sufficient for the task.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with plain vanilla prompting"
     - Don't expect perfect results from a plain zero-shot prompt, especially for very complex tasks with less powerful language models. Use it as a starting point.
     - If the model struggles or gives irrelevant responses, the prompt may need more specificity or the task may be beyond the model's capabilities without further instruction.
 
-### Prompting
-#### Prompt template
+## Prompting
+### Prompt template
 The plain vanilla prompt template is to simple ask a language model a question or instruction without additional prompt prefixes or suffixes.
 > {question or instruction} <br>
 
-#### Prompt example
+### Prompt example
 User prompt:
 > What should I do in Paris over three days with $300 to spend on sightseeing?
 
@@ -93,7 +93,7 @@ Model response (Llama 8B):
 > Paris has to offer while still keeping your expenses in check. Enjoy your 
 > trip!
 
-#### API example
+### API example
 ```python
 from openai import OpenAI
 

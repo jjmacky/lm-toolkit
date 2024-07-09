@@ -1,4 +1,4 @@
 .DS_Store
-venv/
 site/
 code/synthetic_data/basic_tutorial_1/airbnb_reviews.csv
+step_back_venv/

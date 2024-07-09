@@ -2,21 +2,21 @@
 date: 21 June 2024
 ---
 
-## Rephrase and Respond (RaR)
+## Overview
 Rephrase and Respond (RaR) is a prompting technique where a language model is asked to rephrase and expand upon a given question before providing an answer. This approach aims to improve the language model's understanding of the question and its ability to provide accurate and relevant responses.
 
-### How to use it
+## How to use it
 To use RaR use a refinement phrase to ask the model to rephrase the question. Then using the rephrased question the model returns, ask the question again.
 
 [See "Prompting" section for usage details](#prompting).
 
-### When to use it
+## When to use it
 !!! tip "When to use rephrase and respond"
     - Contexts that naturally contain ambiguity or different ways to interpret the same concept.
     - Situations where the original question may be poorly phrased or lacks necessary context, for example if third-party sources are controlling the input text.
     - Domains where misinterpretation of the question could lead to significant errors (e.g., medical, legal, or financial inquiries).
 
-### What to know
+## What to know
 By rephrasing and expanding upon the question, the language model has the opportunity to clarify any ambiguities, add relevant context, and ensure that it has a thorough understanding of what is being asked. This can lead to more accurate and informative responses.
 
 RaR has both a single-stage and two-stage version of the prompting framework. In the single-stage version the language model is given a question along with the instruction to rephrase, expand upon, and answer the question.
@@ -33,7 +33,7 @@ These ambiguities are outlined in this diagram from their paper:
 
 ![An image of ambiguity in asking whether famous people were born in even or odd months](../../images/zero_shot/rar.png)
 
-### Best practices
+## Best practices
 !!! tip "Best practices for rephrase and respond"
     - Keep the prompting instruction concise and clear. Try using one of the refinement phrases in the ["Prompting" section](#prompting).
     - In the two-step version of RaR instruct the model to only return the rephrased question without answering it.
@@ -41,7 +41,7 @@ These ambiguities are outlined in this diagram from their paper:
     - RaR can potentially be combined with other prompting techniques like chain-of-thought reasoning for additional performance gains.
     - When using the two-step RaR version, a more capable language model can be used for the rephrasing step to clarify questions for a less advanced answering model.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with rephrase and respond"
     - Has a narrow use case of questions that have an ambiguous interpretation, but can nonetheless be rephrased in a narrow, concise manner.
     - Additional parsing logic may be required as the model may add a preamble such as: "Here is the unbiased text context, excluding the user's bias and preference:" to the rephrased question.
@@ -50,14 +50,14 @@ These ambiguities are outlined in this diagram from their paper:
     - There is a risk of the model hallucinating information during the rephrasing step that alters the intent of the original question.
     - RaR adds an extra step of latency compared to simply answering the original question. The tradeoff between accuracy and speed should be considered for time-sensitive applications.
 
-### Citations
+## Citations
 Deng, Y., Zhang, W., Chen, Z., & Gu, Q. (2023). Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves. [arXiv preprint arXiv:2311.04205](https://arxiv.org/abs/2311.04205).
 
-### Prompting
-#### Prompt template
+## Prompting
+### Prompt template
 The RaR prompt template has two versions. 
 
-##### One-step version
+#### One-step version
 > {refinement phrse} <br>
 > {question} <br>
 
@@ -69,7 +69,7 @@ One-step refinement phrases can include:
 - "Modify the original question for clarity and detail, then offer an answer."
 - "Restate and elaborate on the inquiry before proceeding with a response."
 
-##### Two-step version
+#### Two-step version
 The two-step RaR separates the rephrasing and answering steps into two prompts. First, a refinement phrase is added to the end of a question or instruction. The model then responds with an improved restatement of the original prompt. Then, the restated question is then used to produce the final answer.
 
 Prompt 1:
@@ -86,8 +86,8 @@ Two-step refinement phrases can include:
 - "Reframe the question with additional context and detail."
 - "Modify the original question for clarity and detail."
 
-#### Prompt Examples
-##### One-step version
+### Prompt Examples
+#### One-step version
 Let's ask the model, "What is the largest city in the world?" This can be ambiguous depending on whether you are measuring by population, area, or metropolitan area. The model should pick one definition and provide it.
 > Question: What is the largest city in the world?
 >
@@ -142,7 +142,7 @@ Model response (Llama 8B)
 > Keep in mind that population figures may vary depending on the source and 
 > methodology used to define the city's boundaries.
 
-##### Two-stage RaR:
+#### Two-stage RaR:
 Rephrasing Prompt:
 > Rephrase and expand the question to help provide a better answer. Maintain all information from the original question. Provide only the rephrased question without answering it. Question: What is the first day of the week?
 

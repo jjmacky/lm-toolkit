@@ -2,23 +2,23 @@
 date: 25 June 2024
 ---
 
-## System 2 Attention (S2A)
+## Overview
 System 2 Attention is a technique that harnesses the ability of language models to focus on specific parts of the input text, enabling them to concentrate on the most relevant information for generating accurate and concise responses. S2A is particularly useful in situations where users provide additional context that may not be directly relevant to the main question or include biased opinions.
 
 For instance, if a user asks about Egyptian history but prefaces their question with a lengthy story about their family vacation to the pyramids, S2A instructs the model to extract the core question and relevant context while filtering out unnecessary details. Similarly, in domains such as math word problems or business case studies, the provided context may include information or opinions that are not essential to answering the question at hand. By applying S2A in these scenarios, the model can generate more focused and accurate responses.
 
-### How to use it
+## How to use it
 To use System 2 Attention (S2A), add a special instruction to the user prompt that tells the language model to extract the main question or request and disregard irrelevant or biased context from the user's input.
 
 [See "Prompting" section for usage details](#prompting).
 
-### When to use it
+## When to use it
 !!! tip "When to use System 2 Attention"
     - Ideal for complex tasks where filtering out irrelevant information can significantly improve the quality of the response, particularly in applications where you are processing input text from third-party sources over which you have no control.
     - Effective in situations that demand focused and succinct answers.
     - Particularly useful when solving multi-step math word problems.
 
-### What to know
+## What to know
 S2A empowers large language models to identify and prioritize the most important aspects of the input context, resulting in higher-quality responses. By leveraging the LLMs' natural language reasoning capabilities and their ability to follow instructions, S2A guides the models to focus on the most relevant information. The process involves the LLM regenerating the input context, including only the pertinent portions, and then using this refined context to generate the final response.
 
 To ensure optimal performance, some post-processing may be necessary after the S2A context regeneration step to properly structure the prompt for the final response generation. [See "Prompting" section for usage details](#prompting).
@@ -29,21 +29,21 @@ To better understand S2A, two examples from Weston and Sukhbaatar (2023) are pro
 In the second example, the users ask about a band, suggesting that they think the answer is Johnny Depp (top purple boxes). This leading sentence confuses the language model. Using S2A (right flow), the model first rewrites the sentence, removing the suggested answer. The language model then correctly identifies the great American actor and [internet's boyfriend](https://www.independent.co.uk/life-style/keanu-reeves-internet-boyfriend-alexandra-grant-b2302477.html), Keanu Reeves, as the correct answer.
 ![An image of an SGA prompt example using a question about a band](../../images/zero_shot/s2a-2.png)
 
-### Best practices
+## Best practices
 !!! tip "Best practices for System 2 Attention"
     - Provide clear instructions to the LLM to regenerate the context, extracting the most valuable parts that offer relevant context for a specific query. Start with the prompt template above and experiment as necessary.
     - After S2A context regeneration, discard the original context. Allowing the model to access both the original context and the S2A version can negatively impact performance.
     - If working in an application setting, you likely want to prompt the model to return a JSON object so the question can easily be separated from the other context ([see API example below](#api-example)).
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with System 2 Attention"
     - S2A tends to be most effective for small and mid-sized models and may be less impactful for the most advanced model versions. In my testing, GPT-4 did not fall victim to the distractions outlined in Weston and Sukhbaatar (2023), shown above.
     - If working in an application setting, you likely want to prompt the model to return a JSON object so the question can easily be separated from the other context ([see API example below](#api-example)).
 
-### Citations
+## Citations
 Weston, J., & Sukhbaatar, S. (2023). System 2 Attention (is something you might need too). [arXiv preprint arXiv:2311.11829](https://arxiv.org/abs/2311.11829)
 
-### Prompting
+## Prompting
 The S2A prompt template used in Weston and Sukhbaatar (2023) instructs the model to extract the main query or question from the larger context of the input prompt, along with any relevant unbiased information. The model is asked to disregard opinions, biases, and irrelevant details in the original prompt. The extracted information is then used to provide a focused, unbiased response to the core query.
 
 The template consists of two main parts:
@@ -57,7 +57,7 @@ The template consists of two main parts:
 
 By using this template, the S2A system aims to improve the accuracy and objectivity of the model's responses by guiding it to focus on the most relevant and unbiased information within the potentially noisy or biased input prompt.
 
-#### Prompt template
+### Prompt template
 > Given the following text by a user, extract the part that is unbiased and not their opinion,
 so that using that text alone would be good context for providing an unbiased answer to
 the question portion of the text.
@@ -85,7 +85,7 @@ You can also try a shorter, simpler version of the prompt:
 > {original input prompt} <br>
 
 
-#### Prompt example
+### Prompt example
 S2A prompt:
 > Given the following text by a user, extract the part that is unbiased and not their opinion,
 so that using that text alone would be good context for providing an unbiased answer to
@@ -178,7 +178,7 @@ Model response (Llama 8B):
 
 
 
-#### API example
+### API example
 ```python
 from openai import OpenAI
 import ollama

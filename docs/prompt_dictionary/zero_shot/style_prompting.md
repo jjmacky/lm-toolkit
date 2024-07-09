@@ -2,25 +2,25 @@
 date: 22 June 2024
 ---
 
-## Style prompting
+## Overview
 Style prompting asks the model to take on a mood or style. It is usually reserved for creative writing tasks and may not be the best approach for eliciting factual information, writing formal presentations, or other activities that require a more neutral tone.
 
-### How to use it
+## How to use it
 Style prompting simply involves adding stylistic requests to a standard prompt.
 
 [See "The 10 aspects of style prompting" section for style ideas](#the-10-aspects-of-style-prompting).
 
-### When to use it
+## When to use it
 !!! tip "When to use style prompting"
     - Useful when the tone, style, or genre of the output is important.
     - Ideal for creative tasks where the style of writing is crucial.
 
-### What to know
+## What to know
 Style prompting involves instructing a language model to generate text in a specific style, tone, mood, or genre. It can be used to control various stylistic aspects of the generated text, such as writing style, mood, pacing, and formatting.
 
 The effectiveness of style prompting can vary depending on the specific language model being used and the combination of stylistic elements in the prompt. Some models may struggle with certain styles or have difficulty distinguishing between the style and the subject matter when the prompts become too complex.
 
-### The 10 aspects of style prompting
+## The 10 aspects of style prompting
 There are 10 different aspects to consider when using style prompting (Lu et al., 2023a).
 
 | Aspect           | Example Terms                                 | Examples                                                 |
@@ -46,30 +46,30 @@ There are 10 different aspects to consider when using style prompting (Lu et al.
 | Formatting       | Email, Code, Academic Paper                   | "Write an email to my teacher asking for help on math homework:" |
 |                  |                                               | "Code Python code that sums two integers up:"           |
 
-### Best practices
+## Best practices
 !!! tip "Best practices for style prompting"
     - Models may be sensitive to different combinations of style and mood so use trial and error to find the best combination for your use case.
     - Use the examples in the table above as a starting point.
     - Be specific and descriptive when defining the style you want the model to adopt.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with style prompting"
     - The model may confuse style with subject when prompts are too challenging.
     - Style prompting is most effective for creative writing tasks and may not be suitable for professional or formal contexts that require a neutral, objective tone.
     - Avoid using style prompting for tasks that require factual accuracy, as the focus on style may lead to less precise or reliable information.
     - The effectiveness of style prompting can vary depending on the language model being used, so test your prompts with different models to ensure optimal performance.
 
-### Citations
+## Citations
 Lu, A., Zhang, H., Zhang, Y., Wang, X., & Yang, D. (2023). Bounding the Capabilities of Large Language Models in Open Text Generation with Prompt Constraints. [arXiv preprint arXiv:2302.09185](https://arxiv.org/abs/2302.09185)
 
-### Prompting
-#### Prompt template
+## Prompting
+### Prompt template
 Style prompting has a simple prompt template. First, include style directions, then outline the task for the language model.
 > {style directions} <br>
 > {instruction} <br>
 
-#### Prompt example
-##### Creative writing task
+### Prompt example
+#### Creative writing task
 User prompt:
 > Write a fast-paced, sad mystery story about lovers.
 
@@ -112,7 +112,7 @@ Model response (Chat GPT4o):
 > 
 > And in the quiet moments, when the wind sighed through the branches, you could almost hear the echoes of a love too powerful to be forgotten, a love that transcended time and fate.
 
-##### Business task
+#### Business task
 User prompt:
 > In a persuasive and motivational style outline a marketing strategy for a new tech startup, MindWell AI. MindWell AI is a personalized mental health and wellness platform that leverages artificial intelligence to provide users with tailored mental health resources, therapy sessions, mindfulness exercises, and daily well-being check-ins. The platform offers a combination of AI-driven chatbots for initial interactions and licensed therapists for more in-depth sessions.
 
@@ -195,7 +195,7 @@ Model response (ChatGPT 4o):
 > 
 > "Join us in transforming mental health care—one mind at a time."
 
-#### API example
+### API example
 ```python
 from openai import OpenAI
 

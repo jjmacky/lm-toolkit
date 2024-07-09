@@ -2,15 +2,15 @@
 date: 27 June 2024
 ---
 
-## Solo Performance Prompting (SPP)
+## Overview
 Solo Performance Prompting (SPP) is a specialized version of role prompting in which the model takes on multiple personas using a zero-shot prompting methodology.
 
-### How to use it
+## How to use it
 SPP is a more complex prompting style and involves outlining a multi-turn example prior to passing in the primary instruction to the model.
 
 [See "Prompting" section for usage details](#prompting).
 
-### When to use it
+## When to use it
 !!! tip "When to use Solo Performance Prompting"
     - When you want to simulate multi-agent collaboration using a single language model, without the need for additional models or resources.
     - When you want more transparency into the model's steps in producing a final answer.
@@ -18,7 +18,7 @@ SPP is a more complex prompting style and involves outlining a multi-turn exampl
     - When you aim to enhance both knowledge elicitation and reasoning capabilities of the model.
     - Try using it with reasoning-intensive tasks like logic puzzles, games, or trivia.
 
-### What to know
+## What to know
 SPP is a novel prompting approach that enables a single language model to identify, simulate, and collaborate with multiple personas to solve tasks effectively by engaging in multi-turn self-collaboration.
 
 The key insight behind SPP is that simulating a multi-persona dialogue allows the model to elicit more relevant knowledge and incorporate diverse perspectives, leading to improved task-solving abilities. This is achieved through the single model playing the parts of different personas.
@@ -33,23 +33,23 @@ SPP has been shown to outperform standard prompting, chain-of-thought prompting,
     - Do not assign specific, fixed roles to the language model for task completion. Instead let the model dynamically choose the personas based on the task.
     - For best results, use SPP with highly capable language models such as GPT-4, as they are more likely to exhibit the cognitive synergy abilities required for effective multi-persona collaboration.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with Solo Performance Prompting"
     - In my experiments conducted on a marketing plan task (see [prompt examples](#prompt-example) below), the detailed prompt format that included examples did not lead to better output quality compared to the shorter, simpler basic prompt format. Don't assume that including examples will always improve performance.
     - SPP increases both the input and output token count compared to more straightforward prompting methods. This can result in increased cost and higher latency.
     - Because the model responds with the resulting dialogue as well as the final answer it may not be suitable for all use cases; for instance, if the output is meant to be an input to a follow-up language model task additional parsing logic will be required to extract the final answer.
 
-### Citations
+## Citations
 Wang, Z., Mao, S., Wu, W., Ge, T., Wei, F., & Ji, H. (2023). Unleashing the Emergent Cognitive Synergy in Large Language Models: A Task-Solving Agent through Multi-Persona Self-Collaboration. [arXiv preprint arXiv:2307.05300](https://arxiv.org/pdf/2307.05300).
 
-### Prompting
-#### Prompt template
+## Prompting
+### Prompt template
 To create an SPP prompt start with a direction to use a multi-turn collaboration approach (basic prompt format) or include an full multi-turn example (complex prompt format) before giving the model an instruction.
 > {multi-turn collaboration example} <br>
 > {instruction} <br>
 
-#### Prompt example
-##### Basic prompt format
+### Prompt example
+#### Basic prompt format
 User prompt:
 > When faced with a task, begin by identifying the participants who will contribute to solving the task. Then, initiate a multi-turn collaboration process until a final solution is reached. The participants will give critical comments and detailed suggestions whenever necessary. Now, identify the participants and collaboratively solve the following task step by step. Remember to present your final solution with the prefix 'Final answer:'.
 >
@@ -137,7 +137,7 @@ Model response (ChatGPT 4o):
 >     - Regularly review metrics to optimize strategy and ensure effective audience reach and conversion.
 
 
-##### Detailed prompt format
+#### Detailed prompt format
 User prompt:
 > When faced with a task, begin by identifying the participants who will contribute to solving the task. Then, initiate a multi-round collaboration process until a final solution is reached. The participants will
 give critical comments and detailed suggestions whenever necessary.
@@ -333,7 +333,7 @@ Model response (ChatGPT 4o):
 >     - Conversion rates from free trials to paid subscriptions.
 >     - User satisfaction and feedback.
 
-#### API example
+### API example
 ```python
 from openai import OpenAI
 

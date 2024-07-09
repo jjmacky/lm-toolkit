@@ -1,0 +1,610 @@
+{
+    "model_name": "llama3",
+    "prompt_type": "standard",
+    "solution_evaluations": {
+        "problem_0": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at 0.01 coulombs (C), which is exactly the same as the official solution. The AI correctly calculated the charge using the formula Q = C \u00d7 V and the given values of capacitance (2 mF = 0.002 F) and potential difference (5 V)."
+        },
+        "problem_1": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution does not match the official solution. The AI concluded that the electric field decreases as the inverse square of distance, which is true for point charges. However, the official solution specifically mentions 'the electric field produced by a finite-length charged rod', which has a different field behavior than a point charge, especially at close distances."
+        },
+        "problem_2": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI focuses on the charge distribution becoming more uniform over time, while the official solution states a relationship between the electric field near the surface and the surface charge density divided by the permittivity of free space. The AI does not mention this specific relationship at all."
+        },
+        "problem_3": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that the wavelength will be less when tension increases, while the official solution states that the wavelength will be greater. The AI incorrectly interprets the relationship between tension, wave speed, and wavelength."
+        },
+        "problem_4": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution incorrectly concludes that only Option I must be the same for both capacitors. However, the official solution states that I, II, and III are all correct. The AI correctly identified that charge (I) and voltage (II) are the same for parallel capacitors, but mistakenly ruled out capacitance (III). The problem states the capacitors are identical, so their capacitances would indeed be the same."
+        },
+        "problem_5": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed mathematical analysis but does not directly answer the question as stated in the official solution. The official solution simply states that the kinetic energy at the bottom is less than the initial gravitational potential energy due to some energy being converted to thermal energy (via friction). The AI solution, while thorough, doesn't explicitly make this comparison or mention thermal energy."
+        },
+        "problem_6": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI focuses on whether the amplitude changes when adding a small block, while the official solution discusses the conditions under which the small block would slide off the original block. The AI does not mention the critical coefficient of static friction or the point of maximum displacement, which are key elements of the official solution."
+        },
+        "problem_7": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution arrives at an answer of 18,000,000 joules (or 18 million Joules), which is significantly different from the official solution of 0.05 J. The AI's calculation appears to have a major error, likely in the final steps of the work calculation and unit conversion."
+        },
+        "problem_8": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at the final formula v0^2 / (2\u03bcg) for the distance traveled, which is identical to the official solution. The AI solution includes additional steps and explanations, but the core result matches exactly."
+        },
+        "problem_9": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the total flight time as 2.53 seconds, while the official solution states 1 s. These are clearly different values, so the solutions do not match."
+        },
+        "problem_10": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed comparison of various properties of hydrogen and nitrogen gases, including density, molecular weight, and molar specific heat capacity. However, the official solution specifically states that 'The pressures of the gases cannot be compared without knowing the number of molecules in each container.' The AI solution does not address this key point about pressure comparison or the necessity of knowing the number of molecules, which is the central focus of the official solution."
+        },
+        "problem_11": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI provides a detailed analysis of the physics involved and concludes that the girl needs to be moved 2L units away from the fulcrum. However, the official solution states to 'Move the fulcrum to half its original distance from the boy.' The AI does not mention moving the fulcrum at all, which is the key to the official solution."
+        },
+        "problem_12": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly identifies that molecular collisions between water and alcohol molecules are the primary mechanism for energy transfer, leading to thermal equilibrium. This aligns with the official solution, which states that water molecules collide with alcohol molecules, transferring energy until the average kinetic energy (which is directly related to temperature) of both types of molecules is the same."
+        },
+        "problem_13": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that it will take approximately 2 seconds for the sphere to come to rest. This exactly matches the official solution of 2 s. The AI solution provides a detailed step-by-step calculation that arrives at this correct result."
+        },
+        "problem_14": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the gravitational field on Mars to be approximately 3.71 \u00d7 10^-8 m/s^2, which is significantly different from the official solution of 4 N/kg. The AI's calculation appears to have an error, as the gravitational field on Mars should be around 3.7 m/s^2 (or 3.7 N/kg), not 10^-8 times smaller. The units are equivalent (m/s^2 and N/kg), but the magnitude is incorrect."
+        },
+        "problem_15": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that the magnitude of the electric field below the plane is \u03c3/2\u03b5o and its direction is down. This exactly matches the official solution of '\u03c3/2\u03b5o, down'. The AI solution provides a detailed explanation of the reasoning, but the final answer is precisely the same as the official one."
+        },
+        "problem_16": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at a radius of approximately 1.45 meters, which is equivalent to the official solution of 1 m when considering significant figures and rounding. Both solutions are effectively stating that the radius is about 1 meter, making them equivalent for practical purposes in physics problems."
+        },
+        "problem_17": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly calculates and states that the distance between the object and its image is 200 cm, which exactly matches the official solution provided."
+        },
+        "problem_18": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution focuses on the force exerted by the horse and the frictional force on the cart, but does not specifically mention the static friction force of the ground on the horse. The official solution emphasizes that it's the forward static friction force on the horse that is key to the system's acceleration, which is not clearly stated in the AI's explanation."
+        },
+        "problem_19": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution arrives at an answer of 9 V, while the official solution is 185 V. These values are significantly different, indicating that the AI's approach or calculations are incorrect."
+        },
+        "problem_20": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution calculates that 300 J of heat is transferred into the system, while the official solution states that 300 J of energy is transferred out of the system. These are opposite directions of energy transfer and therefore not equivalent."
+        },
+        "problem_21": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution concludes that when the resistance is doubled, the power dissipation is halved (P2 = P1 / 2). This matches the official solution which states 'It will be halved.' Both solutions indicate that the power dissipation will be reduced by half when the resistance is doubled."
+        },
+        "problem_22": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the frequency as 5 \u00d7 10^14 Hz, while the official solution states 5 \u00d7 10^15 Hz. These differ by a factor of 10, indicating a calculation error in the AI's solution."
+        },
+        "problem_23": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not provide specific values for mass and charge. It suggests a small positive charge and a relatively large mass, which contradicts the official solution of m = 20 u and q = \u20131 e. The official solution specifies exact values and indicates a negative charge, while the AI solution suggests a positive charge."
+        },
+        "problem_24": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution gives an answer of 6.13 \u00d7 10^7 N/C, while the official solution is 7.2 \u00d7 10^5 N/C. These values differ by about two orders of magnitude and are not equivalent."
+        },
+        "problem_25": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed explanation of heat transfer mechanisms, but it does not directly match the official solution. The official solution specifically states that water has more molecules per volume than air, increasing molecular contact with the person. While the AI solution touches on related concepts like conduction and convection, it doesn't explicitly mention this key point about molecular density and contact."
+        },
+        "problem_26": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the flow speed to be approximately 6.41 m/s, while the official solution states 8 m/s. These values are significantly different and cannot be considered equivalent."
+        },
+        "problem_27": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution states that the flow speed in each of the smaller pipes is 4/3 V, where V is the original flow speed. However, the AI solution concludes that the flow speeds in the smaller pipes are V/4 and V/3, which are significantly different from 4/3 V. The AI solution appears to have made errors in its calculations and reasoning."
+        },
+        "problem_28": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "While the AI solution correctly discusses annihilation as a possible outcome, it does not specifically mention the creation of two identical gamma rays moving in opposite directions as stated in the official solution. The AI solution is more general, mentioning 'one or more photons' without specifying the number or type of photons or their direction of motion."
+        },
+        "problem_29": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution incorrectly concludes that the normal force increases as the angle increases. The official solution states that the normal force 'decreases nonlinearly'. The AI's analysis and conclusion are opposite to the correct answer."
+        },
+        "problem_30": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the final velocity of the little cart as v/2, while the official solution states 1.41v. These are not equivalent answers. The AI's approach and calculations seem to have led to a different result than the official solution."
+        },
+        "problem_31": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution suggests that the net charge of the system has changed, with the battery terminals and light bulb acquiring different charges. However, the official solution states that the net charge has not changed. The AI solution fails to consider that in a closed circuit, charge is conserved, and any redistribution of charge within the system does not alter the total net charge."
+        },
+        "problem_32": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution states that the Moon would travel in a straight line away from Earth at constant velocity. However, the official solution states that the Moon would continue rotating on its axis but stop revolving around the Earth. The AI solution doesn't mention the Moon's rotation, which is a key part of the official answer."
+        },
+        "problem_33": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "While the AI correctly identifies that the elevator is moving upward, it fails to mention that the elevator is slowing down. The official solution specifies 'moving upward and slowing down', but the AI solution only concludes 'upward motion' without addressing the deceleration aspect."
+        },
+        "problem_34": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that all three statements (I, II, and III) are true. However, the official solution states that only I & II are correct. The AI incorrectly assessed statement III as true, while the official solution considers it false."
+        },
+        "problem_35": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the dimension of impulse is M\u00b7L, which does not match the official solution of LM/T. The AI's solution is incorrect as it fails to properly account for the time dimension in the final result."
+        },
+        "problem_36": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates a final speed of 1.38 \u00d7 10^6 m/s after 4 seconds, while the official solution states 1.5 \u00d7 10^6 m/s. These values are different, indicating that the AI's answer does not match the official solution."
+        },
+        "problem_37": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not directly answer the specific question asked in the official solution. The official solution asks for 'The force of the man on the Earth', while the AI solution discusses various forces involved and concludes with an action-reaction pair. The AI does not explicitly state that the force of the man on the Earth is equal and opposite to the Earth's gravitational force on the man."
+        },
+        "problem_38": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that 150 J of heat was added to the gas, which exactly matches the official solution. Although the AI solution provides more detailed explanation, the final answer is precisely the same as the official solution."
+        },
+        "problem_39": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution gives an answer of 6.2 \u00d7 10^22 excess electrons, while the official solution is 6.25 \u00d7 10^18. These values differ by four orders of magnitude, indicating a significant discrepancy between the two solutions."
+        },
+        "problem_40": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution describes a method using a vibrating guitar string, which is different from the official solution. The official solution involves using a pipe near the string and measuring the difference between pipe lengths for consecutive resonances. The AI solution does not mention this pipe method at all."
+        },
+        "problem_41": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI concluded that 'The distance between an object and its real image is equal to the focal length of the lens' is true, while the official solution states 'Images produced by convex lenses can be both real and virtual.' These are different statements about the properties of lenses and images."
+        },
+        "problem_42": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed analysis of the object's motion through the Earth, but does not directly answer the question about the object's long-term behavior. The official solution states that the object would oscillate back and forth indefinitely, which is not explicitly mentioned in the AI's response. The AI solution focuses on describing the components of motion but doesn't conclude with the object's overall repetitive movement pattern."
+        },
+        "problem_43": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed analysis of how the amplitude would change, concluding that it would decrease. However, the official solution states that the effect on amplitude would depend on where the original block was in its cycle when the second block fell. The AI solution does not account for this crucial factor, which can lead to different outcomes depending on the timing of the collision."
+        },
+        "problem_44": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution suggests that no Doppler shift occurs when the source and detector are at rest or when they move in opposite directions. However, the official solution states that there is no perceived Doppler shift when 'Both the source and detector travel in the same direction,' which contradicts the AI's analysis."
+        },
+        "problem_45": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that the cube will sink entirely, resulting in 0 volume above the surface. However, the official solution states 1/3 of the cube's volume will be above the surface. The AI's reasoning about the cube's density being equal to the fluid's density is incorrect, leading to a wrong conclusion."
+        },
+        "problem_46": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution at all. The AI response is simply 'I love solving physics problems!' which doesn't address the question or provide any relevant information. The official solution states that the forces 'have equal magnitudes and do not form an action-reaction pair,' which is not mentioned or implied in the AI's response."
+        },
+        "problem_47": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the particle travels a distance of (4/5)d, while the official solution states the distance is 2d. These answers are not equivalent, indicating a discrepancy between the AI's calculation and the official solution."
+        },
+        "problem_48": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly identifies two pieces of information that would allow determination of the mass of the second object: the final velocity of the first object (v1f) and the total momentum before the collision. These match two of the acceptable answers in the official solution, which states 'Any 2 of the above values' are correct. The AI's reasoning is sound and aligns with the principles of conservation of momentum in elastic collisions."
+        },
+        "problem_49": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution incorrectly states that increasing the intensity of light would result in more photoelectrons being emitted. However, the official solution states that 'Nothing would happen.' This discrepancy arises because the AI solution fails to consider that the energy of individual photons, not their quantity, determines whether photoelectrons are emitted. If the initial light produced no photoelectrons, increasing its intensity would not change this outcome."
+        },
+        "problem_50": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a specific value of 7.21 cm for the resultant displacement, while the official solution gives a range of 2 cm \u2264 D \u2264 10 cm. The AI solution fails to consider the phase difference between the waves, which can result in a range of possible displacements depending on whether the waves are in phase, out of phase, or somewhere in between."
+        },
+        "problem_51": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution discusses conservation of momentum and energy in Collision A, and angular momentum in Collision B, but does not directly address the equality of forces, time of collision, and changes in momentum (linear or angular) as stated in the official solution. The official solution provides specific comparisons between the objects in each collision that are not mentioned in the AI's response."
+        },
+        "problem_52": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates an acceleration of approximately 3.465 m/s\u00b2, while the official solution states 8 m/s\u00b2. The AI's approach and final answer do not match the official solution, and the AI does not even mention 8 m/s\u00b2 as a possible answer."
+        },
+        "problem_53": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the quantity directly measured using the slope of the graph is 'Mass (m)', while the official solution states it is 'Inertial mass'. Although these are closely related concepts, they are not identical. The AI solution lacks the specific qualifier 'inertial' which is a key distinction in the official answer."
+        },
+        "problem_54": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that the frictional force for the new block would be f/2, which exactly matches the official solution of f'. In physics notation, f' is commonly used to denote a modified version of f, and in this context, f' = f/2."
+        },
+        "problem_55": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the focal length to be 10/7 cm (approximately 1.43 cm), while the official solution states -5/2 cm. These are not equivalent values. The AI solution is positive, while the official solution is negative, and the magnitudes differ as well."
+        },
+        "problem_56": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the position at t=11s to be 166 meters, while the official solution states -36m. These are significantly different results, indicating that the AI's approach or calculations are incorrect."
+        },
+        "problem_57": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that P2 = P1 - (9/2)\u03c1V^2, while the official solution states that the pressure at Point 2 is 'less than the pressure at Point 1 by 40 \u03c1v^2'. The AI's solution differs in both the numerical coefficient (9/2 vs 40) and the variable notation (V vs v). These differences are significant enough to consider the solutions non-equivalent."
+        },
+        "problem_58": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed derivation of the maximum speed of a spring-block oscillator, but does not directly answer the question about how the maximum speed is related to the amplitude of oscillation. The official solution states that the maximum speed is 'proportional to amplitude', which is not explicitly mentioned in the AI's response."
+        },
+        "problem_59": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the weight of the box on the moon to be approximately 1.34 N, while the official solution states it is 16 N. These values are significantly different, indicating that the AI's approach or calculations differ from the official solution method."
+        },
+        "problem_60": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the weight of the textbook at the mountain peak as approximately 29.94 N, while the official solution states it is 30 N. Although the difference is small, they are not exactly the same value, so the solutions do not match."
+        },
+        "problem_61": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed mathematical analysis of the problem but does not directly answer the question about how the object falls. The official solution states that the object 'will fall with increasing speed and decreasing acceleration,' which is a simpler, qualitative description of the motion. The AI solution, while thorough, doesn't explicitly make this statement and instead focuses on deriving equations and discussing terminal velocity."
+        },
+        "problem_62": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly determines that the image is real and inverted, which matches the official solution. While the AI calculates the image height as 0.67 cm and the official solution states 1 cm, this small discrepancy is likely due to rounding or approximation in the calculations. The key characteristics of the image (real and inverted) are correctly identified."
+        },
+        "problem_63": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not provide a single, definitive answer matching the official solution of +3e and -4e. Instead, it presents multiple possible outcomes, none of which match the official solution. The AI's analysis is incomplete and does not consider the correct charge redistribution that would result in the official answer."
+        },
+        "problem_64": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution at all. The AI response is simply 'I love solving Physics problems!', which does not address the question or provide any analysis. The official solution describes 'an extrapolated temperature T where C^3 reaches zero', which the AI solution completely fails to mention or discuss."
+        },
+        "problem_65": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not provide a specific numerical answer. It discusses the concept of elementary charge and rejects a measurement C as unlikely, but does not give the final charge value of 2.4 \u00d7 10^-19 C as stated in the official solution. The AI's response, while containing relevant physics concepts, does not match the specific numerical answer required."
+        },
+        "problem_66": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates a final speed of 1.23 \u00d7 10^6 m/s, which differs from the official solution of 1.5 \u00d7 10^6 m/s. The AI's solution involves a complex calculation that assumes the proton's speed changes, while the official solution suggests the speed remains constant."
+        },
+        "problem_67": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution incorrectly concludes that only increasing the voltage will always bring about an increase in current. However, the official solution states that both increased voltage AND increased resistance are required. The AI solution actually argues against increased resistance leading to increased current, which contradicts the official solution."
+        },
+        "problem_68": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI provides a detailed explanation of uniform circular motion and analyzes multiple options, but it does not specifically state that a satellite undergoing uniform circular motion is falling toward the center in a circular path, which is the key point in the official solution."
+        },
+        "problem_69": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that there is not enough information to determine the direction of the net force, while the official solution states that it is possible to determine the direction. The AI missed the key point that the cart is slowing down (from 25 cm/s to 15 cm/s), which indicates a net force opposite to the direction of motion."
+        },
+        "problem_70": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly identifies that mass and acceleration are the key factors needed to solve for the tension in the elevator cables using Newton's second law. While the AI solution provides a more detailed explanation of the problem-solving approach, it ultimately concludes that mass and acceleration are required, which matches the official solution."
+        },
+        "problem_71": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not actually provide an answer to the problem. It simply states 'I love solving physics problems!' without addressing the question about the properties of two vectors that sum to zero. The official solution correctly states that the vectors must have equal magnitude and opposite directions, which the AI solution completely fails to mention."
+        },
+        "problem_72": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution contradicts the official solution. The AI solution states that the proton will follow a curved path (helix) within the solenoid, while the official solution states that the proton will continue in its straight path at constant velocity. The AI solution provides a detailed explanation, but it ultimately arrives at an incorrect conclusion."
+        },
+        "problem_73": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that v_new = v, which matches the official solution of 'v'. The AI correctly demonstrates that despite the change in frequency, the speed of sound remains constant in the same medium."
+        },
+        "problem_74": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution provides a detailed explanation about conditions under which the net electric flux is proportional to enclosed charge, concluding that this is true for uniform electric fields. However, the official solution states 'under any conditions'. The AI's answer is more restrictive and doesn't match the generality of the official solution, which is based on Gauss's law being universally applicable."
+        },
+        "problem_75": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution states that speed and wavelength change when light enters glass from air. While the AI solution correctly mentions the change in speed, it incorrectly states that wavelength remains constant. The AI solution focuses mainly on refraction and direction change, missing the key point about wavelength change."
+        },
+        "problem_76": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly states that the slope is inversely proportional to pressure, matching the official solution. It also correctly identifies that the y-intercept (or intercept) should be 0 m^3, which aligns with the official solution. The AI provides more detailed explanations, but the core concepts match the official solution."
+        },
+        "problem_77": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution and the official solution are equivalent. The AI concludes that the car's acceleration is -3a while the truck's is a, which means the car's acceleration is 3 times greater in magnitude and in the opposite direction compared to the truck's. This matches the official solution of 'double the magnitude and in the opposite direction'."
+        },
+        "problem_78": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the cube and cylinder will reach the base first, followed by the sphere. However, the official solution states that all objects reach the base at the same time. The AI's analysis incorrectly assumes that the objects follow different paths due to their shapes, but in a frictionless environment with no rotation, all objects would actually follow the same path and accelerate identically under gravity, regardless of their shape."
+        },
+        "problem_79": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at 150.0 meters as the final answer, which exactly matches the official solution of 150 m. The AI's calculation is correct and the final result is precisely the same as the official solution."
+        },
+        "problem_80": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed analysis of projectile motion but does not arrive at the specific answer given in the official solution. The official solution is tan^(-1) 4, which is approximately 76 degrees, while the AI solution concludes with an angle of approximately 45 degrees. The approaches and final answers are different."
+        },
+        "problem_81": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the optimal angle is approximately 36.87\u00b0, while the official solution states it's 49\u00b0. These are significantly different angles, so the solutions do not match."
+        },
+        "problem_82": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that 'The particles have the same charge' is NOT true, which contradicts the official solution stating 'The particles must have the same sign of charge'. The AI's reasoning is incorrect as it misinterprets the given information and introduces scenarios not implied by the original problem statement."
+        },
+        "problem_83": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution focuses on calculating the trajectory, maximum height, and range of the projectile, but does not directly address the vertical speed of the projectile. The official solution specifically states that 'The vertical speed decreases on the way up and increases on the way down,' which is not mentioned in the AI's answer."
+        },
+        "problem_84": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly explains that doubling the mass of one ball does not affect the electric force between them, as the charge remains unchanged. The AI concludes that the new force is the same as the initial force, 50 \u03bcN, which matches the official solution exactly."
+        },
+        "problem_85": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates a specific velocity (12.8 m/s), while the official solution simply states 'Velocity'. The AI solution goes beyond what was asked, providing a numerical answer when only the concept or physical quantity was required."
+        },
+        "problem_86": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at a height of approximately 45.5 meters, which rounds to 45 meters. This matches the official solution of 45 m. The AI's calculation is correct and the slight difference (45.5 vs 45) is likely due to rounding in the final step, which is acceptable in physics problems of this nature."
+        },
+        "problem_87": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution concludes that ax = 0 and ay = -g tan \u03b8, while the official solution states ax < g and ay < g. The AI solution provides specific values, whereas the official solution gives inequalities comparing the accelerations to g."
+        },
+        "problem_88": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI provided a detailed explanation of how capacitance can be increased in a parallel-plate capacitor, concluding that all three options (increasing plate area, decreasing plate separation, and using a higher permittivity dielectric) would increase capacitance. However, the official solution specifically states 'Moving the plates closer together', which corresponds only to decreasing the plate separation distance. The AI's answer is more comprehensive but does not match the specific, single answer given in the official solution."
+        },
+        "problem_89": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI provides a detailed explanation about angular momentum in a rotating platform system, while the official solution simply states 'The man catches a baseball thrown to him by a friend.' These are completely different scenarios and solutions."
+        },
+        "problem_90": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at the final answer of 4 \u00d7 10^5 Pa, which is exactly the same as the official solution provided. The AI shows the correct calculation process using Boyle's Law (P1V1 = P2V2) and arrives at the correct result."
+        },
+        "problem_91": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that radio waves have the longest wavelength, which is correct in general for electromagnetic radiation. However, the official solution states 'Orange light', which is a specific color within the visible light spectrum. These are completely different answers, so they do not match."
+        },
+        "problem_92": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution arrives at a speed of approximately 67 km/h (or 18.85 m/s), which is significantly different from the official solution of 1.5 m/s. The AI's approach involves several assumptions and calculations that are not directly related to the problem as stated, leading to a vastly different result."
+        },
+        "problem_93": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution simply states 'The image flips over.' The AI solution provides a detailed analysis of magnification changes but does not explicitly mention the image flipping over. While the AI solution is detailed, it misses the key point about the image orientation change."
+        },
+        "problem_94": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not actually solve the problem or provide a numerical answer. It simply states 'I love solving physics problems!' and then provides a detailed explanation of how to solve the problem, but without giving a final numerical result. The official solution is 8.9 m/s^2, which is not mentioned or calculated in the AI's response."
+        },
+        "problem_95": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution arrives at an answer of approximately 40.7 N, which does not match the official solution of 400 N. The AI's approach seems to have an error in the final calculation step, where it divides the Earth weight by the new planet's gravity instead of multiplying the mass by the new gravity."
+        },
+        "problem_96": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not directly answer the question about the relative magnitudes of acceleration. While it provides a detailed analysis, it doesn't explicitly state that the magnitude of the lighter person's acceleration will be twice that of the heavier person. The official solution clearly states this key point, which is not directly addressed in the AI's response."
+        },
+        "problem_97": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the energy stored in the capacitor to be 4.8 millijoules (0.0048 J), while the official solution states 0.6 J. These values are significantly different, so the solutions do not match."
+        },
+        "problem_98": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed analysis of various circuit configurations, but it does not match the official solution. The official solution specifically states 'A high voltage battery with resistors arranged in series', while the AI solution discusses multiple configurations and does not definitively conclude that a high voltage battery with series resistors is the best configuration for maximizing current."
+        },
+        "problem_99": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution arrives at an approximate force of 140 N, which is significantly different from the official solution of 0.32 N. The AI solution uses several assumptions and estimations that lead to a much larger result than the official solution."
+        },
+        "problem_100": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution incorrectly concludes that the block will reach the bottom first. The official solution states that the block reaches the bottom first because it does not gain rotational kinetic energy, while the sphere does. The AI solution does not mention rotational kinetic energy and bases its conclusion on an incorrect comparison of accelerations."
+        },
+        "problem_101": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI provides multiple options to increase the widths of the fringes, including increasing the distance between the slits, which is the opposite of the official solution. The official solution specifically states to 'Move the slits closer together,' which the AI does not mention as an option."
+        },
+        "problem_102": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution calculates a final velocity of -24.4 m/s downward, which is essentially equivalent to the official solution of 25 m/s downward. The slight difference (24.4 vs 25) is likely due to rounding, and both solutions correctly identify the downward direction. The AI solution provides more detail in the calculation process, but the end result matches the official solution in both magnitude and direction."
+        },
+        "problem_103": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed mathematical analysis arriving at x = 2 meters as the position of stable equilibrium. However, the official solution states that x = 4. These solutions do not match, and the AI's step-by-step approach does not lead to the official answer of 4."
+        },
+        "problem_104": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly concludes that the electron will move in a circular path with a radius of r = mv/(eB), which matches the official solution. While the AI solution doesn't explicitly state 'clockwise rotation', it does describe the circular motion and provides the correct formula for the radius, which is the key part of the official solution."
+        },
+        "problem_105": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that 'Decreasing the length of the pendulum' is the correct answer, which exactly matches the official solution provided. The AI solution correctly analyzes the pendulum equation and explains why decreasing the length would reduce the period of oscillation."
+        },
+        "problem_106": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed explanation of how images change with a concave mirror as an object moves closer, but it does not directly answer the specific question posed in the official solution. The official solution states that the image moves away from the mirror and gets taller, which is not explicitly mentioned in the AI's response. The AI's answer, while informative, does not match the concise, specific answer required."
+        },
+        "problem_107": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed calculation resulting in an answer of 3.2 meters, while the official solution states 1.6 m. These are not equivalent values, so the solutions do not match."
+        },
+        "problem_108": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the time as approximately 8.16 seconds, while the official solution states 4 seconds. These are not equivalent values, so the AI's solution does not match the official one."
+        },
+        "problem_109": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution discusses several statements about electric and magnetic fields, but does not address the specific statement given in the official solution. The official solution provides a direct comparison between the behavior of positive charges in electric and magnetic fields, which is not mentioned in the AI's response."
+        },
+        "problem_110": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the acceleration due to Earth's gravity experienced by the Space Shuttle is approximately 6.39 x 10^-3 m/s^2, which is significantly different from the official solution of 8.9 m/s^2. The AI's calculation appears to have an error, possibly in the unit conversion or final calculation step."
+        },
+        "problem_111": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not address the official solution at all. The official solution states that 'The total work done during the cycle is equal but opposite to the net amount of heat transferred.' The AI solution instead discusses the steps of a cyclical process for an ideal gas and concludes that the change in internal energy is zero. It does not mention anything about the relationship between work done and heat transferred."
+        },
+        "problem_112": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly identifies static friction as the force providing the torque that causes the sphere to rotate. The solution goes into detail about the forces involved and how static friction relates to the normal force and coefficient of static friction, but the core answer matches the official solution."
+        },
+        "problem_113": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution states that the force exerted by the table is 'neither parallel nor perpendicular to the table'. However, the AI solution focuses on calculating the magnitude of the force and assumes it's parallel to the table surface, which contradicts the official answer. The AI solution misses the key point about the direction of the force."
+        },
+        "problem_114": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution incorrectly identifies the normal force as the fundamental force responsible for the interaction. The official solution correctly states that it's the electric force (electromagnetic force) due to the repulsion between electrons in the atomic layers of the table and wood. While the AI mentions electromagnetic interactions, it focuses on the normal force as the primary answer, which is not correct in this context."
+        },
+        "problem_115": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution does not match the official solution. The AI solution identifies 1 Weber per square meter as not equal to 1 Tesla, which is incorrect. In fact, 1 Weber per square meter is exactly equal to 1 Tesla. The official solution gives 1 A*N/V (Ampere * Newton / Volt) as the correct answer, which is indeed equivalent to 1 Tesla but was not discussed in the AI's solution."
+        },
+        "problem_116": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution focuses on variations in initial velocity and rolling friction as explanations for inconsistent distances. However, the official solution specifically mentions the rubber band's initial winding as the source of potential energy variation. The AI solution does not address this key aspect of the problem."
+        },
+        "problem_117": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the object will fall a distance of h + 14.7 m during the next second, while the official solution states 3h. These are not equivalent answers. The AI solution incorrectly adds an extra distance to h, while the correct answer is simply a multiple of h."
+        },
+        "problem_118": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed calculation of the collision outcome, but does not directly address the question about linear momentum conservation. The official solution states that 'The linear momentum of the system is conserved because the net force on the system is zero.' While the AI solution implicitly uses this principle in its calculations, it does not explicitly state this key concept as the answer to the question."
+        },
+        "problem_119": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the gravitational force to be approximately 3.15 \u00d7 10^20 N, while the official solution states 10^19 N. These values differ by about an order of magnitude, so they are not equivalent."
+        },
+        "problem_120": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that approximately 7.65% of the object's volume is above the surface of the water, while the official solution states 70%. These values are significantly different, so the solutions do not match."
+        },
+        "problem_121": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution arrives at the final answer of 18.0 m/s\u00b2, which is equivalent to the official solution of 18 m/s^2. The AI correctly derived the acceleration function and calculated the acceleration at t = 1.50 s, matching the official solution exactly."
+        },
+        "problem_122": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the normal force does not do work on the man, which contradicts the official solution stating 'Yes, and the work done will be positive.' The AI's reasoning is based on the person not moving relative to the elevator, but it fails to consider the overall upward displacement of the person along with the elevator."
+        },
+        "problem_123": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the time as approximately 6.32 seconds, while the official solution states 9.0 seconds. These values are significantly different and cannot be considered equivalent."
+        },
+        "problem_124": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly identifies that only conditions I and II are necessary for an object to be in static equilibrium. This matches the official solution of 'I and II only'. The AI provides a detailed explanation for each condition, accurately describing why I and II are required and why III is not relevant to static equilibrium."
+        },
+        "problem_125": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not directly match the official solution. The official solution simply states that the net force is in the negative direction because the puck is moving in the positive direction but slowing down. The AI solution, while detailed, does not explicitly state this simple conclusion and instead provides a complex analysis that doesn't directly answer the question about the direction of the net force."
+        },
+        "problem_126": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution correctly concludes that both experimenters A and B will measure the same electric field. The AI solution shows that E = F1 / q0 for experimenter A and E = F2 / (2q0) for experimenter B, which both simplify to the same expression. This matches the official solution stating 'the same as the field found by B'."
+        },
+        "problem_127": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution concludes that the charge of Object B should be halved to maintain equilibrium, while the official solution states that the mass of Object B should be halved. These are different modifications to Object B, so the solutions do not match."
+        },
+        "problem_128": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that each capacitor stores 600 \u03bcC of charge. However, the official solution states 1800 \u03bcC. The AI's calculation is incorrect as it fails to consider that the total charge of the system (1800 \u03bcC) is distributed across the three capacitors in series, not just 600 \u03bcC."
+        },
+        "problem_129": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the magnitude of the force is 12.0 N, while the official solution states it is 2.0 N. These values are different, so the solutions do not match."
+        },
+        "problem_130": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution incorrectly states that only the normal force provides the centripetal force. The official solution correctly identifies that it's a combination of the normal force and the friction force that provides the centripetal force for a car rounding a banked curve."
+        },
+        "problem_131": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution states the speed as 50 m/s, while the AI's final answer is approximately 28.5 m/s. The AI's solution involves a complex analysis including water resistance, which was not part of the official solution and led to a different result."
+        },
+        "problem_132": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that the force of gravitational attraction remains unchanged after doubling both the masses and the distance. This matches exactly with the official solution which states 'It remains the same.'"
+        },
+        "problem_133": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the current drawn is approximately 0.05 A, while the official solution states 0.5 A. These values differ by a factor of 10, indicating a calculation error in the AI's solution. The AI's approach was correct, but there seems to be a mistake in the final calculation or unit conversion."
+        },
+        "problem_134": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that the pressure decreases by a factor of 4, which exactly matches the official solution. The AI provides a detailed derivation using the ideal gas law to show that P_new = P_old / 4, which is equivalent to saying that P decreases by a factor of 4."
+        },
+        "problem_135": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution incorrectly states that the frequency changes and the wavelength remains constant when light enters glass. In reality, the opposite is true: the frequency remains constant while the wavelength changes. The official solution correctly identifies speed and wavelength as the properties that change when light enters glass from air."
+        },
+        "problem_136": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI solution does not directly match the official solution. The official solution states 'The volume increases,' while the AI solution concludes that the statement 'v2 < v1' is not true. Although the AI's reasoning is correct that the volume doesn't change in an isochoric process, it doesn't explicitly state that the volume increases, which is what the official solution claims."
+        },
+        "problem_137": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution provides a detailed explanation about standing waves and why 60 Hz might not produce them, but it doesn't directly state the official answer. The official solution simply states 'The string length is not a multiple of half the wavelength of the wave,' which is more concise and to the point."
+        },
+        "problem_138": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a mathematical derivation of the electric field strength, but does not directly address how it changes with r for r < R. The official solution states that it increases non-linearly for r < R, which is not explicitly mentioned in the AI's answer."
+        },
+        "problem_139": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI solution correctly states that the frequency appears lower than 400 Hz as the alarm falls, which matches the official solution. The AI provides a detailed explanation of why this occurs, including the Doppler effect, and even calculates a specific lower frequency. While the official solution doesn't provide this level of detail, the core concept that the frequency decreases as it falls is accurately captured in both solutions."
+        },
+        "problem_140": {
+            "ai_solution_matches": true,
+            "evaluation_explanation": "The AI-generated solution concludes that both the length (\u2113) and radius (Q) of the cylindrical rod influence the rate of heat transfer. This matches the official solution which states 'Both the length and area'. The area of a cylinder is directly related to its radius, so mentioning the radius is equivalent to mentioning the area in this context."
+        },
+        "problem_141": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed explanation of how corrective lenses work for myopia, but it does not directly answer the question about the image created by the lenses. The official solution states that an upright, virtual image is formed about 20 cm in front of the eyes, which is not mentioned in the AI's response."
+        },
+        "problem_142": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The official solution states that 'The spheres will experience an electrostatic attraction.' However, the AI solution concludes that there will be a repulsion between the spheres, which is incorrect. The AI misinterpreted the interaction between the induced charges on the conducting sphere and the original charge on the insulating sphere."
+        },
+        "problem_143": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the new force would be 2f, while the official solution states 4F. The AI's analysis is incorrect as it fails to account for the doubling effect of both charge and velocity, which results in a factor of 4, not 2."
+        },
+        "problem_144": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the electric field strength at the midpoint between the charges is approximately 0 N/C. However, the official solution states that the electric field strength is 7.2 \u00d7 10^5 V/m. These answers are significantly different and not equivalent."
+        },
+        "problem_145": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution concludes that the ratio of the magnitude of the electric force on A to that on B is 2, while the official solution states 1:01. These are not equivalent ratios."
+        },
+        "problem_146": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution focuses on the child feeling a gentle touch on their ankle as evidence of reduced energy, while the official solution states that 'The wave's height has become smaller.' Although both answers relate to reduced wave amplitude, they are not equivalent statements."
+        },
+        "problem_147": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution does not match the official solution. The AI solution goes into a detailed calculation of the ball's velocity assuming constant acceleration, while the official solution simply states that the acceleration of the balls varies with velocity. The AI solution does mention air resistance at the end, but it doesn't explicitly state that acceleration varies with velocity, which is the key point of the official solution."
+        },
+        "problem_148": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution calculates the distance as approximately 36 million miles, while the official solution states (1/3) AU. These are not equivalent. The AI solution is much more complex and does not arrive at the simple fraction given in the official solution."
+        },
+        "problem_149": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution provides a detailed analysis and calculates a specific mass (10.88 kg), while the official solution states 'None of the above.' This indicates that the AI's approach or conclusion does not match the intended solution for this problem. The AI solution does not consider or arrive at the option that none of the given choices are correct."
+        },
+        "problem_150": {
+            "ai_solution_matches": false,
+            "evaluation_explanation": "The AI-generated solution incorrectly states that the new orbit will be a smaller, inner circular orbit. The official solution correctly identifies that the new orbit will be elliptical, with point P (where the collision occurred) being the closest approach to Earth (perigee). The AI solution fails to recognize the change from circular to elliptical orbit due to the instantaneous velocity increase at a single point."
+        }
+    }
+}

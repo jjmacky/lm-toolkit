@@ -2,15 +2,15 @@
 date: 1 July 2024
 ---
 
-## Whiteboard-of-Thought (WoT)
+## Overview
 Whiteboard-of-Thought (WoT) is a technique that leverages the visual reasoning capabilities of multimodal large language models (MLLMs) by allowing them to create and process visual aids during the reasoning process. This method is particularly useful for tasks that humans typically solve using visual thinking, such as spatial reasoning, diagram interpretation, and problem-solving that benefits from visual representation.
 
 WoT was proposed in June of 2024 by Sachit Menon, Richard Zemel, and Carl Vondrick in the paper, "[Whiteboard-of-Thought: Thinking Step-by-Step Across Modalities](https://arxiv.org/abs/2406.14562)."
 
-### How to use it
+## How to use it
 Whiteboard-of-Thought (WoT) involves two main interactions with a multimodal large language model (MLLM):
 
-#### Interaction 1: Visualization Creation
+### Interaction 1: Visualization Creation
 
 - Provide the MLLM with the original query.
 - Instruct the model to create visualizations using a specific Python library (e.g., Matplotlib or Turtle).
@@ -18,7 +18,7 @@ Whiteboard-of-Thought (WoT) involves two main interactions with a multimodal lar
 
 After this interaction, execute the generated code to produce an image (this may require manual intervention or a secure code execution environment).
 
-#### Interaction 2: Visual Interpretation
+### Interaction 2: Visual Interpretation
 
 - Feed the resulting image back to the MLLM.
 - Instruct the model to analyze the image in the context of the original query.
@@ -27,13 +27,13 @@ After this interaction, execute the generated code to produce an image (this may
 
 See ["Prompting"](#prompting) and ["Code example"](#code-example) sections for usage details.
 
-### When to use it
+## When to use it
 !!! tip "When to use Whiteboard-of-Thought"
     - Ideal for tasks that involve visual or spatial reasoning, such as understanding ASCII art, solving geometric problems, or navigating spatial structures.
     - Effective in situations where creating a visual representation can simplify complex information or relationships.
     - Particularly useful for queries that humans would typically solve by drawing diagrams or sketches.
 
-### What to know
+## What to know
 WoT aims to empower MLLMs to create and reason with explicit visuals, similar to how humans might use a whiteboard to solve problems. By generating code to create visualizations and then processing these visuals, MLLMs can mimic basic visual thinking. This process involves two model interactions (See ["How to use it"](#how-to-use-it) or ["Prompting"](#prompting) section for details):
 
 1. Visualization Creation: The MLLM generates code to create a visual representation of the problem.
@@ -46,7 +46,7 @@ In Figure 5 of their paper, the authors demonstrate their approach by passing in
 However, it's important to note that results can vary depending on the model used and the stochastic nature of model output. In my attempt to reproduce Figure 5 using Claude Sonnet 3.5 on June 30, 2024, the model created a nonsensical diagram and failed to arrive at a clear answer:
 ![Image of my replication of Figure 5 from the WoT paper demonstrating spatial reasoning](../../images/zero_shot/wot_2.png)
 
-### Small-scale replication
+## Small-scale replication
 The authors also tested several tasks from the BIG-Bench evaluation dataset, including deciphering words written in ASCII art. I also did a small-scale replication of this task using Claude Sonnet 3.5 by selecting random samples from the ASCII Word Recognition task (see [code example](#code-example) below plus additional details in this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought)). The improvement in model performance for this task was obvious. For example, when provided the word "NEW" as an ASCII art text string the model incorrectly identified the word as "REVIEW."
 
 ```
@@ -76,7 +76,7 @@ From my observations, the primary reason for not achieving 100% accuracy with Wo
 
 Further details can be found in the [original paper](https://arxiv.org/abs/2406.14562).
 
-### Best practices
+## Best practices
 !!! tip "Best practices for Whiteboard-of-Thought"
     - See [code example](#code-example) below for a starter template and approach.
     - Provide clear, detailed instructions for both code generation and image interpretation steps.
@@ -86,7 +86,7 @@ Further details can be found in the [original paper](https://arxiv.org/abs/2406.
     - Implement error handling and validation to manage potential issues with code generation or execution.
     - Ensure that the visualization step doesn't introduce errors or biases not present in the original query.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with Whiteboard-of-Thought"
     - WoT requires a multimodal model with vision, coding, and language capabilities, which may limit its applicability with some models.
     - Vision capabilities in models may increase costs; check your model's token pricing for vision inputs.
@@ -96,12 +96,12 @@ Further details can be found in the [original paper](https://arxiv.org/abs/2406.
     - WoT may not work consistently across different scenarios or models (see spatial reasoning replication attempt above).
     - The approach may be computationally intensive and time-consuming, especially for complex tasks or when used at scale.
     
-### Citations
+## Citations
 Menon, S., Zemel, R., & Vondrick, C. (2024). Whiteboard-of-Thought: Thinking Step-by-Step Across Modalities. arXiv preprint [arXiv:2406.14562](https://arxiv.org/abs/2406.14562).
 
 The authors also have [a project page for WoT](https://whiteboard.cs.columbia.edu/).
 
-### Prompting
+## Prompting
 The WoT prompt template instructs the model to create visualizations using Python libraries and then interpret these visuals to answer the query. The template consists of two main parts:
 
 1. Instructions for visualization creation:
@@ -112,16 +112,16 @@ The WoT prompt template instructs the model to create visualizations using Pytho
     - Ask the model to analyze the generated image
     - Request a final answer or further reasoning based on the visual
 
-#### Prompt template
-##### Prompt 1:
+### Prompt template
+#### Prompt 1:
 > You write code to create visualizations using the {Matplotlib/Turtle} library in Python, which the user will run and provide as images. Do NOT produce a final answer to the query until considering the visualization. <br>
 > Query: {original query} <br>
 
-##### Prompt 2:
+#### Prompt 2:
 > {Image from query 1} <br>
 > {Additional instructions as needed (e.g., "Identify the word in the image.")} <br>
 
-#### Code example
+### Code example
 This code demonstrates the implementation of both standard zero-shot prompting and the WoT approach, allowing for a direct comparison of their performance on ASCII art word recognition tasks.
 
 The code below represents my own small-scale replication of the results in Menon et al. Specifically, the middle column of Table 1, deciphering words in the BIG-Bench ASCII word art task. For more code as well as the full set of files used in this small replication see this [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) and the [parent project folder](https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought).
@@ -135,8 +135,8 @@ The replication process follows these steps:
 - Step 4. Manually run the generated code to create images.
 - Step 5. Send the resulting images to the vision API and calculate the performance improvement.
 
-##### Prepare data
-###### Step 0. Read in BIG-bench JSON.
+#### Prepare data
+##### Step 0. Read in BIG-bench JSON.
 Standard zero-shot prompting resulted in an accuracy of between 20% and 30% (I sent the same 10 words to the model multiple times).
 ```python
 import json
@@ -149,9 +149,9 @@ with open(file_name, "r") as f:
 
 We need to access the "examples" array from the `ascii_words` object.
 
-##### Evaluate standard zero-shot performance
-###### Step 1. Select 10 random ASCII art words.
-###### Step 2. Send ASCII art words to the model using a standard zero-shot prompt to establish a performance baseline.
+#### Evaluate standard zero-shot performance
+##### Step 1. Select 10 random ASCII art words.
+##### Step 2. Send ASCII art words to the model using a standard zero-shot prompt to establish a performance baseline.
 
 ```python
 import anthropic
@@ -236,8 +236,8 @@ for index, ascii_image in enumerate(random_ascii_images, start=1):
 calculate_percentage_correct(standard_zero_shot_results)
 ```
 
-##### Evaluate performance using WoT
-###### Step 3. Send ASCII art words to the model using WoT to request visualization code.
+#### Evaluate performance using WoT
+##### Step 3. Send ASCII art words to the model using WoT to request visualization code.
 ```python
 import re
 
@@ -269,10 +269,10 @@ for index, ascii_image in enumerate(random_ascii_images, start=1): # Use same ra
     print("\n\n -------------")
 ```
 
-###### Step 4. Manually run the generated code to create images.
+##### Step 4. Manually run the generated code to create images.
 Manually execute each code block returned and save the resulting image the images folder (not shown). See [Python notebook](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/zero_shot/whiteboard_of_thought/whiteboard_of_thought.ipynb) for full code.
 
-###### Step 5. Send the resulting images to the vision API and calculate the performance improvement.
+##### Step 5. Send the resulting images to the vision API and calculate the performance improvement.
 For the 10 random words I selected this resulted in an accuracy of 50%. About double the performance of standard zero-shot prompting.
 
 ```python

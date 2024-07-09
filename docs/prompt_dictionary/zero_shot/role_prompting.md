@@ -2,22 +2,22 @@
 date: 26 June 2024
 ---
 
-## Role prompting
+## Overview
 Role prompting elicits the model by asking it to take on a particular role or persona before answering a question.
 
-### How to use it
+## How to use it
 Describe the role or persona you want the model to adopt, then ask a question or provide an instruction.
 
 [See "Prompting" section for usage details](#prompting).
 
-### When to use it
+## When to use it
 !!! tip "When to use role prompting"
     - When you want a language model to imitate the speaking style or personality traits of specific characters.
     - When you want specific cultural or topic-specific information built-in to the prompt response.
     - Effective for tasks that benefit from a specific perspective or expertise.
     - As an alternative to role fine-tuning when that option is not available.
 
-### What to know
+## What to know
 Role prompting, also known as persona prompting, roleplay, or memetic proxy, is typically used in educational or entertainment contexts. For instance, Wang et al. (2023j) demonstrated role-based prompting by having a language model adopt the personality of characters such as Twilight Sparkle from My Little Pony and Stephen Hawking. On the other hand, Zheng et al. (2023d) showed that occupation roleplay can improve results by 20% using a benchmark of 2,457 random questions from the [Massive Multitask Language Understanding (MMLU) dataset](https://huggingface.co/datasets/cais/mmlu).
 
 Larger models, such as LLaMA-33B, generally exhibit stronger role-playing capabilities compared to smaller models like LLaMA-7B (Wang et al., 2023j). Fine-tuning a model specifically to adopt roles has been shown to outperform models that are merely instruction-tuned for general purposes and asked to role play. Likewise, instruction-tuned models generally perform better with role prompting than models that are only pre-trained.
@@ -27,7 +27,7 @@ Role prompting has also been shown to work in non-English contexts (Wang et al.,
 !!! example "Example of a fictional role prompt"
     "You are Sherlock Holmes, a brilliant detective known for your deductive reasoning and keen observation skills. Your catchphrase is 'Elementary, my dear Watson.' Answer all questions as Sherlock Holmes would."
 
-### Types of Role Prompting
+## Types of Role Prompting
 According to Zheng et al. (2023d), there are three main types of role prompting:
 
 1. Role Prompt: Specifies the role to the language model (e.g., "You are a marketing consultant").
@@ -36,7 +36,7 @@ According to Zheng et al. (2023d), there are three main types of role prompting:
 
 See best practices for correct utilization.
 
-### Best practices
+## Best practices
 !!! tip "Best practices for correct utilization"
     - Specify the target audience the model is addressing.
     - Utilize fine-grained personas when possible.
@@ -45,7 +45,7 @@ See best practices for correct utilization.
     - Role-based prompting generally works best when used as a system prompt to establish the role, combined with user prompts for specific questions. (See API example below).
     - Align the role and the task. For example, asking the model to adopt the persona of Twilight Sparkle from My Little Pony to develop a marketing plan is unlikely to be effective. Instead, it would be more productive to engage with Twilight Sparkle in a fun and casual context that suits her character.
 
-### What to watch out for
+## What to watch out for
 !!! warning "What to watch out for with role prompting"
     - The model's simulation of the role may be inaccurate, exaggerated or inconsistent, especially for less well-known figures. Verify the model's outputs against what the real person would likely say.
     - Role prompting is most effective for open-ended tasks that benefit from a strong point of view. It may be less suitable for objective analysis or fact-based queries.
@@ -53,7 +53,7 @@ See best practices for correct utilization.
     - The effectiveness of role prompting can vary depending on the knowledge the language model has about the given figure. Well-known characters tend to work better than obscure ones and larger models with more world knowledge may perform better than smaller models.
     - Be cautious with role prompting real people, especially living people, as it could be seen as disrespectful or an inappropriate imitation if not done carefully. Fictional characters may be safer.
 
-### Citations
+## Citations
 - Wang, Z. M., Peng, Z., Que, H., Liu, J., Zhou, W., Wu, Y., Guo, H., Gan, R., Ni, Z., Yang, J., Zhang, M., Zhang, Z., Ouyang, W., Xu, K., Huang, S. W., Fu, J., & Peng, J. (2023). RoleLLM: Benchmarking, Eliciting, and Enhancing Role-Playing Abilities of Large Language Models. [arXiv preprint arXiv:2310.00746](https://arxiv.org/abs/2310.00746).
 
 - Zheng, M., Pei, J., & Jurgens, D. (2023). Is "A Helpful Assistant" the Best Role for Large Language Models? A Systematic Evaluation of Social Roles in System Prompts. [arXiv preprint arXiv:2311.10054](https://arxiv.org/abs/2311.10054).
@@ -64,14 +64,14 @@ See best practices for correct utilization.
 
 - Reynolds, L., & McDonell, K. (2021). Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm. [arXiv preprint arXiv:2102.07350](https://arxiv.org/abs/2102.07350).
 
-### Prompting
-#### Prompt template
+## Prompting
+### Prompt template
 Role prompting has a straightforward implementation. Simply describe the role or persona you want the model to adopt, then ask a question or provide an instruction.
 > "You are {role}" <br>
 > {question} <br>
 
-#### Prompt example
-##### Fun example
+### Prompt example
+#### Fun example
 User prompt:
 > You are Twilight Sparkle from My Little Pony. Share your three favorite foods with a group of children at a local library.
 
@@ -86,7 +86,7 @@ Model response (ChatGPT 4o):
 >
 > I hope you all get to try these yummy treats sometime. Now, who's ready for a story?
 
-##### Business example
+#### Business example
 User prompt:
 > You are a seasoned marketing consultant with expertise in digital marketing strategies. You have a deep understanding of market analysis, brand development, and online advertising. You often speak in a professional and insightful manner, providing actionable advice and strategic recommendations. Outline a marketing strategy for a new tech startup, MindWell AI. MindWell AI is a personalized mental health and wellness platform that leverages artificial intelligence to provide users with tailored mental health resources, therapy sessions, mindfulness exercises, and daily well-being check-ins. The platform offers a combination of AI-driven chatbots for initial interactions and licensed therapists for more in-depth sessions. You are presenting your marketing plan to the founders.
 
@@ -190,7 +190,7 @@ Model response (ChatGPT 4o):
 > Thank you for your attention. I'm confident that with our combined efforts, MindWell AI will achieve significant success and make a profound impact on the lives of many.
 
 
-#### API example
+### API example
 ```python
 from openai import OpenAI
 
