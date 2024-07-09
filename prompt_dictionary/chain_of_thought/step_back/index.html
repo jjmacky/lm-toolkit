@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../few_shot/kate/">
+        <link rel="prev" href="../thread_of_thought/">
       
       
-        <link rel="next" href="../step_back/">
+        <link rel="next" href="../../additional_resources/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Thread of Thought (ThoT) - The Language Model Toolkit</title>
+        <title>Step-back Prompting - The Language Model Toolkit</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Thread of Thought (ThoT)
+              Step-back Prompting
             
           </span>
         </div>
@@ -787,6 +787,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../thread_of_thought/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Thread of Thought (ThoT)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -801,7 +822,7 @@
           
   
   <span class="md-ellipsis">
-    Thread of Thought (ThoT)
+    Step-back Prompting
   </span>
   
 
@@ -812,7 +833,7 @@
         
   
   <span class="md-ellipsis">
-    Thread of Thought (ThoT)
+    Step-back Prompting
   </span>
   
 
@@ -887,18 +908,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
+  <a href="#methodology" class="md-nav__link">
     <span class="md-ellipsis">
-      Best practices
+      Methodology
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#what-to-watch-out-for" class="md-nav__link">
+  <a href="#results" class="md-nav__link">
     <span class="md-ellipsis">
-      What to watch out for
+      Results
     </span>
   </a>
   
@@ -906,6 +927,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
   
 </li>
       
@@ -939,20 +978,68 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#one-stage-prompting-version" class="md-nav__link">
+  <a href="#stem-physics-example" class="md-nav__link">
     <span class="md-ellipsis">
-      One-stage prompting version
+      STEM physics example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STEM physics example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-step-back-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Step-back prompt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#two-stage-prompting-version" class="md-nav__link">
+  <a href="#2-reasoning-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      Two-stage prompting version
+      2. Reasoning prompt
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-qa-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge QA example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge QA example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-step-back-prompt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Step-back prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reasoning-prompt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Reasoning prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -979,27 +1066,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../step_back/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Step-back Prompting
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1227,18 +1293,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
+  <a href="#methodology" class="md-nav__link">
     <span class="md-ellipsis">
-      Best practices
+      Methodology
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#what-to-watch-out-for" class="md-nav__link">
+  <a href="#results" class="md-nav__link">
     <span class="md-ellipsis">
-      What to watch out for
+      Results
     </span>
   </a>
   
@@ -1246,6 +1312,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-watch-out-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What to watch out for
+    </span>
+  </a>
   
 </li>
       
@@ -1279,20 +1363,68 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#one-stage-prompting-version" class="md-nav__link">
+  <a href="#stem-physics-example" class="md-nav__link">
     <span class="md-ellipsis">
-      One-stage prompting version
+      STEM physics example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STEM physics example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-step-back-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Step-back prompt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#two-stage-prompting-version" class="md-nav__link">
+  <a href="#2-reasoning-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      Two-stage prompting version
+      2. Reasoning prompt
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-qa-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge QA example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge QA example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-step-back-prompt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Step-back prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reasoning-prompt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Reasoning prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1327,226 +1459,274 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-<h1>Thread of Thought (ThoT)</h1>
+<h1>Step-back Prompting</h1>
 
-<p class="page-date">Published on: 5 July 2024</p>
+<p class="page-date">Published on: 8  July 2024</p>
  <h2 id="overview">Overview</h2>
-<p>Thread-of-Thought (ThoT) is a technique designed to enhance the performance of Large Language Models (LLMs) in processing chaotic contextual information. This method draws inspiration from human cognitive processes, enabling LLMs to systematically segment and analyze extended contexts while adeptly selecting pertinent information.</p>
+<p>Step-back Prompting is a technique that asks large language models (LLMs) to perform abstractions to derive high-level concepts and first principles from instances containing specific details. By using these concepts and principles to guide reasoning, LLMs may be able to better follow a correct reasoning path towards a solution.</p>
 <h2 id="first-proposed">First proposed</h2>
-<p>ThoT was proposed in November 2023 by Yucheng Zhou, Xiubo Geng, Tao Shen, Chongyang Tao, Guodong Long, Jian-Guang Lou, and Jianbing Shen in the paper, <a href="https://arxiv.org/abs/2311.08734">"Thread of Thought Unraveling Chaotic Contexts"</a>.</p>
+<p>Step-back Prompting was proposed in October 2023 by Huaixiu Steven Zheng, Swaroop Mishra, Xinyun Chen, Heng-Tze Cheng, Ed H. Chi, Quoc V Le, and Denny Zhou in the paper <a href="https://arxiv.org/abs/2310.06117">"Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models"</a>.</p>
 <h2 id="how-to-use-it">How to use it</h2>
-<p>Thread-of-Thought involves two main interactions with a large language model:</p>
-<p><strong>Interaction 1: Initial Analysis</strong></p>
+<p>Step-back Prompting involves two main steps when interacting with an LLM:</p>
+<ol>
+<li>
+<p>The step-back prompt</p>
 <ul>
-<li>Provide the LLM with the original query and context.</li>
-<li>Instruct the model to analyze the context in manageable parts, step by step.</li>
-<li>The model generates a structured analysis of the context.</li>
+<li>Prompt the language model with a step-back question asking it to reason about the principles at play in a solution rather than the solution itself.</li>
+<li>Have the language model respond with relevant facts about the high-level concept or principle.</li>
 </ul>
-<p><strong>Interaction 2: Final Answer Generation</strong></p>
+</li>
+<li>
+<p>The reasoning prompt</p>
 <ul>
-<li>Based on the structured analysis from Interaction 1, instruct the model to provide a final answer.</li>
-<li>The model produces the final result.</li>
+<li>Pass the principles from the step-back prompt along with the original question to the language model.</li>
+<li>Have the model produce a final solution.</li>
 </ul>
-<p>See <a href="#prompt-template">"Prompt template"</a> section for usage details.</p>
+</li>
+</ol>
+<p>See <a href="#prompting">"Prompting"</a> and section for usage details.</p>
 <h2 id="when-to-use-it">When to use it</h2>
 <div class="admonition tip">
-<p class="admonition-title">When to use Thread-of-Thought (ThoT)</p>
-<p>Based on the evaluation of ThoT in the <a href="#first-proposed">main paper</a> the use cases are as follows. However, note that I was not able to independently verify the reportedly strong performance of Thot (see <a href="#replication">"Replication"</a> section).</p>
+<p class="admonition-title">When to use Step-back Prompting</p>
 <ul>
-<li>Ideal for tasks involving extended, chaotic contexts, such as retrieval-augmented generation and multi-turn conversations.</li>
-<li>Effective in situations where the context contains a mix of relevant and irrelevant information.</li>
-<li>Particularly useful for queries that require synthesizing information from multiple sources or long contexts.</li>
+<li>Ideal for complex tasks that benefit from abstracting to higher-level concepts or principles before reasoning about specifics.</li>
+<li>Effective for knowledge-intensive questions where recalling general information first can help guide the specific answer.</li>
+<li>Particularly useful for multi-step reasoning tasks where breaking down the problem into abstract concepts can simplify the reasoning process.</li>
+<li>Applicable across various domains including STEM, knowledge QA, and multi-hop reasoning tasks.</li>
 </ul>
 </div>
 <h2 id="what-to-know">What to know</h2>
-<p>The Thread-of-Thought (ThoT) technique introduces the concept of "Chaotic Context" in natural language processing. Unlike "Long Context," which primarily concerns input length, Chaotic Context refers to the complexity and diversity of information within an input. It typically comprises a mixture of related and unrelated data from various sources, each with varying relevance to the task at hand.</p>
-<p>ThoT modifies the Chain of Thought (CoT) prompting method and comes in two versions: single-stage and two-stage. In the single-stage version, ThoT simply replaces the standard CoT prompt "Let's think step by step" with "Walk me through this context in manageable parts step by step, summarizing and analyzing as we go." The authors report that this specific phrasing, selected from 30 candidate prompts, performed best in their experiments.</p>
-<p>The technique employs a two-step approach:
-<img alt="An image of how Thread of thought one-stage prompting compares to chain-of-thought" src="../../../images/cot/thot_1_stage.png" /></p>
-<ol>
-<li>Systematic Context Analysis: The model divides the input into smaller segments for individual analysis.</li>
-<li>Information Synthesis: The model uses the segmented analysis to construct a final answer.</li>
-</ol>
-<p><img alt="An image of how Thread of thought two-stage prompting works" src="../../../images/cot/thot_2_stage.png" /></p>
-<p>This process aims to emulate human cognitive strategies for handling complex information. By segmenting the input, identifying key points, and maintaining analytical focus, ThoT attempts to improve the model's ability to process complex informational inputs.</p>
+<p>Step-back Prompting is a technique that aims to improve language model reasoning by mimicking the human process of abstraction. The method involves two key steps: Stepping back, where the LLM generates a more abstract question related to the original query, and Reasoning, where the LLM uses information from the abstract question to guide its reasoning on the original query. This approach is designed to help language models identify relevant high-level concepts and principles before attempting to solve specific problems.</p>
+<p><img alt="An image of how Step-back Prompting works." src="../../../images/cot/step_back_1.png" /></p>
+<p>The technique is based on the idea that abstracting complex problems can reduce cognitive load and activate relevant knowledge that might not be immediately apparent from specific details. The authors found that a single demonstration example was typically sufficient for language models to learn the abstraction process, suggesting that this skill is relatively easy for these models to acquire through in-context learning. While the approach showed improvements across various tasks such as STEM problems and QA knowledge and model families, it's important to note that performance gains may vary depending on the specific task and model used. Notably, the approach was only tested on large language models of 70 billion parameters and up, leaving its effectiveness on smaller models an open question.</p>
 <h2 id="replication">Replication</h2>
-<p>The authors of the ThoT paper present results from experiments using various datasets, including PopQA, EntityQ, and a custom Multi-Turn Conversation Response (MTCR) dataset. They report performance improvements compared to other prompting techniques. However, the paper lacks sufficient information for a full study replication. Crucial details, such as which dataset was used for retrieval to create the "chaotic context" or how to access the custom MTCR dataset, are not provided. Consequently, independent verification of the results was not possible.</p>
-<p>Instead, to gain insights into the ThoT technique's effectiveness, I conducted a small-scale replication study in collaboration with Claude Sonnet 3.5. We created two synthetic "chaotic contexts" and tested the ThoT prompt strategy on Llama 3 (8B). While detailed evaluation information from the original paper is not available for full replication, our synthetic contexts align with the information that can be gleaned about the evaluation from the paper itself (e.g., see the "Input" box in the image from the <a href="#what-to-know">"What to Know"</a> section showing 10 retrieved passages).</p>
-<p>All project files used for this analysis are available on Github <a href="https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/cot/thot">here</a>.</p>
-<p>The first chaotic context is based on Roman history:</p>
-<blockquote>
-<p>Based on the following information, who was the leader of the group that conquered the city where the last Western Roman Emperor ruled?</p>
-<ul>
-<li>The city of Ravenna, located in Italy, became the capital of the Western Roman Empire in 402 CE.</li>
-<li>Julius Caesar crossed the Rubicon river in 49 BCE, sparking a civil war.</li>
-<li>Romulus Augustulus began his reign as Western Roman Emperor in 475 CE.</li>
-<li>The Ostrogothic king Theoderic the Great defeated Odoacer in 493 CE.</li>
-<li>Constantinople fell to the Ottoman Turks in 1453 CE, ending the Byzantine Empire.</li>
-<li>The last Western Roman Emperor was deposed in 476 CE.</li>
-<li>Odoacer, a Germanic chieftain, took control of Italy in 476 CE.</li>
-<li>The Visigoths sacked Rome in 410 CE under the leadership of Alaric I.</li>
-<li>Romulus Augustulus ruled from the city of Ravenna until his deposition.</li>
-<li>The Vandals captured the city of Carthage in 439 CE.</li>
-</ul>
-</blockquote>
-<p>The correct answer is Odoacer. This is a multi-hop question, which involves connecting the following pieces of information to arrive at the correct answer:</p>
+<p>I conducted a partial replication using the 151-question MMLU high-school physics dataset also used by Zheng et al. The replication tested Step-back Prompting against traditional Chain-of-Thought (CoT) prompting across three models of various sizes from different providers not tested in the original paper.</p>
+<p>The full code and project files used for the replication are available <a href="https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/cot/step_back">here</a>. The main Python notebook is available <a href="https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/cot/step_back/step_back.ipynb">here</a>.</p>
+<h3 id="methodology">Methodology</h3>
 <ol>
-<li>Identify Romulus Augustulus as the last Western Roman Emperor (combining information from points 3 and 6).</li>
-<li>Determine that Ravenna was where he ruled (from point 9) and that Ravenna is in Italy (from point 1).</li>
-<li>Identify Odoacer as the leader who took control of Italy in 476 CE, the year the last emperor was deposed (from point 7).</li>
+<li>Step-back prompts were constructed with one exemplar, following the findings of Zheng et al.</li>
+<li>These prompts were used to elicit principles for each of the 151 physics questions, following Table 7 in Section C.1 of the original paper.</li>
+<li>The elicited principles, original questions, and a complete exemplar were then passed to the model for a final answer, as per Table 8 in Section D.1.</li>
+<li>Claude Sonnet 3.5 was used as a judge to determine if the model solution matched the original solution.</li>
 </ol>
-<p>Because the model may have memorized some information about Roman history, which would give standard prompting an advantage relative to ThoT for the first chaotic context, I also included a second context based on facts from a 3 July 2024 news article about Japanese regulation concerning the phase-out of floppy disks (<a href="https://arstechnica.com/gadgets/2024/07/japans-government-finally-exits-90s-ends-floppy-disk-use/">Link</a>).</p>
-<blockquote>
-<p>Based on the following information, in what year did the Japanese government stop requiring physical media for business filings and citizen submission forms?</p>
-<ul>
-<li>Japan's Digital Agency was established during the COVID-19 pandemic to modernize government technology.</li>
-<li>Digital Minister Taro Kono declared a "war on floppy disks" about two years ago.</li>
-<li>The US Air Force used 8-inch floppies until 2019.</li>
-<li>As of June 28, 2024, Japan's government eliminated the use of floppy disks in all its systems, except for one environmental regulation.</li>
-<li>Two years before the complete elimination of floppy disks, the government stopped requiring physical media for 1,900 types of submissions.</li>
-<li>The Institute for Management Development's 2023 World Digital Competitiveness Ranking listed Japan as number 32 out of 64 economies.</li>
-<li>Many workplaces in Japan still opt for fax machines over emails.</li>
-<li>Sony, the last company to manufacture floppy disks, stopped production in 2011.</li>
-<li>Floppy disks typically had a storage capacity that maxed out at 1.44MB, with some versions reaching 2.88MB.</li>
-<li>Chuck E. Cheese was reported to be using floppy disks for its animatronics as recently as January 2023.</li>
-</ul>
-</blockquote>
-<p>Three different prompts were used in evaluation:</p>
-<ol>
-<li>A version with no additional direction.</li>
-<li>A version with a chain of thought direction ("Let's think step by step").</li>
-<li>A version with a thread of thought direction ("Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.").</li>
-</ol>
-<p>Each prompt version for both chaotic contexts was passed to Llama 3 (8B) ten times. The results are summarized in the following table:</p>
+<h3 id="results">Results</h3>
+<p>Contrary to the findings in the original paper, Step-back Prompting did not consistently outperform traditional CoT in this replication. Notably, for GPT-3.5 Turbo, Step-back Prompting performed 10 percentage points worse than standard CoT.</p>
 <table>
 <thead>
 <tr>
-<th>Chaotic Context</th>
-<th>Vanilla Prompting (n=10)</th>
-<th>Standard Chain of Thought (n=10)</th>
-<th>Thread of Thought (two-stage) (n=10)</th>
+<th>Model</th>
+<th>Step Back Accuracy</th>
+<th>Standard CoT Accuracy</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Roman History</td>
-<td>100%</td>
-<td>100%</td>
-<td>60%</td>
+<td>Llama3 (8B)</td>
+<td>22.5%</td>
+<td>20.5%</td>
 </tr>
 <tr>
-<td>Japanese Floppy Disks</td>
-<td>100%</td>
-<td>90%</td>
-<td>70%</td>
+<td>Gemini Flash</td>
+<td>58.9%</td>
+<td>61.6%</td>
+</tr>
+<tr>
+<td>GPT-3.5 Turbo</td>
+<td>33.1%</td>
+<td>43.0%</td>
 </tr>
 </tbody>
 </table>
-<p>Surprisingly, vanilla prompting performed best, producing the most concise and accurate answers. Chain of Thought prompting also performed well. Thread of Thought prompting, however, performed the worst, scoring just 60% on the Roman History context and 70% on the Japanese Floppy Disk context. ThoT's responses were also the longest and most difficult to follow.</p>
-<p>ThoT prompting did benefit from its two-stage approach, where some logic and calculations that could have been done in the first stage were completed in the second. For instance, in the Japanese Floppy Disks context, the model often offloaded the calculation that 2022 was two years before 2024 to the second stage.</p>
-<p>Much of ThoT's poor performance seemed to stem from the prompt's wording, particularly the phrase "analyzing as we go," which frequently caused the model to interrupt its analysis and ask for next steps. An example of this behavior is provided for the Roman history context.</p>
-<blockquote>
-<p>Let's break down the information into manageable chunks and analyze it together. Here's a summary of the first few points:</p>
-<p><strong>Part 1: Background Information</strong></p>
-<ul>
-<li>The Western Roman Empire had its capital in Ravenna, Italy, from 402 CE.</li>
-<li>Julius Caesar crossed the Rubicon river in 49 BCE, sparking a civil war (this point is likely included to provide historical context).</li>
-<li>Romulus Augustulus began his reign as Western Roman Emperor in 475 CE.</li>
-</ul>
-<p><strong>Analysis</strong></p>
-<p>At this stage, we know that Ravenna was the capital of the Western Roman Empire and that Romulus Augustulus took over as emperor in 475 CE. This sets the stage for what's to come. Caesar's crossing of the Rubicon river is a significant event in Roman history, but it's not directly relevant to the fall of the Western Roman Empire.</p>
-<p><strong>Next Steps</strong></p>
-<p>Let's move on to the next point:</p>
-<ul>
-<li>The last Western Roman Emperor was deposed in 476 CE.</li>
-</ul>
-<p>What do you think might happen next?</p>
-</blockquote>
-<p>While a full replication of the original study is not possible due to missing information, this small-scale replication was unable to demonstrate the benefits of ThoT as reported in the original paper. Further investigation and more comprehensive testing would be necessary to fully understand the potential advantages and limitations of the ThoT technique.</p>
-<h3 id="best-practices">Best practices</h3>
+<p>These results suggest that the effectiveness of Step-back Prompting may vary depending on the specific model and task, and may not generalize uniformly across all large language models.</p>
+<h2 id="best-practices">Best practices</h2>
 <div class="admonition tip">
-<p class="admonition-title">Best practices for with Thread-of-Thought (ThoT)</p>
+<p class="admonition-title">Best practices for Step-back Prompting</p>
 <ul>
-<li>Use the specific ThoT prompt wording that encourages step-by-step analysis and summarization of the context.</li>
-<li>ThoT's reported effectiveness across model sizes suggests it could be useful regardless of model size.</li>
-<li>Implement error handling and validation to manage potential issues with context analysis or answer generation.</li>
-<li>For complex tasks, consider multiple iterations of analysis and synthesis if initial results are unclear.</li>
+<li>Provide clear instructions for both the abstraction and reasoning steps.</li>
+<li>Use few-shot examples to demonstrate the desired abstraction and reasoning process (the authors found that one exemplar is sufficient).</li>
+<li>Consider combining Step-back Prompting with other techniques like retrieval-augmented generation (RAG) for knowledge-intensive tasks.</li>
+<li>Implement error handling and validation to manage potential issues in the abstraction or reasoning steps.</li>
+<li>Ensure that the abstraction step doesn't introduce errors or biases not present in the original query.</li>
 </ul>
 </div>
-<h3 id="what-to-watch-out-for">What to watch out for</h3>
+<h2 id="what-to-watch-out-for">What to watch out for</h2>
 <div class="admonition warning">
-<p class="admonition-title">What to watch out for with Thread-of-Thought (ThoT)</p>
+<p class="admonition-title">What to watch out for with Step-back Prompting</p>
 <ul>
-<li>Because the paper did not provide links or access to the necessary data, a thorough replication of the evaluations reported in the ThoT paper was not possible. However, in a small-scale replication attempt, ThoT did not perform well (see <a href="#replication">"Replication"</a> Section above).</li>
-<li>In my experimentation ThoT responses tend to be long and difficult to follow which may require additional parsing logic to determine the final answer.</li>
-<li>The two-stage version of the technique requires two separate interactions with the model, which may increase computation time and costs.</li>
-<li>ThoT may struggle with tasks requiring implicit reasoning or understanding nuanced relationships.</li>
-<li>The method may not provide benefits for simple, straightforward queries where a detailed analysis is unnecessary.</li>
+<li>The quality of the abstraction can significantly impact the final answer. Poor abstractions may lead to irrelevant or misleading reasoning.</li>
+<li>Some simple queries may not benefit from abstraction and could be answered more efficiently directly.</li>
+<li>The technique may require more computation time and resources compared to direct questioning, especially for complex tasks.</li>
+<li>Performance improvements may vary depending on the specific task and model used.</li>
+<li>There's a risk of over-abstraction, potentially losing important details from the original query.</li>
 </ul>
 </div>
 <h2 id="citations">Citations</h2>
-<p>Zhou, Y., Geng, X., Shen, T., Tao, C., Long, G., Lou, J. G., &amp; Shen, J. (2023). Thread of Thought Unraveling Chaotic Contexts. <a href="https://arxiv.org/abs/2311.08734">arXiv preprint arXiv:2311.08734</a>.</p>
+<p>Zheng, H. S., Mishra, S., Chen, X., Cheng, H. T., Chi, E. H., Le, Q. V., &amp; Zhou, D. (2024). Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models. <a href="https://arxiv.org/abs/2310.06117">arXiv preprint arXiv:2310.06117v2</a>.</p>
 <h2 id="prompting">Prompting</h2>
-<p>The main Thot prompting strategy involves two-stages, first requesting the model to output an analysis using the ThoT prompt and then extracting the final answer from the analysis. However, the authors do mention that the Thot prompt can be tried as a stand-alone single-turn prompting strategy.</p>
+<p>The Step-back Prompting template instructs the model to first generate a more abstract question related to the original query, and then use this abstraction to guide its reasoning. The template consists of two main parts:
+1. Step-back prompt:
+- Ask the model to generate a more general or high-level question related to the original query.</p>
+<ol>
+<li>Instructions for reasoning:</li>
+<li>Instruct the model to use the information from the abstract question to answer the original query.</li>
+</ol>
 <h3 id="prompt-template">Prompt template</h3>
-<h4 id="one-stage-prompting-version">One-stage prompting version</h4>
+<h4 id="stem-physics-example">STEM physics example</h4>
+<h5 id="1-step-back-prompt">1. Step-back prompt</h5>
 <blockquote>
-<p>Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.<br>
-Context: {context}<br>
-Query: {query}<br></p>
+<p>You are an expert at Physics.<br>
+You are given a Physics problem.<br>
+Your task is to extract the Physics concepts and principles involved in solving the problem.<br>
+<br>
+Here is an example: {exemplar}<br>
+<br>
+Question: {question}<br>
+Do not solve the problem. Only detail the principles and equations involved.<br>
+Principles Involved:<br></p>
 </blockquote>
-<h4 id="two-stage-prompting-version">Two-stage prompting version</h4>
-<p><strong>PROMPT 1:</strong></p>
+<h5 id="2-reasoning-prompt">2. Reasoning prompt</h5>
 <blockquote>
-<p>Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.<br>
-Context: {context}<br>
-Query: {query}<br></p>
+<p>You are an expert at Physics.<br>
+You are given a Physics problem and a set of principles involved in solving the problem.<br>
+Solve the problem step by step by following the principles.<br>
+<br>
+Here is an example: {exemplar}<br>
+<br>
+Question: {question}<br>
+Principles Involved: {result from step-back prompt}<br>
+Solution:<br></p>
 </blockquote>
-<p><strong>PROMPT 2:</strong></p>
+<h4 id="knowledge-qa-example">Knowledge QA example</h4>
+<h5 id="1-step-back-prompt_1">1. Step-back prompt</h5>
 <blockquote>
-<p>{result of Prompt 1} <br>
-Based on the above analysis, please provide a final answer to the query.<br>
-Query:<br></p>
+<p>You are an expert at world knowledge.<br>
+Your task is to step back and paraphrase a question to a more generic step-back question, which is easier to answer.<br>
+<br>
+Here is an example: {exemplar}<br>
+<br>
+Question: {question}<br>
+Do not solve the problem. Only detail the principles involved.<br>
+Principles Involved:<br></p>
+</blockquote>
+<h5 id="2-reasoning-prompt_1">2. Reasoning prompt</h5>
+<blockquote>
+<p>You are an expert of world knowledge.<br>
+I am going to ask you a question.<br>
+Your response should be comprehensive and not contradicted with the following context if they are relevant.<br>
+Otherwise, ignore them if they are not relevant.<br>
+<br>
+Here is an example: {exemplar}<br>
+<br>
+{optional additional retrieved info from database}<br>
+Question: {question}<br>
+Supporting question {result from step-back prompt}<br>
+Answer:<br></p>
 </blockquote>
 <h3 id="api-example">API example</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ollama</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
 
-<span class="k">def</span> <span class="nf">question_answerer</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;llama3&#39;</span>
-    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">context</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">prompt</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
+<span class="n">exemplar_question</span> <span class="o">=</span> <span class="s2">&quot;A microwave oven is connected to an outlet, 120 V, and draws a current of 2 amps. At what rate is energy being used by the microwave oven?&quot;</span>
 
-    <span class="c1"># Make the request to the Ollama API</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+<span class="n">exemplar_principles</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The physics principles behind this question relate to electrical power and energy consumption. Here are the relevant principles and equations:</span>
 
-<span class="c1"># Stage 1: Get initial summary</span>
-<span class="n">chaotic_context</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Based on the following information, who was the leader of the group that conquered the city where the last Western Roman Emperor ruled?</span>
+<span class="s2">1. Ohm&#39;s Law: This fundamental principle relates voltage (V), current (I), and resistance (R) in an electrical circuit.</span>
+<span class="s2">   V = I * R</span>
 
-<span class="s2">- The city of Ravenna, located in Italy, became the capital of the Western Roman Empire in 402 CE.</span>
-<span class="s2">- Julius Caesar crossed the Rubicon river in 49 BCE, sparking a civil war.</span>
-<span class="s2">- Romulus Augustulus began his reign as Western Roman Emperor in 475 CE.</span>
-<span class="s2">- The Ostrogothic king Theoderic the Great defeated Odoacer in 493 CE.</span>
-<span class="s2">- Constantinople fell to the Ottoman Turks in 1453 CE, ending the Byzantine Empire.</span>
-<span class="s2">- The last Western Roman Emperor was deposed in 476 CE.</span>
-<span class="s2">- Odoacer, a Germanic chieftain, took control of Italy in 476 CE.</span>
-<span class="s2">- The Visigoths sacked Rome in 410 CE under the leadership of Alaric I.</span>
-<span class="s2">- Romulus Augustulus ruled from the city of Ravenna until his deposition.</span>
-<span class="s2">- The Vandals captured the city of Carthage in 439 CE.&quot;&quot;&quot;</span>
+<span class="s2">2. Electrical Power: The rate at which electrical energy is transferred or converted in a circuit is given by the power equation.</span>
+<span class="s2">   P = V * I</span>
+<span class="s2">   Where:</span>
+<span class="s2">   P is power in watts (W)</span>
+<span class="s2">   V is voltage in volts (V)</span>
+<span class="s2">   I is current in amperes (A)</span>
 
-<span class="n">thot_prompt</span> <span class="o">=</span> <span class="s2">&quot;Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.&quot;</span>
+<span class="s2">3. Energy and Power Relationship: Energy is the capacity to do work, while power is the rate at which energy is transferred or work is done.</span>
+<span class="s2">   E = P * t</span>
+<span class="s2">   Where:</span>
+<span class="s2">   E is energy in joules (J)</span>
+<span class="s2">   P is power in watts (W)</span>
+<span class="s2">   t is time in seconds (s)</span>
 
-<span class="n">summary_response</span> <span class="o">=</span> <span class="n">question_answerer</span><span class="p">(</span><span class="n">chaotic_context</span><span class="p">,</span> <span class="n">thot_prompt</span><span class="p">)</span>
+<span class="s2">4. Unit Conversions: Understanding the relationships between different units of power and energy might be relevant.</span>
+<span class="s2">   1 kilowatt (kW) = 1000 watts (W)</span>
+<span class="s2">   1 kilowatt-hour (kWh) = 3,600,000 joules (J)</span>
 
-<span class="c1"># Stage 2: Get final answer</span>
-<span class="n">final_answer_prompt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"> Based on the above summary, who was the leader of the group that conquered the city where the last Western Roman Emperor ruled? </span><span class="se">\n</span><span class="s2"> Answer:&quot;</span>
+<span class="s2">5. Conservation of Energy: The principle that energy cannot be created or destroyed, only converted from one form to another. In this case, electrical energy is being converted to other forms (primarily heat and electromagnetic waves) in the microwave oven.</span>
 
-<span class="n">final_answer</span> <span class="o">=</span> <span class="n">question_answerer</span><span class="p">(</span><span class="n">summary_response</span><span class="p">,</span> <span class="n">final_answer_prompt</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">final_answer</span><span class="p">)</span>
+<span class="s2">These principles and equations provide the foundation for calculating the rate at which energy is being used by an electrical appliance given its voltage and current draw.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">exemplar_solution</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Let&#39;s solve this problem step by step using the principles.</span>
+
+<span class="s2">Given:</span>
+<span class="s2">- Voltage (V) = 120 V</span>
+<span class="s2">- Current (I) = 2 A</span>
+
+<span class="s2">We need to find the rate at which energy is being used, which is equivalent to the power consumed by the microwave oven.</span>
+
+<span class="s2">Step 1: Use the electrical power equation to calculate the power.</span>
+<span class="s2">P = V * I</span>
+<span class="s2">P = 120 V * 2 A</span>
+<span class="s2">P = 240 W</span>
+
+<span class="s2">Therefore, the microwave oven is using energy at a rate of 240 watts.</span>
+
+<span class="s2">To express this in kilowatts, we can convert:</span>
+<span class="s2">240 W = 0.24 kW</span>
+
+<span class="s2">Conclusion: The microwave oven is using energy at a rate of 240 watts or 0.24 kilowatts.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">current_question</span> <span class="o">=</span> <span class="s2">&quot;The plates of a capacitor are charged to a potential difference of 5 V. If the capacitance is 2 mF, what is the charge on the positive plate?&quot;</span>
+
+<span class="n">get_principles_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are an expert at Physics.</span>
+<span class="s2">You are given a Physics problem.</span>
+<span class="s2">Your task is to extract the Physics concepts and principles involved in solving the problem.</span>
+<span class="s2">Here is an example:</span>
+
+<span class="s2">--- Example ----</span>
+<span class="s2">Question: </span><span class="si">{</span><span class="n">exemplar_question</span><span class="si">}</span>
+<span class="s2">Principles:</span><span class="si">{</span><span class="n">exemplar_principles</span><span class="si">}</span>
+<span class="s2">--- End of Example ----</span>
+
+<span class="s2">Question: </span><span class="si">{</span><span class="n">current_question</span><span class="si">}</span>
+<span class="s2">Do not solve the problem. Only detail the principles and equations involved.</span>
+<span class="s2">Principles Involved:</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">call_gpt</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+    <span class="n">completion</span> <span class="o">=</span> <span class="n">openai_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+
+<span class="n">current_principles</span> <span class="o">=</span> <span class="n">call_gpt</span><span class="p">(</span><span class="n">get_principles_prompt</span><span class="p">)</span>
+
+<span class="n">get_step_back_solution_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are an expert at Physics.</span>
+<span class="s2">You are given a Physics problem and a set of principles involved in solving the problem.</span>
+<span class="s2">Solve the problem step by step by following the principles.</span>
+<span class="s2">Here is an example:</span>
+
+<span class="s2">--- Example ----</span>
+<span class="s2">Question: </span><span class="si">{</span><span class="n">exemplar_question</span><span class="si">}</span>
+<span class="s2">Principles:</span><span class="si">{</span><span class="n">exemplar_principles</span><span class="si">}</span>
+<span class="s2">Solution: </span><span class="si">{</span><span class="n">exemplar_solution</span><span class="si">}</span>
+<span class="s2">--- End of Example ----</span>
+
+<span class="s2">Question: </span><span class="si">{</span><span class="n">current_question</span><span class="si">}</span>
+<span class="s2">Principles Involved: </span><span class="si">{</span><span class="n">current_principles</span><span class="si">}</span>
+<span class="s2">Solution: </span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">final_solution</span> <span class="o">=</span> <span class="n">call_gpt</span><span class="p">(</span><span class="n">get_step_back_solution_prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_solution</span><span class="p">)</span>
 </code></pre></div> 
               </article>
             </div>
