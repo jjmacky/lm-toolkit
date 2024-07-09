@@ -1,15 +1,15 @@
 ---
-date: 6 July 2024
+date: 8  July 2024
 ---
 
 ## Overview
-Step-Back Prompting is a technique that asks large language models (LLMs) to perform abstractions to derive high-level concepts and first principles from instances containing specific details. By using these concepts and principles to guide reasoning, LLMs may be able to better follow a correct reasoning path towards a solution.
+Step-back Prompting is a technique that asks large language models (LLMs) to perform abstractions to derive high-level concepts and first principles from instances containing specific details. By using these concepts and principles to guide reasoning, LLMs may be able to better follow a correct reasoning path towards a solution.
 
 ## First proposed
-Step-Back Prompting was proposed in October 2023 by Huaixiu Steven Zheng, Swaroop Mishra, Xinyun Chen, Heng-Tze Cheng, Ed H. Chi, Quoc V Le, and Denny Zhou in the paper ["Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models"](https://arxiv.org/abs/2310.06117).
+Step-back Prompting was proposed in October 2023 by Huaixiu Steven Zheng, Swaroop Mishra, Xinyun Chen, Heng-Tze Cheng, Ed H. Chi, Quoc V Le, and Denny Zhou in the paper ["Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models"](https://arxiv.org/abs/2310.06117).
 
 ## How to use it
-Step-Back Prompting involves two main steps when interacting with an LLM:
+Step-back Prompting involves two main steps when interacting with an LLM:
 
 1. The step-back prompt
     - Prompt the language model with a step-back question asking it to reason about the principles at play in a solution rather than the solution itself.
@@ -22,32 +22,32 @@ Step-Back Prompting involves two main steps when interacting with an LLM:
 See ["Prompting"](#prompting) and section for usage details.
 
 ## When to use it
-!!! tip "When to use Step-Back Prompting"
+!!! tip "When to use Step-back Prompting"
     - Ideal for complex tasks that benefit from abstracting to higher-level concepts or principles before reasoning about specifics.
     - Effective for knowledge-intensive questions where recalling general information first can help guide the specific answer.
     - Particularly useful for multi-step reasoning tasks where breaking down the problem into abstract concepts can simplify the reasoning process.
     - Applicable across various domains including STEM, knowledge QA, and multi-hop reasoning tasks.
 
 ## What to know
-Step-Back Prompting is a technique that aims to improve language model reasoning by mimicking the human process of abstraction. The method involves two key steps: Steping back, where the LLM generates a more abstract question related to the original query, and Reasoning, where the LLM uses information from the abstract question to guide its reasoning on the original query. This approach is designed to help language models identify relevant high-level concepts and principles before attempting to solve specific problems.
+Step-back Prompting is a technique that aims to improve language model reasoning by mimicking the human process of abstraction. The method involves two key steps: Stepping back, where the LLM generates a more abstract question related to the original query, and Reasoning, where the LLM uses information from the abstract question to guide its reasoning on the original query. This approach is designed to help language models identify relevant high-level concepts and principles before attempting to solve specific problems.
 
-![An image of how step-back promptint works.](../../images/cot/step_back_1.png)
+![An image of how Step-back Prompting works.](../../images/cot/step_back_1.png)
 
 The technique is based on the idea that abstracting complex problems can reduce cognitive load and activate relevant knowledge that might not be immediately apparent from specific details. The authors found that a single demonstration example was typically sufficient for language models to learn the abstraction process, suggesting that this skill is relatively easy for these models to acquire through in-context learning. While the approach showed improvements across various tasks such as STEM problems and QA knowledge and model families, it's important to note that performance gains may vary depending on the specific task and model used. Notably, the approach was only tested on large language models of 70 billion parameters and up, leaving its effectiveness on smaller models an open question.
 
 ## Replication
-I conducted a partial replication using the 151-question MMLU high-school physics dataset also used by Zheng et al. The replication tested Step-Back Prompting against traditional Chain-of-Thought (CoT) prompting across three models of various sizes from different providers not tested in the original paper.
+I conducted a partial replication using the 151-question MMLU high-school physics dataset also used by Zheng et al. The replication tested Step-back Prompting against traditional Chain-of-Thought (CoT) prompting across three models of various sizes from different providers not tested in the original paper.
 
-The full code and project files used for the replication are available here.
+The full code and project files used for the replication are available [here](https://github.com/jjmacky/lm-toolkit/tree/main/code/prompt_dictionary/cot/step_back). The main Python notebook is available [here](https://github.com/jjmacky/lm-toolkit/blob/main/code/prompt_dictionary/cot/step_back/step_back.ipynb).
 
-### Methodology:
+### Methodology
 1. Step-back prompts were constructed with one exemplar, following the findings of Zheng et al.
 2. These prompts were used to elicit principles for each of the 151 physics questions, following Table 7 in Section C.1 of the original paper.
 3. The elicited principles, original questions, and a complete exemplar were then passed to the model for a final answer, as per Table 8 in Section D.1.
 4. Claude Sonnet 3.5 was used as a judge to determine if the model solution matched the original solution.
 
 ### Results
-Contrary to the findings in the original paper, Step-Back Prompting did not consistently outperform traditional CoT in this replication. Notably, for GPT-3.5 Turbo, Step-Back Prompting performed 10 percentage points worse than standard CoT.
+Contrary to the findings in the original paper, Step-back Prompting did not consistently outperform traditional CoT in this replication. Notably, for GPT-3.5 Turbo, Step-back Prompting performed 10 percentage points worse than standard CoT.
 
 | Model  | Step Back Accuracy | Standard CoT Accuracy |
 |--------|---------------------|-------------------|
@@ -55,18 +55,18 @@ Contrary to the findings in the original paper, Step-Back Prompting did not cons
 | Gemini Flash | 58.9%               | 61.6%             |
 | GPT-3.5 Turbo    | 33.1%               | 43.0%             |
 
-These results suggest that the effectiveness of Step-Back Prompting may vary depending on the specific model and task, and may not generalize uniformly across all large language models.
+These results suggest that the effectiveness of Step-back Prompting may vary depending on the specific model and task, and may not generalize uniformly across all large language models.
 
 ## Best practices
-!!! tip "Best practices for Step-Back Prompting"
+!!! tip "Best practices for Step-back Prompting"
     - Provide clear instructions for both the abstraction and reasoning steps.
     - Use few-shot examples to demonstrate the desired abstraction and reasoning process (the authors found that one exemplar is sufficient).
-    - Consider combining Step-Back Prompting with other techniques like retrieval-augmented generation (RAG) for knowledge-intensive tasks.
+    - Consider combining Step-back Prompting with other techniques like retrieval-augmented generation (RAG) for knowledge-intensive tasks.
     - Implement error handling and validation to manage potential issues in the abstraction or reasoning steps.
     - Ensure that the abstraction step doesn't introduce errors or biases not present in the original query.
 
 ## What to watch out for
-!!! warning "What to watch out for with Step-Back Prompting"
+!!! warning "What to watch out for with Step-back Prompting"
     - The quality of the abstraction can significantly impact the final answer. Poor abstractions may lead to irrelevant or misleading reasoning.
     - Some simple queries may not benefit from abstraction and could be answered more efficiently directly.
     - The technique may require more computation time and resources compared to direct questioning, especially for complex tasks.
@@ -77,7 +77,7 @@ These results suggest that the effectiveness of Step-Back Prompting may vary dep
 Zheng, H. S., Mishra, S., Chen, X., Cheng, H. T., Chi, E. H., Le, Q. V., & Zhou, D. (2024). Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models. [arXiv preprint arXiv:2310.06117v2](https://arxiv.org/abs/2310.06117).
 
 ## Prompting
-The Step-Back Prompting template instructs the model to first generate a more abstract question related to the original query, and then use this abstraction to guide its reasoning. The template consists of two main parts:
+The Step-back Prompting template instructs the model to first generate a more abstract question related to the original query, and then use this abstraction to guide its reasoning. The template consists of two main parts:
 1. Step-back prompt:
 - Ask the model to generate a more general or high-level question related to the original query.
 
